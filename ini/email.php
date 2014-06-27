@@ -16,7 +16,7 @@
 	$A[ 'MAIL_SMTP_PORT' ]	= 587 ;
 	$A[ 'MAIL_SMTP_SEC' ]   = 'tls' ;
 	
-	$A[ 'MAIL_SMTP_USR' ] 	= getenv( 'CSR_SMTP_USR' ) ;  	// SMTP username
-	$A[ 'MAIL_SMTP_PWD' ] 	= getenv( 'CSR_SMTP_PWD' ) ;  	// SMTP password
+	$A[ 'MAIL_SMTP_USR' ] 	= $_ENV[ 'CSR_SMTP_USR' ] ;  	// SMTP username
+	$A[ 'MAIL_SMTP_PWD' ] 	= $_ENV[ 'CSR_SMTP_PWD' ] ;  	// SMTP password
 		
 ?>

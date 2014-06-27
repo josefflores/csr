@@ -11,8 +11,8 @@
 	 */
 	 
 	//	Credential Storage
-	$A[ 'M_USR' ] 	= getenv( 'CSR_MYSQL_USR' ) ; 
-    $A[ 'M_PWD' ] 	= getenv( 'CSR_MYSQL_PWD' ) ;
+	$A[ 'M_USR' ] 	= $_ENV[ 'CSR_MYSQL_USR' ] ; 
+    $A[ 'M_PWD' ] 	= $_ENV[ 'CSR_MYSQL_PWD' ] ;
 	 
 	// 	Initialization Database
 	$A[ 'M_SQL' ]	= $A[ 'D_INI' ].'init.sql' ;
