@@ -1,2 +1,2 @@
 TEST GITHUB HOOK
-Test 6
+Test 7
