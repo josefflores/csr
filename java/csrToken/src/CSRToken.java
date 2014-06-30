@@ -27,14 +27,18 @@ public class CSRToken {
 
 	////
 	// Functions
-	 
+	
+	// Example 
 	public static void main( String[] args ) {
+		// make a token
 		CSRToken token = new CSRToken() ;
+		// Set all the necessary fields 
 		token.setMfaDeviceSalt( "ABC123kk" ) ;
 		token.setMfaDevicePepper( "THEHALL2" ) ;
 		token.setMfaDeviceDate( 123456789 ) ;
 		token.setMfaDevicePin( 982091 ) ;
 		
+		// return token.genToken() ;
 		System.out.printf( "%s" , token.genToken() ) ;
 	}
 	
