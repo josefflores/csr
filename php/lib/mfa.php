@@ -298,13 +298,21 @@
 				 * precision must match the reciever
 				 * encryption must also match reciever : sha256
 				 */
-				return hash( $encryption , 
-							 $mfa_device_salt . 
-							 $mfa_device_date . 
-							 (int) ( ( time() + ( $i * $precision ) ) / $precision ) . 
-							 $mfa_device_pin . 
-							 $mfa_device_pepper ) ;
+				$tmp = mb_internal_encoding() ;
+				
+				mb_internal_encoding( "UTF-8" ) ;
+				  
+				$str = strtoupper( hash( $encryption , 
+										 $mfa_device_salt . 
+										 $mfa_device_date . 
+										 (int) ( ( time() + ( $i * $precision ) ) / $precision ) . 
+										 $mfa_device_pin . 
+										 $mfa_device_pepper ) ) ;
+				mb_internal_encoding( $tmp ) ;						 
+				
+				return $str ;
 			}
+			
 			
 			/**
 			 * 	emailPin
