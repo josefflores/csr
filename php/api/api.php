@@ -34,7 +34,7 @@
 			private $A ;
 			
 			/**
-			 * The constructor
+			 * 	The constructor
 			 * 
 			 * 	The API constructor
 			 * 
@@ -46,15 +46,15 @@
 			}
 			
 			/**
-			 * 	setReturn 
+			 * 	@name		setReturn 
 			 * 
-			 * 	This function generates the return messages for the api
+			 * 	@description	This function generates the return messages for the api
 			 * 
 			 * 	@param 	$num
 			 * 	@param 	$val
 			 * 	@param 	$content
 			 * 
-			 * 	@return the return message
+			 * 	@return the return message array
 			 */
 			public function setReturn( $num , $val = null , $content = null ) {
 				switch ( $num ) {
@@ -141,19 +141,18 @@
 			}			
 			
 			/**
-			 * 	getWidgetInstance
+			 * 	@name 		getWidgetInstance
 			 * 
-			 * 	this function fetches a widget instance
+			 * 	@description	this function fetches a widget instance
 			 * 
-			 * 	@param	$parameters		The widget name and parameters
+			 * 	@param	$parameters The widget name and parameters
 			 * 	
-			 * 	@catch	$e				Catches any exception
-			 * 							and then returns 404
+			 * 	@catch	$e	Catches any exception and then returns 404
 			 * 
-			 * 	@return 200				The widget is found and being 
-			 * 							returned
-			 * 	@return 404				An error occured and the widget 
-			 * 							could not be found
+			 * 	@return 200	The widget is found and being returned
+			 * 	@return 401	Unauthorized
+			 * 	@return 404	Bad request
+			 * 	
 			 */
 			private function getWidgetInstance( $parameters ) {
 				if ( ! defined( 'CURRENT_USER_ID ' ) ) {
@@ -210,6 +209,10 @@
 			 * 	This function registers an MFA device
 			 * 
 			 * 	@param $parameters		the fields needed 
+			 * 
+			 * 	@return 204				Success
+			 * 	@return 400				Bad Request
+			 * 	@return 500				Failure
 			 */
 			public function registerMFA( $parameters ) {
 				
@@ -229,33 +232,48 @@
 			}
 			
 			/**
-			 * 	registerUser
+			 * 	@name		registerUser
 			 * 
-			 * 	This function registers a user
+			 * 	@description	This function registers a user
 			 * 
-			 * 	JSON=[ { 
+			 * 	@usage
+			 * 
+			 * 	JSON=[ 
+			 * 		{ 
 			 * 			"order": 1,
-			 *      	"call": "registerUser",
-			 *    	    "parameter": [
-			 * 			    {
-			 * 	                "usr_email": "email",
-			 * 	                "usr_name_first": "john",
-			 * 		            "usr_name_middle": "fedrick",
-			 * 	                "usr_name_last": "doe",
-			 * 		            "usr_phone_country": "1",
-			 * 	                "usr_phone_area": "234",
-			 * 	                "usr_phone_number": "5556666",
-			 * 	                "usr_phone_ext": "4444",
-			 * 	                "usr_pwd_1": "Password1",
-			 * 	                "usr_pwd_2": "Password1",
-			 * 	                "usr_dob": "2007-12-31"
-			 *             }	        
+			 *      		"call": "registerUser",
+			 *    	    		"parameter": [
+			 * 			    	{
+			 * 	                		"usr_email": "email",
+			 * 	                		"usr_name_first": "john",
+			 * 		            		"usr_name_middle": "fedrick",
+			 * 	                		"usr_name_last": "doe",
+			 * 		            		"usr_phone_country": "1",
+			 * 	                		"usr_phone_area": "234",
+			 * 	                		"usr_phone_number": "5556666",
+			 * 	                		"usr_phone_ext": "4444",
+			 * 	                		"usr_pwd_1": "Password1",
+			 * 	                		"usr_pwd_2": "Password1",
+			 * 	                		"usr_dob": "2007-12-31"
+			 *             			}	        
 			 * 			]
-			 * 	    }
+			 * 	    	}
 			 * 	]
 			 * 		 
-			 * 	@param $parameters		the fields needed 
+			 * 	@param $parameters[ 'usr_email' ]		The User email
+			 * 	@param $parameters[ 'usr_name_first' ]		The First Name
+			 * 	@param $parameters[ 'usr_name_middle' ]		Middle Name | Initial | Null
+			 * 	@param $parameters[ 'usr_name_last' ]		Last Name
+			 * 	@param $parameters[ 'usr_phone_country' ]	1 - 3 digits
+			 * 	@param $parameters[ 'usr_phone_area' ]		3 digits	
+			 * 	@param $parameters[ 'usr_phone_number' ]	7 digits
+			 * 	@param $parameters[ 'usr_phone_ext' ]		1 - 4 digits | Null
+			 * 	@param $parameters[ 'usr_pwd_1' ]		Password String
+			 * 	@param $parameters[ 'usr_pwd_2' ]		Password String Copy for verification
+			 * 	@param $parameters[ 'usr_dob' ]			YYYY-MM-DD
 			 *
+			 * 	@return 204				Success
+			 * 	@return 500				Failure
 			 */
 			 public function registerUser( $parameters ) {
 				 if( !isset( $parameters[0][ 'usr_email' ] ) &&
@@ -283,11 +301,30 @@
 			 }
 			 
 			 /**
-			 * 	authenticateUser
+			 * 	@name 		authenticateUser
 			 * 
-			 * 	This function logs a user in
+			 * 	@description 	This function logs a user in
 			 * 
-			 * 	@param $parameters		the fields needed 
+			 * 	@usage
+			 * 
+			 * 	JSON=[ 
+			 * 		{ 
+			 * 			"order": 1,
+			 *      		"call": "authenticateUser",
+			 *    	    		"parameter": [
+			 * 			    	{
+			 * 	                		"usr_email": "email",
+			 * 	                		"usr_pwd_1": "Password1",
+			 *             			}	        
+			 * 			]
+			 * 	    	}
+			 * 	]
+			 * 
+			 * 	@param $parameters[ 'usr_email' ] 	The User email
+			 * 	@param $parameters[ 'usr_pwd_1' ] 	Password String
+			 * 
+			 * 	@return 204				Success
+			 * 	@return 500				Failure
 			 */
 			 public function authenticateUser( $parameters ) {
 				 if( !isset( $parameters[0][ 'usr_email' ] ) &&
@@ -307,11 +344,28 @@
 			 }
 			 
 			/**
-			 * 	activateMFA ;
+			 * 	@name 		activateMFA ;
 			 * 
-			 * 	This function activates an MFA device
+			 * 	@description	This function activates an MFA device
 			 * 
-			 * 	@param $parameters			the fields needed 
+			 * 	@usage
+			 * 
+			 * 	JSON=[ 
+			 * 		{ 
+			 * 			"order": 1,
+			 *      		"call": "registerUser",
+			 *    	    		"parameter": [
+			 * 			    	{
+			 * 	                		"USR_PHONE": "15082457496",
+			 * 	                		"USR_PIN": "123456"
+			 *             			}	        
+			 * 			]
+			 * 	    	}
+			 * 	]
+			 * 
+			 * 	@param $parameters[ 'USR_PHONE' ]	the phne MAC
+			 * 	@param $parameters[ 'USR_PIN' ] 	the emailed pin 
+			 * 				
 			 */
 			public function activateMFA( $parameters) {
 				if( !isset( $parameters[ 'USR_PHONE' ] ) &&
