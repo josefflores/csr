@@ -7,7 +7,8 @@
 	 * 	@Description	This is paths configuration file.
 	 * 
 	 * 	@changelog		
-	 *	4/21/14			Created file
+	 *	7/01/14			added Java location
+	 * 	4/21/14			Created file
 	 */
 
 	// Resolving relative web paths
@@ -30,6 +31,7 @@
 	$A[ 'D_DOC' ]		= $A[ 'D_ROOT' ].'doc\\' ;
 	$A[ 'D_INI' ]		= $A[ 'D_ROOT' ].'ini\\' ;
 	$A[ 'D_PHP' ]		= $A[ 'D_ROOT' ].'php\\' ;
+	$A[ 'D_JAVA' ]		= $A[ 'D_ROOT' ].'java\\' ;
 	$A[ 'D_USR' ]		= $A[ 'D_ROOT' ].'usr\\' ;
 	$A[ 'D_WWW' ]		= $A[ 'D_ROOT' ].'www\\' ;
 	
