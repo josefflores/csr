@@ -50,7 +50,7 @@
 								  $A[ 'M_DB' ] ) ;
 								  
 				if ( $this->connection->connect_errno > 0 ) {
-					die( 'Unable to connect to database [' . $this->connection->connect_error . ']' ) ;
+					throw new exception( 'Unable to connect to database [' . $this->connection->connect_error . ']' ) ;
 				}
 			}
 			
@@ -76,6 +76,31 @@
 			
 			//	METHODS
 			
+			/**
+			 * 	isTable
+			 * 
+			 * 	determines if a table exists
+			 * 
+			 * 	@param 	$table	the table name
+			 * 
+			 * 	@return true	table exists
+			 * 	@return false	table does not exist 
+			 */
+			public function isTable( $table ) {
+				
+				if ( $table == null ) 
+					return false ;
+					
+				$query = "SHOW TABLES LIKE '" . $table . "'" ;
+				
+				if ( ( $result = $this->runQuery( $query ) ) &&
+					 mysqli_num_rows( $result ) > 0 ) {
+						return true ;
+				}
+				
+				return false ;
+
+			}
 			/**
 			 * 	insert
 			 * 

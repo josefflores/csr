@@ -55,7 +55,9 @@
 					$id = $this->authenticate() ;				
 					
 					// Authenticate user
-					define( 'CURRENT_USER_ID' , $id ) ;
+					define( CURRENT_USER_ID , $id ) ;
+					define( CURRENT_WEB_OR_MFA , 'wEB' ) ;
+					define( CURRENT_SRC_ID , $_SERVER[ 'REMOTE_ADDR' ] ) ;
 				}
 
 			 }

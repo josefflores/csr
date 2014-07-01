@@ -266,8 +266,8 @@
 			 *      		"call": "getWidget",
 			 *    	    		"parameter": [
 			 * 			    	{
-			 * 	                		"widget name" ,
-			 * 	                		'optional parameters'
+			 * 	                		"widget name" 
+			 * 	                		[ , ... ]
 			 *             			}	        
 			 * 			]
 			 * 	    	}
@@ -326,6 +326,103 @@
 				}
 			}
 			
+			// DATA METHODS
+			
+			/**
+			 * 	@name	storeData
+			 * 
+			 * 	@description	This function saves data to the application 
+			 * 	data database, allowing the user to chose which table
+			 * 
+			 * 	@usage
+			 * 
+			 * 	JSON=[ 
+			 * 		{ 
+			 * 			"order": 1,
+			 *      	"call": "storeData",
+			 *    	    "parameter": [
+			 * 			   	{
+			 * 	           		"TABLE":"table" ,
+			 * 					"KEYPAIR":[ 
+			 * 						{
+			 * 							"keyname" : "value"
+			 *						}
+			 *					]
+			 * 	                		
+			 *         		}	        
+			 * 			]
+			 *    	}
+			 * 	]
+			 * 
+			 * 	@param	$parameters[ 'TABLE' => 'tableName' , 'KEYPAIR' => array( 'keyName' => 'value' ) ;
+			 * 
+			 * 	@return	201		Created
+			 * 	@return 400		Bad request
+			 * 	@return 401		Unauthorized
+			 * 	@return 404		Not Found
+			 *  @return 500		Server error
+			 */ 	
+			public function	storeData( $parameters ) {
+				if ( ! defined( 'CURRENT_USER_ID ' ) ) {
+					return $this->setReturn( 401 , null , null ) ;	
+				}
+				
+				if( !isset( $parameters[0][ 'TABLE' ] ) &&
+					!isset( $parameters[0][ 'KEYPAIR' ] ) )
+						return $this->setReturn( 400 , null , null ) ;
+				
+				
+				// Check database connection	 
+				$this->A[ 'M_DB' ] = 'csr_d' ;
+				try {
+					$tmp = new mysql( $this->A ) ;
+				}
+				catch ( Exception $e ) {
+					// connection error
+					return $this->setReturn( 500 , null , null ) ;
+				}
+				
+				
+				// check table exists
+				$table = $parameters[0][ 'TABLE' ] ;
+				if ( !$tmp->isTable( $table ) ) {
+					// table does not exist
+					return $this->setReturn( 404 , null , null ) ;
+				}
+				
+				// Extract key and value
+				$key = key( $parameters[0][ 'KEYPAIR' ][ 0 ]  ) ;
+				$value = $parameters[0][ 'KEYPAIR' ][ 0 ][ $key ] ;
+				
+				//	Preparing data for storage
+				$id = CURRENT_USER_ID ;
+				$time = time() ;
+				$src = CURRENT_WEB_OR_MFA ;
+				$srcId = CURRENT_SRC_ID ; 
+					 
+				 
+				// prepare array
+				$values = array( 'csr_d_usr_id' => $id ,
+								 'csr_d_time' => $time ,
+								 'csr_d_src' => $src ,
+								 'csr_d_src_id' => $srcId ,
+								 'csr_d_key' => $key ,
+								 'csr_d_val' => $value ) ;
+				
+				
+				$tmp->insert( $table , $values ) ;
+				
+				// Final check for success or failure
+				if ( $tmp === 0 ) {
+					// Success
+					return $this->setReturn( 201 , null , null ) ;
+				}
+				else {
+					return $this->setReturn( 500 , null , null ) ;
+				}
+			}
+			
+			
 			//	USER METHODS
 			
 			/**
@@ -359,17 +456,17 @@
 			 * 	    	}
 			 * 	]
 			 * 		 
-			 * 	@param $parameters[ 'usr_email' ]		The User email
-			 * 	@param $parameters[ 'usr_name_first' ]		The First Name
-			 * 	@param $parameters[ 'usr_name_middle' ]		Middle Name | Initial | Null
-			 * 	@param $parameters[ 'usr_name_last' ]		Last Name
-			 * 	@param $parameters[ 'usr_phone_country' ]	1 - 3 digits
-			 * 	@param $parameters[ 'usr_phone_area' ]		3 digits	
-			 * 	@param $parameters[ 'usr_phone_number' ]	7 digits
-			 * 	@param $parameters[ 'usr_phone_ext' ]		1 - 4 digits | Null
-			 * 	@param $parameters[ 'usr_pwd_1' ]		Password String
-			 * 	@param $parameters[ 'usr_pwd_2' ]		Password String Copy for verification
-			 * 	@param $parameters[ 'usr_dob' ]			YYYY-MM-DD
+			 * 	@param $parameters[ 0 ][ 'usr_email' ]		The User email
+			 * 	@param $parameters[ 0 ][ 'usr_name_first' ]		The First Name
+			 * 	@param $parameters[ 0 ][ 'usr_name_middle' ]		Middle Name | Initial | Null
+			 * 	@param $parameters[ 0 ][ 'usr_name_last' ]		Last Name
+			 * 	@param $parameters[ 0 ][ 'usr_phone_country' ]	1 - 3 digits
+			 * 	@param $parameters[ 0 ][ 'usr_phone_area' ]		3 digits	
+			 * 	@param $parameters[ 0 ][ 'usr_phone_number' ]	7 digits
+			 * 	@param $parameters[ 0 ][ 'usr_phone_ext' ]		1 - 4 digits | Null
+			 * 	@param $parameters[ 0 ][ 'usr_pwd_1' ]		Password String
+			 * 	@param $parameters[ 0 ][ 'usr_pwd_2' ]		Password String Copy for verification
+			 * 	@param $parameters[ 0 ][ 'usr_dob' ]			YYYY-MM-DD
 			 *
 			 * 	@return 204				Success
 			 *  @return 400				Bad request
@@ -422,8 +519,8 @@
 			 * 	    	}
 			 * 	]
 			 * 
-			 * 	@param $parameters[ 'usr_email' ] 	The User email
-			 * 	@param $parameters[ 'usr_pwd_1' ] 	Password String
+			 * 	@param $parameters[ 0 ][ 'usr_email' ] 	The User email
+			 * 	@param $parameters[ 0 ][ 'usr_pwd_1' ] 	Password String
 			 * 
 			 * 	@return 204				Success
 			 * 	@return 400				Baad request
@@ -471,9 +568,9 @@
 			 * 	    	}
 			 * 	]
 			 * 
-			 * 	@param $parameters[ 'USR_PHONE' ]		the dievice MAC
-			 * 	@param $parameters[ 'USR_EMAIL' ]		the users email
-			 *  @param $parameters[ 'USR_PWD' ]			the user password
+			 * 	@param $parameters[ 0 ][ 'USR_PHONE' ]		the dievice MAC
+			 * 	@param $parameters[ 0 ][ 'USR_EMAIL' ]		the users email
+			 *  @param $parameters[ 0 ][ 'USR_PWD' ]			the user password
 			 * 
 			 * 	@return 200				Success, data returned is  salt and pepper
 			 * 	@return 400				Bad Request
@@ -519,8 +616,8 @@
 			 * 	    	}
 			 * 	]
 			 * 
-			 * 	@param $parameters[ 'USR_PHONE' ]	the dievice MAC
-			 * 	@param $parameters[ 'USR_PIN' ] 	the emailed pin 
+			 * 	@param $parameters[ 0 ][ 'USR_PHONE' ]	the dievice MAC
+			 * 	@param $parameters[ 0 ][ 'USR_PIN' ] 	the emailed pin 
 			 * 
 			 * 	@return		204		Success
 			 * 	@return		400		Bad request
@@ -559,7 +656,7 @@
 			 *    	    		"parameter": [
 			 * 			    	{
 			 * 	                		"USR_PHONE": "15082457496",
-			 * 	                		"USR_PIN": "123456"
+			 * 	                		"USR_TOKEN": "ASDFASDFSADGDRSGDFSDFDFSGSDGSDFGDFGSDFGSDFGSDFGSDFGSDFG"
 			 *             			}	        
 			 * 			]
 			 * 	    	}
@@ -567,8 +664,8 @@
 			 * 
 			 * 	@description	This function authenticates an MFA device
 			 * 
-			 * 	@param 	$parameters[ 'USR_PHONE' ]	the device MAC
-			 * 	@param 	$parameters[ 'USR_TOKEN' ]	the device token 
+			 * 	@param 	$parameters[ 0 ][ 'USR_PHONE' ]	the device MAC
+			 * 	@param 	$parameters[ 0 ][ 'USR_TOKEN' ]	the device token 
 			 * 
 			 * 	@return	400		Bad request
 			 *  @return	204		Succces

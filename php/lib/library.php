@@ -80,6 +80,9 @@
 			// 	the API's JSON syntax
 			case 'getWidget' :
 				return $apiObj->getWidget( $parameters ) ;
+			
+			case 'storeData' :
+				return $apiObj->storeData( $parameters ) ;
 				
 			case 'registerMFA' :
 				return $apiObj->registerMFA( $parameters ) ;

@@ -92,7 +92,7 @@
 				$DB = new mysql( $this->A ) ;
 				
 				// Check that user is registered
-				
+				// Add password check and turn on password input to api
 				$table = 'csr_usr_account' ;
                 $operators = array( '==' ) ;
                 $keyPairs  = array( 'usr_email' => $this->param[ 'USR_EMAIL' ] ) ;
@@ -246,6 +246,9 @@
 						$DB->update( $table , $keyPairs , $operators , $newKeyPairs ) ;
 						//device has authenticated
 						define( CURRENT_USER_ID , $owner ) ;
+						define( CURRENT_WEB_OR_MFA , 'MFA' ) ;
+						define( CURRENT_SRC_ID , $this->param[ 'USR_PHONE' ] ) ;
+						
 						return 0 ;
 						
 					}
