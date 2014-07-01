@@ -31,10 +31,20 @@
 		 */
 		class api {
 			
+			////
+			//	VARIABLES
+			////
+			
 			private $A ;
+			
+			////
+			//	CONSTRUCTOR
+			////
 			
 			/**
 			 * 	@name 		__construct
+			 * 
+			 * 	@secure 	false
 			 * 
 			 * 	@description	The API constructor
 			 * 	
@@ -47,8 +57,15 @@
 				$this->A = $A ;
 			}
 			
+			
+			////
+			//	HIDDEN OR PRIVATE METHODS
+			////
+			
 			/**
 			 * 	@name		setReturn 
+			 * 
+			 * 	@secure 	false
 			 * 
 			 * 	@description	This function generates the return messages for the api
 			 * 
@@ -148,10 +165,14 @@
 			
 			/**
 			 * 	@name 		getWidgetInstance
+			 * 	
+			 * 	@secure		true
 			 * 
 			 * 	@description	this function fetches a widget instance
 			 * 
-			 * 	@usage		TODO
+			 * 	@usage		
+			 * 
+			 * 	$this->getWidgetInstance( array( 'wgtName' [ , array( param [ , ... ] ) ) ) ;
 			 * 
 			 * 	@param	$parameters[ 0 ] 	The widget name 
 			 * 	@param 	$parameters[ > 0 ]	The widget parameters
@@ -161,7 +182,6 @@
 			 * 	@return 200	The widget is found and being returned
 			 * 	@return 401	Unauthorized
 			 * 	@return 404	Bad request
-			 * 	
 			 */
 			private function getWidgetInstance( $parameters ) {
 				// If user has been authenticated
@@ -182,13 +202,31 @@
 				return $this->setReturn( 200 , null , $widget ) ;
 			}
 			
+			
+			////
+			//	API METHODS
+			////
+			
 			/**
 			 * 	@name	getMethodList
 			 * 
 			 * 	@description	This function generates a list of all the available API methods
 			 * 
-			 * 	@return 				A JSON success message with the 
-			 * 							available API methods
+			 * 	@usage
+			 * 
+			 * 	JSON=[ 
+			 * 		{ 
+			 * 			"order": 1,
+			 *      	"call": "getMethodList",
+			 *    	    		"parameter": [
+			 * 			    	{
+			 * 	                		null 
+			 *             			}	        
+			 * 			]
+			 * 	    	}
+			 * 	]
+			 * 
+			 * 	@return 200		success and a list of available API methods
 			 */ 
 			public function getMethodList() {
 				
@@ -216,223 +254,35 @@
 			}
 			
 			/**
-			 * 	registerMFA
+			 * 	@name	getWidget
 			 * 
-			 * 	This function registers an MFA device
-			 * 
-			 * 	@param $parameters		the fields needed 
-			 * 
-			 * 	@return 204				Success
-			 * 	@return 400				Bad Request
-			 * 	@return 500				Failure
-			 */
-			public function registerMFA( $parameters ) {
-				
-				if( !isset( $parameters[ 'USR_PHONE' ] ) &&
-					!isset( $parameters[ 'USR_EMAIL' ] ) )
-						return $this->setReturn( 400 , null , null ) ;
-						
-				$mfa = new mfa( $A , $parameters ) ;
-				$tmp = $mfa->manage( 'REGISTER' ) ;
-				
-				if ( is_array( $tmp ) ) 			 
-					return $this->setReturn( 200 , null , $tmp ) ;
-				else if ( $tmp == 1 )
-					return $this->setReturn( 401 , 'User is not registered.' , null ) ;
-				else if ( $tmp == 2 )
-					return $this->setReturn( 401 , 'Device is already registered.' , null )  ;
-			}
-			
-			/**
-			 * 	@name		registerUser
-			 * 
-			 * 	@description	This function registers a user
+			 * 	@secure 	true
 			 * 
 			 * 	@usage
 			 * 
 			 * 	JSON=[ 
 			 * 		{ 
 			 * 			"order": 1,
-			 *      		"call": "registerUser",
+			 *      		"call": "getWidget",
 			 *    	    		"parameter": [
 			 * 			    	{
-			 * 	                		"usr_email": "email",
-			 * 	                		"usr_name_first": "john",
-			 * 		            		"usr_name_middle": "fedrick",
-			 * 	                		"usr_name_last": "doe",
-			 * 		            		"usr_phone_country": "1",
-			 * 	                		"usr_phone_area": "234",
-			 * 	                		"usr_phone_number": "5556666",
-			 * 	                		"usr_phone_ext": "4444",
-			 * 	                		"usr_pwd_1": "Password1",
-			 * 	                		"usr_pwd_2": "Password1",
-			 * 	                		"usr_dob": "2007-12-31"
-			 *             			}	        
-			 * 			]
-			 * 	    	}
-			 * 	]
-			 * 		 
-			 * 	@param $parameters[ 'usr_email' ]		The User email
-			 * 	@param $parameters[ 'usr_name_first' ]		The First Name
-			 * 	@param $parameters[ 'usr_name_middle' ]		Middle Name | Initial | Null
-			 * 	@param $parameters[ 'usr_name_last' ]		Last Name
-			 * 	@param $parameters[ 'usr_phone_country' ]	1 - 3 digits
-			 * 	@param $parameters[ 'usr_phone_area' ]		3 digits	
-			 * 	@param $parameters[ 'usr_phone_number' ]	7 digits
-			 * 	@param $parameters[ 'usr_phone_ext' ]		1 - 4 digits | Null
-			 * 	@param $parameters[ 'usr_pwd_1' ]		Password String
-			 * 	@param $parameters[ 'usr_pwd_2' ]		Password String Copy for verification
-			 * 	@param $parameters[ 'usr_dob' ]			YYYY-MM-DD
-			 *
-			 * 	@return 204				Success
-			 * 	@return 500				Failure
-			 */
-			 public function registerUser( $parameters ) {
-				 if( !isset( $parameters[0][ 'usr_email' ] ) &&
-					 !isset( $parameters[0][ 'usr_name_first' ] ) &&
-					 !isset( $parameters[0][ 'usr_name_middle' ] ) &&
-					 !isset( $parameters[0][ 'usr_name_last' ] ) &&
-					 !isset( $parameters[0][ 'usr_phone_country' ] ) &&
-					 !isset( $parameters[0][ 'usr_phone_area' ] ) &&
-					 !isset( $parameters[0][ 'usr_phone_number' ] ) &&
-					 !isset( $parameters[0][ 'usr_phone_ext' ] ) &&
-					 !isset( $parameters[0][ 'usr_dob' ] ) &&
-					 !isset( $parameters[0][ 'usr_pwd_1' ] ) &&
-					 !isset( $parameters[0][ 'usr_pwd_2' ] ) ) 					
-						return $this->setReturn( 400 , null , null ) ;
-						
-				$user = new user( $this->A , $parameters[0] ) ;
-				$tmp = $user->manage( 'REGISTER' ) ;
-				
-				if ( $tmp === 0 ) {
-					// registration succesfull
-					return $this->setReturn( 204 , 'Registration succesful' , null ) ; 
-				}
-				// failure
-				return $this->setReturn( 500 , 'Registration Failed' , null ) ;
-			 }
-			 
-			 /**
-			 * 	@name 		authenticateUser
-			 * 
-			 * 	@description 	This function logs a user in
-			 * 
-			 * 	@usage
-			 * 
-			 * 	JSON=[ 
-			 * 		{ 
-			 * 			"order": 1,
-			 *      		"call": "authenticateUser",
-			 *    	    		"parameter": [
-			 * 			    	{
-			 * 	                		"usr_email": "email",
-			 * 	                		"usr_pwd_1": "Password1",
+			 * 	                		"widget name" ,
+			 * 	                		'optional parameters'
 			 *             			}	        
 			 * 			]
 			 * 	    	}
 			 * 	]
 			 * 
-			 * 	@param $parameters[ 'usr_email' ] 	The User email
-			 * 	@param $parameters[ 'usr_pwd_1' ] 	Password String
-			 * 
-			 * 	@return 204				Success
-			 * 	@return 500				Failure
-			 */
-			 public function authenticateUser( $parameters ) {
-				 if( !isset( $parameters[0][ 'usr_email' ] ) &&
-					 !isset( $parameters[0][ 'usr_pwd_1' ] ) ) 					
-						return $this->setReturn( 400 , null , null ) ;
-						
-				$user = new user( $this->A , $parameters[0] ) ;
-				$tmp = $user->manage( 'LOGIN' ) ;
-
-				if ( $tmp === 0 ) {
-					// registration succesfull
-					$user->manage( 'SESSION' , 'START' ) ;
-					return $this->setReturn( 204 , array( 'Authentication succesful' , 'Session started' ) , null ) ; 
-				}
-				// failure
-				return $this->setReturn( 500 , 'Authentication failed' , $tmp ) ;
-			 }
-			 
-			/**
-			 * 	@name 		activateMFA ;
-			 * 
-			 * 	@description	This function activates an MFA device
-			 * 
-			 * 	@usage
-			 * 
-			 * 	JSON=[ 
-			 * 		{ 
-			 * 			"order": 1,
-			 *      		"call": "registerUser",
-			 *    	    		"parameter": [
-			 * 			    	{
-			 * 	                		"USR_PHONE": "15082457496",
-			 * 	                		"USR_PIN": "123456"
-			 *             			}	        
-			 * 			]
-			 * 	    	}
-			 * 	]
-			 * 
-			 * 	@param $parameters[ 'USR_PHONE' ]	the phne MAC
-			 * 	@param $parameters[ 'USR_PIN' ] 	the emailed pin 
-			 * 				
-			 */
-			public function activateMFA( $parameters) {
-				if( !isset( $parameters[ 'USR_PHONE' ] ) &&
-					!isset( $parameters[ 'USR_PIN' ] ) )
-						return $this->setReturn( 400 , null , null ) ;
-						
-				$mfa = new mfa( $A , $param ) ;
-				$tmp = $mfa->manage( 'ACTIVATE' ) ;
-				
-			
-				if ( $tmp == 0 ) 			 
-					return $this->setReturn( 204 , 'Device was Activated' , null ) ;
-				else if ( $tmp == 1 )
-					return $this->setReturn( 401 , 'User is not registered.' , null ) ;
-				else if ( $tmp == 2 )
-					return $this->setReturn( 403 , 'Device was Banned.' , null )  ;
-				else if ( $tmp == 3 )
-					return $this->setReturn( 400 , 'Device was not Activated.' , null )  ;
-			}
-			
-			/**
-			 * 	authenticateMFA ;
-			 * 
-			 * 	This function authenticates an MFA device
-			 * 
-			 * 	@param $parameters			the fields needed 
-			 */
-			public function authenticateMFA( $parameters) {
-				if( !isset( $parameters[ 'USR_PHONE' ] ) &&
-					!isset( $parameters[ 'USR_TOKEN' ] ) )
-						return $this->setReturn( 400 , null , null ) ;
-						
-				$mfa = new mfa( $A , $param ) ;
-				$tmp = $mfa->manage( 'AUTHENTICATE' ) ;	
-			
-				if ( $tmp == 0 ) 		 
-					return $this->setReturn( 204 , 'Device was Authenticated' , null ) ;
-				else if ( $tmp == 1 )
-					return $this->setReturn( 401 , 'Device is not registered.' , null ) ;
-				else if ( $tmp == 2 )
-					return $this->setReturn( 403 , 'Device was Banned.' , null )  ;
-				else if ( $tmp == 3 )
-					return $this->setReturn( 400 , 'Device was not Authenticated.' , null )  ;
-			}
-			
-			/**
-			 * 	getWidget
-			 * 
-			 * 	This function generates a success message with the html 
+			 * 	@description	This function generates a success message with the html 
 			 * 	widget
 			 * 
-			 * 	@param 	$parameters		The widget name and parameters 
-			 * 							needed to create a widget
+			 * 	@param 	$parameters[ 0 ] The widget name 
+			 *  @param  $parameters[ 1 ] optional widget parameters
 			 * 
-			 * 	@return					a JSON message string
+			 * 	@return	200		Succes, with widget html
+			 *  @return	400		Bad Request
+			 *  @return	401		Unauthorized
+			 * 	@return	404		Resource not found
 			 */
 			public function getWidget( $parameters ) {
 				if ( ! defined( 'CURRENT_USER_ID ' ) ) {
@@ -474,6 +324,273 @@
 						// 	Widget was not found status being returned
 						return $this->setReturn( 404 , null , null ) ;
 				}
+			}
+			
+			//	USER METHODS
+			
+			/**
+			 * 	@name		registerUser
+			 * 
+			 * 	@secure 	false
+			 * 
+			 * 	@description	This function registers a user to the application
+			 * 
+			 * 	@usage
+			 * 
+			 * 	csr.cs.uml.edu/_api/?JSON=[ 
+			 * 		{ 
+			 * 			"order": 1,
+			 *      		"call": "registerUser",
+			 *    	    		"parameter": [
+			 * 			    	{
+			 * 	                		"usr_email": "email",
+			 * 	                		"usr_name_first": "john",
+			 * 		            		"usr_name_middle": "fedrick",
+			 * 	                		"usr_name_last": "doe",
+			 * 		            		"usr_phone_country": "1",
+			 * 	                		"usr_phone_area": "234",
+			 * 	                		"usr_phone_number": "5556666",
+			 * 	                		"usr_phone_ext": "4444",
+			 * 	                		"usr_pwd_1": "Password1",
+			 * 	                		"usr_pwd_2": "Password1",
+			 * 	                		"usr_dob": "2007-12-31"
+			 *             			}	        
+			 * 			]
+			 * 	    	}
+			 * 	]
+			 * 		 
+			 * 	@param $parameters[ 'usr_email' ]		The User email
+			 * 	@param $parameters[ 'usr_name_first' ]		The First Name
+			 * 	@param $parameters[ 'usr_name_middle' ]		Middle Name | Initial | Null
+			 * 	@param $parameters[ 'usr_name_last' ]		Last Name
+			 * 	@param $parameters[ 'usr_phone_country' ]	1 - 3 digits
+			 * 	@param $parameters[ 'usr_phone_area' ]		3 digits	
+			 * 	@param $parameters[ 'usr_phone_number' ]	7 digits
+			 * 	@param $parameters[ 'usr_phone_ext' ]		1 - 4 digits | Null
+			 * 	@param $parameters[ 'usr_pwd_1' ]		Password String
+			 * 	@param $parameters[ 'usr_pwd_2' ]		Password String Copy for verification
+			 * 	@param $parameters[ 'usr_dob' ]			YYYY-MM-DD
+			 *
+			 * 	@return 204				Success
+			 *  @return 400				Bad request
+			 * 	@return 500				Failure
+			 */
+			 public function registerUser( $parameters ) {
+				 if( !isset( $parameters[0][ 'usr_email' ] ) &&
+					 !isset( $parameters[0][ 'usr_name_first' ] ) &&
+					 !isset( $parameters[0][ 'usr_name_middle' ] ) &&
+					 !isset( $parameters[0][ 'usr_name_last' ] ) &&
+					 !isset( $parameters[0][ 'usr_phone_country' ] ) &&
+					 !isset( $parameters[0][ 'usr_phone_area' ] ) &&
+					 !isset( $parameters[0][ 'usr_phone_number' ] ) &&
+					 !isset( $parameters[0][ 'usr_phone_ext' ] ) &&
+					 !isset( $parameters[0][ 'usr_dob' ] ) &&
+					 !isset( $parameters[0][ 'usr_pwd_1' ] ) &&
+					 !isset( $parameters[0][ 'usr_pwd_2' ] ) ) 					
+						return $this->setReturn( 400 , null , null ) ;
+						
+				$user = new user( $this->A , $parameters[0] ) ;
+				$tmp = $user->manage( 'REGISTER' ) ;
+				
+				if ( $tmp === 0 ) {
+					// registration succesfull
+					return $this->setReturn( 204 , 'Registration succesful' , null ) ; 
+				}
+				// failure
+				return $this->setReturn( 500 , 'Registration Failed' , null ) ;
+			 }
+			 
+			 /**
+			 * 	@name 		authenticateUser
+			 * 
+			 * 	@secure 	false
+			 * 
+			 * 	@description 	This function logs a user in to the website
+			 * 
+			 * 	@usage
+			 * 
+			 * 	JSON=[ 
+			 * 		{ 
+			 * 			"order": 1,
+			 *      		"call": "authenticateUser",
+			 *    	    		"parameter": [
+			 * 			    	{
+			 * 	                		"usr_email": "email",
+			 * 	                		"usr_pwd_1": "Password1",
+			 *             			}	        
+			 * 			]
+			 * 	    	}
+			 * 	]
+			 * 
+			 * 	@param $parameters[ 'usr_email' ] 	The User email
+			 * 	@param $parameters[ 'usr_pwd_1' ] 	Password String
+			 * 
+			 * 	@return 204				Success
+			 * 	@return 400				Baad request
+			 * 	@return 500				Failure
+			 */
+			 public function authenticateUser( $parameters ) {
+				 if( !isset( $parameters[0][ 'usr_email' ] ) &&
+					 !isset( $parameters[0][ 'usr_pwd_1' ] ) ) 					
+						return $this->setReturn( 400 , null , null ) ;
+						
+				$user = new user( $this->A , $parameters[0] ) ;
+				$tmp = $user->manage( 'LOGIN' ) ;
+
+				if ( $tmp === 0 ) {
+					// registration succesfull
+					$user->manage( 'SESSION' , 'START' ) ;
+					return $this->setReturn( 204 , array( 'Authentication succesful' , 'Session started' ) , null ) ; 
+				}
+				// failure
+				return $this->setReturn( 500 , 'Authentication failed' , $tmp ) ;
+			 }
+			
+			// MFA METHODS
+			
+			/**
+			 * 	@name	registerMFA
+			 * 
+			 * 	@secure false
+			 * 
+			 * 	@description	This function registers an MFA device to the application
+			 * 
+			 * 	@usage
+			 * 	
+			 *  JSON=[ 
+			 * 		{ 
+			 * 			"order": 1,
+			 *      	"call": "registerMFA",
+			 *    	    		"parameter": [
+			 * 			    	{
+			 * 	                	'USR_PHONE':123456780 ,
+			 * 						'USR_EMAIL':'email' ,
+			 * 						//'USR_PWD':'pwd'
+			 *             		}	        
+			 * 			]
+			 * 	    	}
+			 * 	]
+			 * 
+			 * 	@param $parameters[ 'USR_PHONE' ]		the dievice MAC
+			 * 	@param $parameters[ 'USR_EMAIL' ]		the users email
+			 *  @param $parameters[ 'USR_PWD' ]			the user password
+			 * 
+			 * 	@return 200				Success, data returned is  salt and pepper
+			 * 	@return 400				Bad Request
+			 * 	@return 401				Failure 
+			 */
+			public function registerMFA( $parameters ) {
+				
+				if( !isset( $parameters[ 'USR_PHONE' ] ) &&
+					!isset( $parameters[ 'USR_EMAIL' ] ) )
+					//!isset( $parameters[ 'USR_PWD' ] ) )
+						return $this->setReturn( 400 , null , null ) ;
+						
+				$mfa = new mfa( $A , $parameters ) ;
+				$tmp = $mfa->manage( 'REGISTER' ) ;
+				
+				if ( is_array( $tmp ) ) 			 
+					return $this->setReturn( 200 , null , $tmp ) ;
+				else if ( $tmp == 1 )
+					return $this->setReturn( 401 , 'User / Password is incorect, or not registered.' , null ) ;
+				else if ( $tmp == 2 )
+					return $this->setReturn( 401 , 'Device is already registered.' , null )  ;
+			}
+			 
+			/**
+			 * 	@name 		activateMFA ;
+			 * 
+			 * 	@secure 	false
+			 * 
+			 * 	@description	This function activates an MFA device
+			 * 
+			 * 	@usage
+			 * 
+			 * 	JSON=[ 
+			 * 		{ 
+			 * 			"order": 1,
+			 *      		"call": "activateMFA",
+			 *    	    		"parameter": [
+			 * 			    	{
+			 * 	                		"USR_PHONE": "15082457496",
+			 * 	                		"USR_PIN": "123456"
+			 *             			}	        
+			 * 			]
+			 * 	    	}
+			 * 	]
+			 * 
+			 * 	@param $parameters[ 'USR_PHONE' ]	the dievice MAC
+			 * 	@param $parameters[ 'USR_PIN' ] 	the emailed pin 
+			 * 
+			 * 	@return		204		Success
+			 * 	@return		400		Bad request
+			 * 	@return		401		Unauthorized
+			 * 	@return		403		Forbidden
+			 */
+			public function activateMFA( $parameters) {
+				if( !isset( $parameters[ 'USR_PHONE' ] ) &&
+					!isset( $parameters[ 'USR_PIN' ] ) )
+						return $this->setReturn( 400 , null , null ) ;
+						
+				$mfa = new mfa( $A , $param ) ;
+				$tmp = $mfa->manage( 'ACTIVATE' ) ;
+			
+				if ( $tmp == 0 ) 			 
+					return $this->setReturn( 204 , 'Device was Activated' , null ) ;
+				else if ( $tmp == 1 )
+					return $this->setReturn( 401 , 'User is not registered.' , null ) ;
+				else if ( $tmp == 2 )
+					return $this->setReturn( 403 , 'Device was Banned.' , null )  ;
+				else if ( $tmp == 3 )
+					return $this->setReturn( 400 , 'Device was not Activated.' , null )  ;
+			}
+			
+			/**
+			 * 	@name	authenticateMFA
+			 * 
+			 * 	@secure	false
+			 * 
+			 * 	@usage
+			 * 
+			 * 	JSON=[ 
+			 * 		{ 
+			 * 			"order": 1,
+			 *      		"call": "authenticateMFA",
+			 *    	    		"parameter": [
+			 * 			    	{
+			 * 	                		"USR_PHONE": "15082457496",
+			 * 	                		"USR_PIN": "123456"
+			 *             			}	        
+			 * 			]
+			 * 	    	}
+			 * 	]
+			 * 
+			 * 	@description	This function authenticates an MFA device
+			 * 
+			 * 	@param 	$parameters[ 'USR_PHONE' ]	the device MAC
+			 * 	@param 	$parameters[ 'USR_TOKEN' ]	the device token 
+			 * 
+			 * 	@return	400		Bad request
+			 *  @return	204		Succces
+			 * 	@return	401 	Not authorized
+			 * 	@return	403		Forbidden
+			 */
+			public function authenticateMFA( $parameters) {
+				if( !isset( $parameters[ 'USR_PHONE' ] ) &&
+					!isset( $parameters[ 'USR_TOKEN' ] ) )
+						return $this->setReturn( 400 , null , null ) ;
+						
+				$mfa = new mfa( $A , $param ) ;
+				$tmp = $mfa->manage( 'AUTHENTICATE' ) ;	
+			
+				if ( $tmp == 0 ) 		 
+					return $this->setReturn( 204 , 'Device was Authenticated' , null ) ;
+				else if ( $tmp == 1 )
+					return $this->setReturn( 401 , 'Device is not registered.' , null ) ;
+				else if ( $tmp == 2 )
+					return $this->setReturn( 403 , 'Device was Banned.' , null )  ;
+				else if ( $tmp == 3 )
+					return $this->setReturn( 400 , 'Device was not Authenticated.' , null )  ;
 			}
 			
 		}
