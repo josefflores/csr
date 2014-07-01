@@ -1,21 +1,21 @@
 <?php
 	/**
-	 *  @File			api.php
-	 * 	@Authors		Jose Flores
-	 * 					jose.flores.152@gmail.com
+	 *  	@File		api.php
+	 * 	@Authors	Jose Flores
+	 * 			jose.flores.152@gmail.com
 	 * 	
 	 * 	@Description	This api needs the libraryand configuration file to 
 	 * 					be included before it is.
 	 * 
 	 * 	@changelog		
-	 * 	6/24/14			removed success and failure functions added general
-	 * 					setReturn function
-	 * 	4/19/14			__construct, getWidgetInstance, getWidget, isSuccess
-	 * 					isNotAllowed, isNotFound, isBadSyntax, getMethodList
-	 * 					were finalized Version 1.
-	 * 	4/18/14			__construct, getWidgetInstance, getWidget, isSuccess
-	 * 					isNotAllowed, isNotFound, isBadSyntax, getMethodList
-	 * 					were started.
+	 * 	6/24/14		removed success and failure functions added general
+	 * 			setReturn function
+	 * 	4/19/14		__construct, getWidgetInstance, getWidget, isSuccess
+	 * 			isNotAllowed, isNotFound, isBadSyntax, getMethodList
+	 * 			were finalized Version 1.
+	 * 	4/18/14		__construct, getWidgetInstance, getWidget, isSuccess
+	 * 			isNotAllowed, isNotFound, isBadSyntax, getMethodList
+	 * 			were started.
 	 */
 
 	// 	DEFINE GUARD
@@ -34,12 +34,14 @@
 			private $A ;
 			
 			/**
-			 * 	The constructor
+			 * 	@name 		__construct
 			 * 
-			 * 	The API constructor
+			 * 	@description	The API constructor
+			 * 	
+			 * 	@usage	$apiObj = new api( $A ) ;
 			 * 
-			 * 	@param	$A			The global configuration, needed for 
-			 * 						file path information
+			 * 	@param	$A	The global configuration, needed for 
+			 	 		file path information
 			 */
 			public function __construct( $A ) {
 				$this->A = $A ;
@@ -50,13 +52,17 @@
 			 * 
 			 * 	@description	This function generates the return messages for the api
 			 * 
-			 * 	@param 	$num
-			 * 	@param 	$val
-			 * 	@param 	$content
+			 * 	@usage	$apiObj->setReturn( '200' ) ;
+			 * 	@usage	$apiObj->setReturn( '200' , array( val1 [ , ... ] ) ) ;
+			 * 	@usage	$apiObj->setReturn( '200' , array( val1 [ , ... ] ) , array( 'content' [ , ... ] ) ;
 			 * 
+			 * 	@param 	$num		The response code
+			 * 	@param 	$val		Any return messages
+			 * 	@param 	$ret		Any return values
+			 * 	
 			 * 	@return the return message array
 			 */
-			public function setReturn( $num , $val = null , $content = null ) {
+			public function setReturn( $num , $val = null , $ret = null ) {
 				switch ( $num ) {
 					
 					//	Informational
@@ -137,7 +143,7 @@
 				if ( $val != null ) array_push( $values , $val ) ;
 				
 				return array( 'code' => $values ,
-							  'return' => $content ) ;
+							  'return' => $ret ) ;
 			}			
 			
 			/**
@@ -145,7 +151,10 @@
 			 * 
 			 * 	@description	this function fetches a widget instance
 			 * 
-			 * 	@param	$parameters The widget name and parameters
+			 * 	@usage		TODO
+			 * 
+			 * 	@param	$parameters[ 0 ] 	The widget name 
+			 * 	@param 	$parameters[ > 0 ]	The widget parameters
 			 * 	
 			 * 	@catch	$e	Catches any exception and then returns 404
 			 * 
@@ -155,25 +164,28 @@
 			 * 	
 			 */
 			private function getWidgetInstance( $parameters ) {
+				// If user has been authenticated
 				if ( ! defined( 'CURRENT_USER_ID ' ) ) {
 					return $this->setReturn( 401 , null , null ) ;	
 				}
 				
+				// attempt to find widget
 				try {
 					$widget = getWGT( $this->A , $parameters ) ;
 				}
 				catch ( Exception $e ) {
 					$this->apiLog( $parameters , $e ) ;
+					// failure to find widget
 					return $this->setReturn( 404 , null , null ) ;					 
 				}
+				//return success
 				return $this->setReturn( 200 , null , $widget ) ;
 			}
 			
 			/**
-			 * 	getMethodList
+			 * 	@name	getMethodList
 			 * 
-			 * 	This function generates a list of all the available API 
-			 * 	methods
+			 * 	@description	This function generates a list of all the available API methods
 			 * 
 			 * 	@return 				A JSON success message with the 
 			 * 							available API methods
