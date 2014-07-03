@@ -1,13 +1,13 @@
 <?php
 	/**
-	 *  @File			mysql.php
-	 * 	@Authors		Jose Flores
-	 * 					jose.flores.152@gmail.com
+	 *  @File		mysql.php
+	 * 	@Author		Jose Flores
+	 * 				jose.flores.152@gmail.com
 	 * 	
-	 * 	@Description	This is mysql configuration file.
+	 * 	This is mysql configuration file.
 	 * 
-	 * 	@changelog		
-	 *	4/23/14			Created file
+	 * 	changelog		
+	 *	4/23/14		Created file
 	 */
 	 
 	//	Credential Storage

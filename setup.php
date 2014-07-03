@@ -10,5 +10,11 @@
 			return ++$i ;
 	}
 	
+	// navigate to documentation directory
+	exec( 'cd "C:\Progra~2\Jenkins\workspace\CSR application\doc\"' ) ;
+	
+	// build documentation
+	exec( 'doxygen api' ) ;
+	
 	return 0 ;
 ?>
