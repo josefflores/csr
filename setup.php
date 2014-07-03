@@ -14,7 +14,7 @@
 	$doxygen = "C:\\Progra~2\\Jenkins\\workspace\\CSR application\\doc\\" ;
 	
 	// build documentation
-	exec( 'doxygen '. $doxygen .'api' ) ;
+	exec( 'doxygen "'. $doxygen .'api"' ) ;
 	
 	return 0 ;
 ?>
