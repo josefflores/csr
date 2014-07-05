@@ -34,30 +34,28 @@
 	
 	// 	Update databases
 	$i = 0 ;
-	
+	echo '[ APP ] Updating  MySQL' ;
 	foreach( $db as $item ) {
 		exec( 'mysql -u ' . $_ENV[ 'CSR_MYSQL_USR' ] . ' -p' . $_ENV[ 'CSR_MYSQL_PWD' ] . ' ' . $item . ' < ./db/' . $item . '.sql' , $output , $return ) ;
 		if( $return  ) {
-			echo 'ERROR[ ' . ++$i . ' ] Database update: ' . $item ;
+			echo "\n" , '   ERROR[ ' . ++$i . ' ] Database update: ' , $item ;
 			return $i ;
 		}
+		echo "\n   Done ... " ;
 	}
 	
-	
 	// Build documentation
-	
-	// Get documentation directory of Production server
-	$doxygen './doc/' ;
-	
-	foreach( $list as $item ) {
-		exec( 'doxygen "'. $doxygen . $doc.'"' , $output , $return ) ;
-		if( $return  ){
-			echo 'ERROR[ ' . ++$i . ' ] Database update: ' . $item ;
+	echo "\n" , '[ APP ] Updating  Documentation' , "\n"  ;	
+	foreach( $doc as $item ) {
+		exec( 'doxygen "'. './doc/' . $item.'"' , $output , $return ) ;
+		if( $return ){
+			echo '   ERROR[ ' . ++$i . ' ] Documentation update: ' , $item ;
 			return $i ;
 		}
+		echo '   Done ... ' , "\n"  ;
 	}
 	
 	// Succesfull completion
-	echo 'Setup complete ...' ;
+	echo "\n" , '[ APP ] Setup complete ...' ;
 	return 0 ;
 ?>
