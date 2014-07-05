@@ -21,8 +21,8 @@
 				
 	$WGT[ 'MENU' ][ 'TTL' ][ $WGT[ 'COUNTER' ] ] = 'Tools' ;
 	$WGT[ 'MENU' ][ 'LNK' ][ $WGT[ 'COUNTER' ] ] = array( array( $A[ 'W_DEV' ] . 'phpWidget/'	, 'phpWidget', array( 'x' => 11 , 'y' => 7 ) ) ,
-														  array( NULL 	, NULL 	 	, NULL ) ,
-														  array( 'http://jsonlint.com/' , 'json Lint' , null ) ,
+														  array( NULL , NULL , NULL ) ,
+														  array( 'http://jsonlint.com/' , 'json Lint' , array( 'x' => 11 , 'y' => 7 ) ) ,
 														  array( $A[ 'W_DEV' ] . 'phpMyAdmin/'	, 'phpMyAdmin', array( 'x' => 11 , 'y' => 7 ) ) ) ;
 	
 	$WGT[ 'COUNTER' ]++ ;

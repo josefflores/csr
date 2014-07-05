@@ -52,7 +52,7 @@
 			 */
 			public function item( $enum , $title , $pos = array() )  {
 					
-					if ( $enum == NULL && $title == NULL ) {
+					if ( $enum == null && $title == null ) {
 						$this->divider() ;
 						return ;
 					}					
