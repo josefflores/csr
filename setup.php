@@ -50,7 +50,7 @@
 	$doxygen './doc/' ;
 	
 	foreach( $list as $item ) {
-		exec( 'doxygen "'. $doxygen . $doc.'"' ) ;
+		exec( 'doxygen "'. $doxygen . $doc.'"' , $output , $return ) ;
 		if( $return  ){
 			echo 'ERROR[ ' . ++$i . ' ] Database update: ' . $item ;
 			return $i ;
