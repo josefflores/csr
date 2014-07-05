@@ -22,7 +22,7 @@
 	$db = array( 'csr' , 'csr_d' ) ;
 	
 	//	Documentation list
-	$db = array( 'api' ) ;
+	$doc = array( 'api' ) ;
 	
 	
 	
@@ -50,7 +50,7 @@
 	$doxygen 'doc/' ;
 	
 	foreach( $list as $item ) {
-		exec( 'doxygen "'. $doxygen .'api"' ) ;
+		exec( 'doxygen "'. $doxygen . $doc.'"' ) ;
 		if( $return  ){
 			echo 'ERROR[ ' . ++$i . ' ] Database update: ' . $item ;
 			return $i ;
