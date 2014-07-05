@@ -1,14 +1,9 @@
 <?php
 	/**
-	 *  @File			paths.php
-	 * 	@Authors		Jose Flores
-	 * 					jose.flores.152@gmail.com
+	 *  @file		paths.php
+	 * 	@author		Jose Flores 	<jose.flores.152@gmail.com>
 	 * 	
-	 * 	@Description	This is paths configuration file.
-	 * 
-	 * 	@changelog		
-	 *	7/01/14			added Java location
-	 * 	4/21/14			Created file
+	 * 	This is paths configuration file.
 	 */
 
 	// Resolving relative web paths
@@ -34,6 +29,7 @@
 	$A[ 'D_JAVA' ]		= $A[ 'D_ROOT' ].'java\\' ;
 	$A[ 'D_USR' ]		= $A[ 'D_ROOT' ].'usr\\' ;
 	$A[ 'D_WWW' ]		= $A[ 'D_ROOT' ].'www\\' ;
+	$A[ 'D_UPLOAD_TMP' ]= $A[ 'D_ROOT' ].'tmp\\' ; // This should be kept externall to the application 
 	
 	$A[ 'D_HEAD' ]		= $A[ 'D_PHP' ].'head\\' ;
 	$A[ 'D_API' ]		= $A[ 'D_PHP' ].'api\\' ;

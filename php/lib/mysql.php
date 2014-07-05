@@ -52,7 +52,7 @@
 		//	DESTRUCTOR
 		
 		/**
-		 * 	__destructor 
+		 * 	@name	__destructor 
 		 * 
 		 * 	This function kills the thread and closes the database 
 		 * 	connection
@@ -72,7 +72,7 @@
 		//	METHODS
 		
 		/**
-		 * 	isTable
+		 * 	@name	isTable
 		 * 
 		 * 	determines if a table exists
 		 * 
@@ -97,7 +97,7 @@
 
 		}
 		/**
-		 * 	insert
+		 * 	@name	insert
 		 * 
 		 * 	This function creates a mysql insert query from an array of 
 		 * 	values and table location
@@ -143,7 +143,7 @@
 		}
 		
 		/**
-		 * 	select
+		 * 	@name	select
 		 * 
 		 * 	This function creates a mysql select query from an array of 
 		 * 	values , operators and table location
@@ -193,7 +193,7 @@
 		}
 		
 		/**
-		 * 	select
+		 * 	@name	select
 		 * 
 		 * 	This function creates a mysql select query from an array of 
 		 * 	values , operators and table location
@@ -261,7 +261,7 @@
 		}
 		
 		/**
-		 * 	delete
+		 * 	@name	delete
 		 * 
 		 * 	This function creates a mysql delete query from an array of 
 		 * 	values, operators and table location
@@ -308,7 +308,7 @@
 		}
 
 		/**
-		 * 	getOperator
+		 * 	@name	getOperator
 		 * 
 		 * 	This function guarantees that the operators for a WHERE mysql 
 		 * 	clause are valid and that for ease of use are translated from 
@@ -335,7 +335,7 @@
 		}
 		
 		/**
-		 * 	runQuery
+		 * 	@name 	runQuery
 		 * 
 		 * 	This function runs a mysql query. 
 		 * 
@@ -354,7 +354,7 @@
 		}
 		 
 		/**
-		 * 	cleanString
+		 * 	@name	cleanString
 		 * 	
 		 * 	This function cleans the string so that it can be stored 
 		 * 	safely in a mysql database
@@ -369,7 +369,7 @@
 		}
 		 
 		/**
-		 * 	getLastInsertID
+		 * 	@name 	getLastInsertID
 		 * 
 		 * 	This function gets the last insertion id
 		 * 

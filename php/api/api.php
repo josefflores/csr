@@ -159,7 +159,7 @@
 		 */
 		private function getWidgetInstance( $parameters ) {
 			// If user has been authenticated
-			if ( ! defined( 'CURRENT_USER_ID ' ) ) {
+			if ( ! defined( 'CURRENT_USER_ID' ) ) {
 				return $this->setReturn( 401 , null , null ) ;	
 			}
 			
@@ -254,7 +254,7 @@
 		 * 	@return	404		Resource not found
 		 */
 		public function getWidget( $parameters ) {
-			if ( ! defined( 'CURRENT_USER_ID ' ) ) {
+			if ( ! defined( 'CURRENT_USER_ID' ) ) {
 				return $this->setReturn( 401 , null , null ) ;	
 			}
 			
@@ -332,7 +332,7 @@
 		 *  @return 500		Server error
 		 */ 	
 		public function	storeData( $parameters ) {
-			if ( ! defined( 'CURRENT_USER_ID ' ) ) {
+			if ( ! defined( 'CURRENT_USER_ID' ) ) {
 				return $this->setReturn( 401 , null , null ) ;	
 			}
 			
