@@ -472,7 +472,7 @@
 					return $this->setReturn( 400 , null , null ) ;
 					
 			$user = new user( $this->A , $parameters[0] ) ;
-			echo $tmp = $user->manage( 'REGISTER' ) ;
+			
 			if ($tmp == 2 ) {
 				return $this->setReturn( 400 , 'Bad Syntax' , null ) ;
 			}

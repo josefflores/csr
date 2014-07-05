@@ -846,8 +846,7 @@
 					$this->validateField( 'P_N'   , $this->user[ 'usr_phone_number' ] ) &&
 					$this->validateField( 'P_E'   , $this->user[ 'usr_phone_ext' ] ) &&
 					$this->validateField( 'PWD'   , $this->user[ 'usr_pwd_1' ] ) &&
-					$this->validateField( 'PWD'   , $this->user[ 'usr_pwd_2' ] ) 
-					) ) {
+					$this->validateField( 'PWD'   , $this->user[ 'usr_pwd_2' ] ) ) ) {
 						
 						$this->callStack( null , true ) ;
 						return false ;  
