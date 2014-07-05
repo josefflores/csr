@@ -51,19 +51,15 @@
 	 */	
 	 
 	header( 'Content-Type: application/json' ) ;
-
 	$json = array( array( 'order' => 0 , 'call' => 'isBadSyntax' , 'parameter' => array( null ) ) ) ;
-	
 	//  JSON API Processing
 	if ( isset( $_POST[ 'JSON' ] ) &&
 		 $_POST[ 'JSON' ] != null )
 			$json = $_POST[ 'JSON' ] ;
-	
 	//  JSON API Processing
 	else if ( isset( $_GET[ 'JSON' ] ) &&
 			  $_GET[ 'JSON' ] != null ) 
 				$json = $_GET[ 'JSON' ] ;
-	
-	echo processJson( $A , $json ) ;
+	echo trim( processJson( $A , $json ) ) ;
 	
 ?>

@@ -422,7 +422,25 @@
 		 * 			]
 		 * 	    	}
 		 * 	]
-		 * 		 
+		 * 
+		 * 
+		 * `Email :
+		 * 	  	'/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/'  
+		 *	Phone Country code : 
+		 * 		'/^\d{1,3}$/' 
+		 *  Phone Area code :
+		 * 		'/^\d{3}$/' 
+		 * 	Phone Number :
+		 * 		'/^\d{7}$/' 
+		 * 	Phone Extension
+		 * 		'/^\d{0,4}$/'
+		 * 	Password 
+		 * 		'/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}/' 
+		 * 	Date : 
+		 * 		YYYY-MM-DD
+		 *		'/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/' 
+		 * 
+		 *  
 		 * 	@param $parameters[ 0 ][ 'usr_email' ]		The User email
 		 * 	@param $parameters[ 0 ][ 'usr_name_first' ]		The First Name
 		 * 	@param $parameters[ 0 ][ 'usr_name_middle' ]		Middle Name | Initial | Null
@@ -454,7 +472,10 @@
 					return $this->setReturn( 400 , null , null ) ;
 					
 			$user = new user( $this->A , $parameters[0] ) ;
-			$tmp = $user->manage( 'REGISTER' ) ;
+			echo $tmp = $user->manage( 'REGISTER' ) ;
+			if ($tmp == 2 ) {
+				return $this->setReturn( 400 , 'Bad Syntax' , null ) ;
+			}
 			
 			if ( $tmp === 0 ) {
 				// registration succesfull
