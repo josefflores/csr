@@ -47,7 +47,7 @@
 	// Build documentation
 	
 	// Get documentation directory of Production server
-	$doxygen = ".\\doc\\" ;
+	$doxygen 'doc/' ;
 	
 	foreach( $list as $item ) {
 		exec( 'doxygen "'. $doxygen .'api"' ) ;
