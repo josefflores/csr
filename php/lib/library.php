@@ -102,6 +102,13 @@
 			case 'authenticateUser' :
 				return $apiObj->authenticateUser( $parameters ) ;
 			
+			// order 0 preprocessing messages
+			case 'switchToSsl' : 
+				return $apiObj->setReturn( 505 , null , null ) ;
+			case 'isBadSyntax' :
+				return $apiObj->setReturn( 400 , null , null ) ;
+			
+			// default error	
 			default :
 				// This is method not found
 				return $apiObj->setReturn( 405 , null , null ) ;
@@ -177,11 +184,12 @@
 				 !array_key_exists ( 'call' , $json[ $i ] ) ||
 				 !array_key_exists ( 'parameter' , $json[ $i ] ) ) 
 					return false ;
+					
 			// Verifying reserved orders are not used 
 			// 0 is used to be a signal before operation
 			if ( intval( $json[ $i ][ 'order' ] ) <= 0 )
 				return false ;
-			
+
 			// Check if order was already used
 			if ( in_array( $json[ $i ][ 'order' ] , $order ) )
 				return false ;
@@ -243,13 +251,29 @@
 				}
 
 			}
-		}
-		else {
+		} else if ( $json[0][ 'call' ] == 'ssl' ) {
+			
 			// Send JSON malformed message
 			array_push( $result ,  processCall( $A , 
 									array( 'order' => 0 , 
-										  'call' => 'setReturn' , 
-										  'parameter' => array( 400 , 'Is Bad Syntax.' , null ) ) ) ) ;
+										  'call' => 'switchToSsl' , 
+										  'parameter' => null ) ) ) ;
+		
+		} else if ( $json[0][ 'call' ] == 'getMethodList' ) {
+			
+			// Send JSON malformed message
+			array_push( $result ,  processCall( $A , 
+									array( 'order' => 0 , 
+										  'call' => 'getMethodList' , 
+										  'parameter' => null ) ) ) ;
+		
+		} else {	
+			
+			// Send JSON malformed message
+			array_push( $result ,  processCall( $A , 
+									array( 'order' => 0 , 
+										  'call' => 'isBadSyntax' , 
+										  'parameter' => null ) ) ) ;
 		}
 		return json_encode( $result ) ;
 				

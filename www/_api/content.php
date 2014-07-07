@@ -49,17 +49,13 @@
 	 * ]
 	 * 
 	 */	
-	
-	
 	 
 	header( 'Content-Type: application/json' ) ;
-	
-	if ( $_SERVER['SERVER_NAME'] == $A[ 'PROD_DOMAIN' ] && $_SERVER[ 'SERVER_PORT' ] != 443  ) {
-		echo '[{"order":0,"code":[505,"HTTP Version Not Supported"],"value":[null]}]' ;
+	if ( $_SERVER['SERVER_NAME'] == $A[ 'PROD_DOMAIN' ] && $_SERVER[ 'SERVER_PORT' ] != 443  ){
+		$json = array( array( 'order' => 0 , 'call' => 'ssl' , 'parameter' => array( null ) ) ) ;
 	}
-	
 	else {
-		$json = array( array( 'order' => 1 , 'call' => 'getMethodList' , 'parameter' => array( null ) ) ) ;
+		$json = array( array( 'order' => 0 , 'call' => 'getMethodList' , 'parameter' => array( null ) ) ) ;
 		
 		//  JSON API Processing
 		if ( isset( $_POST[ 'JSON' ] ) &&
@@ -69,8 +65,7 @@
 		else if ( isset( $_GET[ 'JSON' ] ) &&
 				  $_GET[ 'JSON' ] != null ) 
 					$json = $_GET[ 'JSON' ] ;
-		echo trim( processJson( $A , $json ) ) ;
 	}
-	
+	echo trim( processJson( $A , $json ) ) ;
 	
 ?>
