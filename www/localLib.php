@@ -48,7 +48,7 @@
 			if ( $server[ $s - $i ] != $dir[ $d - $i ] ) {
 				
 				// generate root paths
-				$root[ 'W_ROOT' ] = 'http://' ;
+				$root[ 'W_ROOT' ] = 'https://' ;
 				for ( $j = 0 ; $j <= ( $s - $i ) ; ++$j ) 
 					$root[ 'W_ROOT' ] .= $server[$j] . '/' ;
 				
