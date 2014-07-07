@@ -114,7 +114,6 @@
 				case 423 : $values = array(	423 , 'Locked' ) ; break ;
 				case 424 : $values = array(	424 , 'Failed Dependency' ) ; break ;
 				case 426 : $values = array(	426 , 'Upgrade Required' ) ; break ;
-				case 428 : $values = array(	428 , 'Precondition Required' ) ; break ;
 				case 429 : $values = array(	429 , 'Too Many Requests' ) ; break ;
 				case 431 : $values = array(	431 , 'Request Header Fields Too Large' ) ; break ;
 				case 498 : $values = array(	498 , 'Token expired/invalid' ) ; break ;	
@@ -423,6 +422,7 @@
 		 * 	@return 400		Bad request
 		 * 	@return 401		Unauthorized
 		 * 	@return 409		Conflict
+		 * 	@return 415		Invalid File Type
 		 *  @return 500		Server error
 		 */ 
 		public function storeFile( $parameters ) {
@@ -452,7 +452,7 @@
 				return $this->setReturn( 401 , null , null ) ;	
 			} else if ( $ret == 2 )	{
 				//mime not in dictionary
-				return $this->setReturn( 400 , array( 'Invalid file type, please make a request for filetype to be added.' ) , null ) ;
+				return $this->setReturn( 415 , array( 'Invalid file type, please make a request for filetype to be added.' ) , null ) ;
 			} else if ( $ret == 3 )	{
 				//file already exists
 				return $this->setReturn( 409 , array( 'File exists' ) , null ) ;	
