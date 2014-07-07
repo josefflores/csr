@@ -16,6 +16,10 @@
 	echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>' ;
 	echo '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>' ;
 	
+	// google analytics
+	if ( $_SERVER['SERVER_NAME'] == 'csr.cs.uml.edu' ) 
+		echo '<script src="' , $A['W_JS'] , 'google.js"></script>' ;
+	
 	// application js files
 	echo '<script src="' , $A['W_JS_LIB'] , 'library.js"></script>' ;
 	
