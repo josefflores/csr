@@ -391,7 +391,87 @@
 			}
 		}
 		
+		// DATA METHODS
 		
+		/**
+		 * 	@name	storeFile
+		 * 
+		 * 	Requires authentication : true
+		 * 
+		 * 	This function saves encoded files to the user folder and makes 
+		 * 	a record of the transaction in the database file database
+		 * 
+		 * 	JSON=[ 
+		 * 		{ 
+		 * 			"order": 1,
+		 *      	"call": "storeFile",
+		 *    	    "parameter": [
+		 * 			   	{
+		 * 	           		"MIME":"table" ,
+		 * 					"DATA": "ASFDSGSDGSDFGDF...." ,
+		 * 					"ENCODING": "base64" 	                		
+		 *         		}	        
+		 * 			]
+		 *    	}
+		 * 	]
+		 * 
+		 * 	@param	$parameters[0][ 'MIME' ]		mimetype
+		 *  @param	$parameters[0][ 'DATA' ]		the encoded file
+		 * 	@param	$parameters[0][ 'ENCODING' ]	the encoding used
+		 * 
+		 * 	@return	201		Created
+		 * 	@return 400		Bad request
+		 * 	@return 401		Unauthorized
+		 * 	@return 409		Conflict
+		 *  @return 500		Server error
+		 */ 
+		public function storeFile( $parameters ) {
+			
+			if ( ! defined( 'CURRENT_USER_ID' ) ) {
+				return $this->setReturn( 401 , null , null ) ;	
+			}
+			
+			if( !isset( $parameters[0][ 'MIME' ] ) &&
+				!isset( $parameters[0][ 'DATA' ] ) &&
+				!isset( $parameters[0][ 'ENCODING' ] ) )
+					return $this->setReturn( 400 , null , null ) ;
+				
+			$tmp[ 'mime' ] = $parameters[0][ 'MIME' ] ;
+			$tmp[ 'data' ] = $parameters[0][ 'DATA' ] ;
+			$tmp[ 'encoding' ] = $parameters[0][ 'ENCODING' ] ;
+			
+			$file = new fManager( $this->A ) ;
+	
+			$ret = $file->decodeB64( $tmp ) ;		
+			
+			if ( $ret == 0 ){
+				// Succesfull write of the data and record was made
+				return $this->setReturn( 201 , null , null ) ;
+			} else if ( $ret == 1 ) {
+				// User not logged in
+				return $this->setReturn( 401 , null , null ) ;	
+			} else if ( $ret == 2 )	{
+				//mime not in dictionary
+				return $this->setReturn( 400 , array( 'Invalid file type, please make a request for filetype to be added.' ) , null ) ;
+			} else if ( $ret == 3 )	{
+				//file already exists
+				return $this->setReturn( 409 , array( 'File exists' ) , null ) ;	
+			} else if ( $ret == 4 )	{
+				// File was not written
+				return $this->setReturn( 500 , array( 'File Could not be written.') , null ) ;
+			} else if ( $ret == 5 )	{
+				// File was not recorded 	
+				return $this->setReturn( 500 , array( 'File Could not be recorded in database.')  , null ) ;
+			} else if ( $ret == 6 )	{
+				//Invalid encoding
+				return $this->setReturn( 400 , array( 'Invalid encoding, only "base64" allowed' ) , null ) ;
+			} else {
+				// Unknown response
+				return $this->setReturn( 500 , null , null ) ;
+			}
+			
+			
+		}
 		//	USER METHODS
 		
 		/**

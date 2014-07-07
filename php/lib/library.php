@@ -83,6 +83,9 @@
 			
 			case 'storeData' :
 				return $apiObj->storeData( $parameters ) ;
+			
+			case 'storeFile' :
+				return $apiObj->storeFile( $parameters ) ;
 				
 			case 'registerMFA' :
 				return $apiObj->registerMFA( $parameters ) ;

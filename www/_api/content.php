@@ -51,7 +51,9 @@
 	 */	
 	 
 	header( 'Content-Type: application/json' ) ;
-	$json = array( array( 'order' => 0 , 'call' => 'isBadSyntax' , 'parameter' => array( null ) ) ) ;
+
+	$json = array( array( 'order' => 1 , 'call' => 'getMethodList' , 'parameter' => array( null ) ) ) ;
+	
 	//  JSON API Processing
 	if ( isset( $_POST[ 'JSON' ] ) &&
 		 $_POST[ 'JSON' ] != null )
