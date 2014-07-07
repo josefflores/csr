@@ -46,9 +46,13 @@
 		for( $i = 0 ; $i < $d ; ++$i ) {
 			// check for directory mismatch
 			if ( $server[ $s - $i ] != $dir[ $d - $i ] ) {
-				
+				if( isSSL() )
+					$form = 'https' ;
+				else
+					$form = 'http' ;
+					
 				// generate root paths
-				$root[ 'W_ROOT' ] = 'https://' ;
+				$root[ 'W_ROOT' ] = $form . '://' ;
 				for ( $j = 0 ; $j <= ( $s - $i ) ; ++$j ) 
 					$root[ 'W_ROOT' ] .= $server[$j] . '/' ;
 				
@@ -59,5 +63,21 @@
 				return $root ;
 			}
 		}
+	}
+	
+	/**
+	 * 	@name isSSL
+	 * 
+	 * 	This function detects if the site is being accessed in https
+	 * 	
+	 * 	@return true		accessed by https
+	 * 	@return false		accessed by http
+	 */ 	
+	function isSSL() {
+		
+		if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+			return true ;
+		}
+		return false ;
 	}
 ?>
