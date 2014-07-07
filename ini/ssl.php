@@ -10,9 +10,13 @@
 	 *	4/24/14			Created file
 	 */
 	 
-	//	Credential Storage
-	//$A[ 'SSL_CREDENTIALS' ] 	=	'C:\\ssl_credentials.php' ; 
-	//include( $A[ 'SSL_CREDENTIALS' ] ) ; 
-	 
+	$A[ 'PROD_DOMAIN' ] = 'csr.cs.uml.edu' ;
+	
+	if ( $_SERVER['SERVER_NAME'] == $A[ 'PROD_DOMAIN' ] && $_SERVER[ 'SERVER_PORT' ] != 443  ) {
+		header( 'Location: https://' . $_SERVER[ 'HTTP_HOST' ] . $_SERVER[ 'PHP_SELF' ] ) ;
+		exit() ; 
+	}
+	
+	
 
 ?>

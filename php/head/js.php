@@ -17,7 +17,7 @@
 	echo '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>' ;
 	
 	// google analytics
-	if ( $_SERVER['SERVER_NAME'] == 'csr.cs.uml.edu' ) 
+	if ( $_SERVER['SERVER_NAME'] == $A[ 'PROD_DOMAIN' ] ) 
 		echo '<script src="' , $A['W_JS'] , 'google.js"></script>' ;
 	
 	// application js files
