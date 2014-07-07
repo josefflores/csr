@@ -14,7 +14,7 @@
 
 	// File Access Guard
 	define( 'CONTENT_GUARD' , TRUE ) ;
-	
+	define( 'API' , TRUE ) ;
 	////
 	//	RESOLVE PATHS
 	////
