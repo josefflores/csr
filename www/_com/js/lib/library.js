@@ -431,7 +431,7 @@ function Api( apiPath ) {
 		//get fields
 		var usr_pwd_1 			= $.trim( $( '#' + parent + 'password-1' ).val() ) ;
 		var email 				= $.trim( $( '#' + parent + 'email' ).val() ) ;
-		console.log( email + ':' + usr_pwd_1);
+
 		// Validate Fields
 		var ret = false ;
 		

@@ -16,8 +16,11 @@ var STATE = { "NONE": 0 ,
 			  "ERROR": 2 } ;
 
 // 	PATHS
-var apiPath = window.location.origin + '/csr/_api/index.php' ;	// holds the location of the API
-
+var scripts = document.getElementsByTagName("script") ;
+var filepath = scripts[scripts.length-1].src.slice( 0 , -12 ) ;
+var apiPath = filepath + '../../_api/index.php' ;	// holds the location of the API
+	console.log( apiPath ) ;
+	
 // 	TEMPLATES
 // 	Holds the template for the tab button
 var tabTemplate = "<li><a id='#{linkId}' href='#{href}'>" ;
