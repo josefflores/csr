@@ -10,10 +10,7 @@
      *  5/25/14         Created
      */
 
-    //  DEFINE GUARD
-    if ( !defined( 'class_cookie' ) )  {
-        
-        define( 'class_cookie' , TRUE ) ;
+
         
         /**
          *  cookie
@@ -190,5 +187,5 @@
 			}
            
 		}
-	}
+	
 ?>

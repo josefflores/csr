@@ -390,7 +390,6 @@
 			}
 		}
 		
-		// DATA METHODS
 		
 		/**
 		 * 	@name	storeFile
@@ -472,6 +471,7 @@
 			
 			
 		}
+		
 		//	USER METHODS
 		
 		/**

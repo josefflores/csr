@@ -21,7 +21,7 @@
 		private $user ;		// The user information
 		private $token ;	// A generated token      
 		
-		private $epoch = array( 'W' => 0 , 'D' => 0 , 'H' => 0 , 'M' => 5 , 'S' => 0 ) ;
+		private $epoch = array( 'W' => 0 , 'D' => 0 , 'H' => 0 , 'M' => 20 , 'S' => 0 ) ;
 		// a unix timestamp generating array that limits the life of a session
 		// How long sessions should be allowed to be active 
 		//		W = week
@@ -529,6 +529,35 @@
 			
 			$this->callStack( null , true ) ;
 		}
+		
+		/**
+		 * 	@name extendSession
+		 * 
+		 * 	This function extends the session
+		 * 
+		 * 	@param	$id	The id of the user
+		 */	
+		private function extendSession( ) {
+			
+			// Generate connection
+			$DB = new mysql( $this->A ) ;
+			
+			// read token value
+			$C = new cookie( $this->A ) ;
+			$tok = $C->manage( 'GET' , array( 'name' => 'token' ) ) ;
+		
+			// get ip
+			$ip = $_SERVER[ 'REMOTE_ADDR' ] ;
+		
+			// Extend Session
+			$table = 'csr_usr_token' ;
+			$keyPairs = array( 'tok_string' => $tok  ) ;
+			$operators = array( '==' ) ;
+			$newKeyPairs = array( 'tok_epoch' => time() ) ;
+			
+			// extend session
+			$DB->update( $table , $keyPairs , $operators , $newKeyPairs ) ;
+		}
 
 		/**
 		 * 	getSessionState
@@ -890,6 +919,8 @@
 		 * 					STATUS	- get session state
 		 * 					INFO	- get session information
 		 * 	
+		 * 	@param	$P		optional parameters
+		 *  
 		 * 	@return	int		success or failure of the operation
 		 */
 		public 	function session( $state ) {
@@ -909,7 +940,9 @@
 				case 'INFO' :
 					$tmp = $this->getSessionInfo() ; //WIP
 					break ;
-					
+				case 'EXTEND' :
+					$tmp = $this->extendSession( ) ;
+					break ;
 				case 'STATE' :
 				default:
 					$tmp = $this->isSessionValid() ;

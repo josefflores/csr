@@ -93,6 +93,8 @@
 				 
 				 $row = $result->fetch_assoc() ;				 
 
+				 $this->user->manage( 'SESSION' , 'EXTEND' ) ;
+				 
 				 return $row[ 'id' ] ;
 				 
 			}
