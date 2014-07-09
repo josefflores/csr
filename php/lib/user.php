@@ -688,17 +688,15 @@
 			$this->callStack( 'validateField' ) ;
 			// Valid Regex Switch
 			switch( $type ) {
-				
 				//  EMAIL
 				case 'EMAIL' :
-					$regex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/' ; 
+					$regex = "/^([a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)$/" ; 
 					break ;
 				
 				//  STRINGS
 				case 'STRING' : 
 				case 'NAME' :
-					$this->callStack( null , true ) ;
-					return true ;
+					$regex = "/^([a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*)$/" ;
 					break ;
 				
 				// PHONE NUMBERS    
@@ -720,7 +718,7 @@
 				
 				// PASSWORDS    
 				case 'PWD' :
-					$regex = '/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}/' ;
+					$regex = '/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,20}$/' ;
 					break ;
 					
 				//  DATES
