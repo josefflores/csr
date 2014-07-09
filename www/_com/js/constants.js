@@ -16,7 +16,7 @@ var STATE = { "NONE": 0 ,
 			  "ERROR": 2 } ;
 
 // 	PATHS
-var apiPath = '/csr/_api/index.php' ;	// holds the location of the API
+var apiPath = window.location.origin + '/csr/_api/index.php' ;	// holds the location of the API
 
 // 	TEMPLATES
 // 	Holds the template for the tab button

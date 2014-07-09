@@ -39,6 +39,26 @@ $( function() {
 			}) ;
 	
 	////
+	//	DIALOG SETUP
+	
+	/**
+	 *	enabling jequery dialog
+	 */
+	
+    $( "#dialog" ).dialog( {
+		modal : true ,
+		autoOpen: false ,
+		buttons : {
+			Ok : function() {
+				$( this ).dialog( "close" ) ;
+			}
+		}
+    } ) ;
+
+	
+	////
+	
+	////
 	//	TAB SETUP
 	///
 	

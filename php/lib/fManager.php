@@ -19,16 +19,8 @@
 		// Variables
 		private $A ;									// 	The application Global
 		private $sizeLimit = 20000 ;					// 	file size limit
-		private $allowedMimes = array( 'image/jpg' , 	//	Array of acceptable mime types 
-									   'image/jpeg' , 
-									   'image/gif' , 
-									   'image/png' , 
-									   'audio/mp3' , 
-									   'audio/wma' , 
-									   'video/mp4' ) ;
-									   
-		
-		// Generate dictionary
+
+		// Generate dictionary of acceptable mime types 
 		private $Dict = array( 	'application/pdf'   => 'pdf' ,
 								'application/zip'   => 'zip' ,
 								
@@ -111,7 +103,7 @@
 			}
 			
 			// Check File type 
-			if ( !in_array( $files[ 'file' ][ 'type' ] , $this->allowedMimes ) )
+			if ( !searchMimeDict( $files[ 'file' ][ 'type' ] ) )
 				return 4 ;
 	
 			// Check File size
@@ -186,7 +178,7 @@
 			$encoded = str_replace( ' ' , '+' , $encoded ) ;// deal with a php bug since 5.0.5	
 			
 			//	Success
-			return array( 'mime' => $mime , 'encoding' => 'base64' , 'data' => $encoded ) ;
+			return array( 'mime' => $mime , 'encoded' => 'base64' , 'data' => $encoded ) ;
 			
 		}
 		
@@ -278,8 +270,8 @@
 			$fp = fopen( $filePath . $fileName , "wb" ) ; 
 		
 			// decode string
-			$encoded = str_replace( ' ' , '+' , $encoded ) ;// deal with a php bug since 5.0.5
-			$decoded = base64_decode( $encoded , true ) ;
+			$data = str_replace( ' ' , '+' , $data ) ;// deal with a php bug since 5.0.5
+			$decoded = base64_decode( $data , true ) ;
 			
 			// write file
 			fwrite( $fp , $decoded ) ; 
@@ -355,8 +347,6 @@
 	
 
 	/*
-	// Resolving relative web paths
-
 	$A[ 'W_ROOT' ] = 'josefflores.com/csr/' ;
 	$A[ 'D_ROOT' ] = 'F:\\Github\\csr\\' ;
 	$A[ 'SECURE' ] = false ;
@@ -370,10 +360,10 @@
 	define( 'CURRENT_SRC_ID' , null ) ;
 	define( 'CURRENT_WEB_OR_MFA' , 'WEB' ) ;
 
-	$filename = './1.jpg' ;
+	$filename = './2.mp4' ;
 	$file = new fManager( $A ) ;
 	( $tmp = $file->encodeB64( $filename ) ) ;
-	
+	echo '<p>' , var_dump( $tmp ) , '</p>';
 	echo $file->decodeB64( $tmp ) ;
 */
 

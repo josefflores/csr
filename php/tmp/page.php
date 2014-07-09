@@ -23,7 +23,7 @@
 	echo 	'</head>
 	
 			 <body>
-
+		
 				<div id="page">
 				
 					<div class="header">';
@@ -48,6 +48,9 @@
 				
 				</div>
 				
+				<div id="dialog" title="Basic dialog">
+					<p>Default Dialog</p>
+				</div>
 			</body>
 			
 		</html>' ;

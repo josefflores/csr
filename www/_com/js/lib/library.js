@@ -12,7 +12,7 @@
  */
  
 /**
- * 	Api
+ * 	@name Api
  * 
  * 	This class holds the API
  */
@@ -21,13 +21,19 @@ function Api( apiPath ) {
 	var path = apiPath ;
 	var lastCall =  null ;
 	var lastResponse = null ;	
+	
 	// 	FUNCTIONS
+	
 	/**
 	 * 
 	 * 	call
 	 * 
 	 * 	This function generates a JSON API string and submits it to the 
 	 * 	API
+	 * 
+	 * 	@true	succesful cal
+	 * 
+	 * 	@false	api error
 	 */
 	this.call = function ( order , call , argv ) {
 		//	VARIABLES
@@ -61,7 +67,7 @@ function Api( apiPath ) {
 	 * 	state
 	 * 
 	 * 	This function determines wether the last API call was succesful
-	 * 	or not
+	 * 	or not, it also logs the response code to the console
 	 * 
 	 * 	@return		NONE			The API has not been called yer
 	 * 	@return 	OK				The return code was that of success
@@ -76,6 +82,9 @@ function Api( apiPath ) {
 		//	store the obj in a tmp object
 		json = lastResponse ;
 		
+		// Log response
+		console.log( 'API  >> ' + json[0][ 'code' ][0] + ' - ' + json[0][ 'code' ][1] ) ;
+		
 		// 	Check if the api had returned success
 		if ( json[0][ 'code' ][0] >= 200 &&
 			 json[0][ 'code' ][0] < 300 )
@@ -87,7 +96,7 @@ function Api( apiPath ) {
 	} ;
 	
 	/**
-	 * 	data
+	 * 	@name	data
 	 * 
 	 * 	This function gets the returned data
 	 * 
@@ -128,10 +137,349 @@ function Api( apiPath ) {
 		
 		return arr ;
 	} ;
+
+	/**
+	 *	@name	registerUser 	
+	 * 
+	 * 	This function registers a user through the apo
+	 * 
+	 * 	@return 0	Success
+	 * 	@return 1	Failure validating form
+	 * 	@return 2	Rejected by api
+	 */
+	this.registerUser = function() {
+		
+		// Get Registration Form
+		var parent = 'sec-registration-' ;
+		
+		var email 				= $.trim( $( '#' + parent + 'email' ).val() ) ;
+		var usr_name_first 		= $.trim( $( '#' + parent + 'first-name' ).val() ) ;
+		var usr_name_middle 	= $.trim( $( '#' + parent + 'middle-name' ).val() ) ;
+		var usr_name_last 		= $.trim( $( '#' + parent + 'last-name' ).val() ) ;
+		var usr_phone_country 	= $.trim( $( '#' + parent + 'phone-country' ).val() ) ;
+		var usr_phone_area 		= $.trim( $( '#' + parent + 'phone-area' ).val() ) ;
+		var usr_phone_number_1 	= $.trim( $( '#' + parent + 'phone-1' ).val() ) ;
+		var usr_phone_number_2 	= $.trim( $( '#' + parent + 'phone-2' ).val() ) ;
+		var usr_phone_ext 		= $.trim( $( '#' + parent + 'phone-ext' ).val() ) ;
+		var usr_pwd_1 			= $.trim( $( '#' + parent + 'password-1' ).val() ) ;
+		var usr_pwd_2 			= $.trim( $( '#' + parent + 'password-2' ).val() ) ;
+		var usr_dob_1 			= $.trim( $( '#' + parent + 'date-month' ).val() ) ;
+		var usr_dob_2 			= $.trim( $( '#' + parent + 'date-day' ).val() ) ;
+		var usr_dob_3 			= $.trim( $( '#' + parent + 'date-year' ).val() ) ;
+		
+	
+		// Validate Fields
+		var ret = false ;
+		
+		// reset borders
+		$( '#' + parent + 'email' 			).css( "border-color" , "black" ) ;
+		$( '#' + parent + 'first-name' 		).css( "border-color" , "black" ) ;
+		$( '#' + parent + 'middle-name' 	).css( "border-color" , "black" ) ;
+		$( '#' + parent + 'last-name' 		).css( "border-color" , "black" ) ;
+		$( '#' + parent + 'phone-country' 	).css( "border-color" , "black" ) ;
+		$( '#' + parent + 'phone-area' 		).css( "border-color" , "black" ) ;
+		$( '#' + parent + 'phone-1' 		).css( "border-color" , "black" ) ;
+		$( '#' + parent + 'phone-2' 		).css( "border-color" , "black" ) ;
+		$( '#' + parent + 'phone-ext' 		).css( "border-color" , "black" ) ;
+		$( '#' + parent + 'password-1' 		).css( "border-color" , "black" ) ;
+		$( '#' + parent + 'password-2' 		).css( "border-color" , "black" ) ;
+		$( '#' + parent + 'date-month' 		).css( "border-color" , "black" ) ;
+		$( '#' + parent + 'date-day' 		).css( "border-color" , "black" ) ;
+		$( '#' + parent + 'date-year' 		).css( "border-color" , "black" ) ;
+		
+		// Validate email
+		if( !this.validateField( parent ,
+							'email' ,
+							email ,
+							'regexEmail' ) ) 
+								ret = true ;
+			
+		// Validate Name
+		if( !this.validateField( parent ,
+							'first-name' , 
+							usr_name_first , 						
+							'regexText' ) ) 
+								ret = true ;
+			
+		if( usr_name_middle != '' &&
+			!this.validateField( parent ,
+							'middle-name' ,
+							usr_name_middle , 
+							'regexText' ) ) 
+								ret = true ;
+			
+		if( !this.validateField( parent ,
+							'last-name' , 
+							usr_name_last , 
+							'regexText' ) ) 
+								ret = true ;
+		
+		// Validate Phone
+		if( !this.validateField( parent ,
+							'phone-country' , 
+							usr_phone_country , 
+							'regexNumber1to3' ) ) 
+								ret = true ;
+			
+		if( !this.validateField( parent ,
+							'phone-area' , 
+							usr_phone_area , 
+							'regexNumber3' ) ) 
+								ret = true ;
+			
+		if( !this.validateField( parent ,
+							'phone-1' ,
+							usr_phone_number_1 ,
+							'regexNumber3' ) ) 
+								ret = true ;
+								
+		if( !this.validateField( parent ,
+							'phone-2' ,
+							usr_phone_number_2 , 
+							'regexNumber4' ) ) 
+								ret = true ;
+				
+		if( !this.validateField( parent ,
+							'phone-ext' , 
+							usr_phone_ext , 
+							'regexNumber0to4' ) ) 
+								ret = true ;
+			
+		// Validate Password
+		if( !this.validateField( parent ,
+							'password-1' , 
+							usr_pwd_1 , 
+							'regexPassword' ) ) 
+								ret = true ;
+			
+		if( !this.validateField( parent ,
+							'password-2' , 
+							usr_pwd_2 , 
+							'regexPassword' ) ) 
+								ret = true ;
+
+		if ( usr_pwd_1 == '' ) {
+			$( '#' + parent + 'password-1' ).css( "border-color" , "red" ) ;
+			ret = true ;
+		}
+		
+
+		if ( usr_pwd_2 == '' ) {
+			$( '#' + parent + 'password-2' ).css( "border-color" , "red" ) ;
+			ret = true ;
+		}
+			
+
+		if ( usr_pwd_1 != usr_pwd_2 ) {	
+				$( '#' + parent + 'password-1' ).css( "border-color" , "red" ) ;
+				$( '#' + parent + 'password-2' ).css( "border-color" , "red" ) ;
+				ret = true ;
+		}
+			
+		// Validate DOB	
+		if( !this.validateField( parent ,
+							'date-month' ,
+							usr_dob_1 , 
+							'regexDateMonth' ) ) 
+								ret = true ;
+								
+		if( !this.validateField( parent ,
+							'date-day' ,
+							usr_dob_2 , 
+							'regexDateDay' ) ) 
+								ret = true ;
+		
+		if( !this.validateField( parent ,
+							'date-year' ,
+							usr_dob_3 , 
+							'regexDateYear' ) ) 
+								ret = true ;
+		// Respond with Error
+		if ( ret ) { 
+			console.log( 'ERROR >> api.registerUser >> 1' ) ;
+			$( "#dialog" ).html( '<P> Error Processing Form. </p>' ) ;
+			$( "#dialog" ).dialog("open") ;
+			return 1 ;
+		}
+		
+		// Submit Fields
+		var order = 1 ;
+		var call = "registerUser" ;
+		var parameters = [{ "usr_email" : email , 
+			               "usr_name_first" : usr_name_first ,
+				           "usr_name_middle" : usr_name_middle ,
+			               "usr_name_last" : usr_name_last ,
+				           "usr_phone_country" : usr_phone_country ,
+			               "usr_phone_area" : usr_phone_area ,
+			               "usr_phone_number" : usr_phone_number_1 + usr_phone_number_2 ,
+			               "usr_phone_ext" : usr_phone_ext ,
+			               "usr_pwd_1" : usr_pwd_1 ,
+			               "usr_pwd_2" : usr_pwd_2 ,
+			               "usr_dob" : usr_dob_3 + '-' + usr_dob_1 + '-' + usr_dob_2 }] ;
+		
+		// Process return 	               
+		if ( this.call( order , call , parameters ) ) {
+			// User Registered
+			$( "#dialog" ).html( '<P> User was succesfully registered. </p>' ) ;
+		$( "#dialog" ).dialog("open") ;
+			return 0 ;
+		}
+		
+		// User Notification
+		$( "#dialog" ).html( '<P> User could not be registered. </p>' ) ;
+		$( "#dialog" ).dialog("open") ;
+		console.log( 'ERROR >> api.registerUser >> 2' ) ;
+		return 2 ;
+			
+		
+	} ;
+	
+	/**
+	 * 	@name 	validateField
+	 * 
+	 * 	This function validates inputs througha  regex
+	 * 
+	 * 	@param	parent	the holding form extension
+	 * 	@param 	id		The input id
+	 *  @param	data	The value of the input
+	 * 	@param 	regex	The regex to use for validation
+	 * 
+	 * 	@return	true	Validated input
+	 * 	@return false	Invalid input
+	 */
+	this.validateField = function( parent , id , data , regex ) {
+		
+		var regexEmail 				= new RegExp( "^([a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)$" ) ;
+		var regexNumber1to3 		= new RegExp( '^(\\d{1,3})$' ) ;
+		var regexNumber3 			= new RegExp( '^(\\d{3})$' ) ;
+		var regexNumber4 			= new RegExp( '^(\\d{4})$' ) ;
+		var regexNumber7 			= new RegExp( '^(\\d{7})$' ) ;
+		var regexNumber0to4		 	= new RegExp( '^(\\d{0,4})$' ) ;
+		var regexPassword 			= new RegExp( '^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,20}$' ) ;
+		var regexDate 				= new RegExp( '^(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])((19|20)[0-9][0-9])$' ) ;
+		var regexDateMonth			= new RegExp( '^(0[1-9]|1[012])$' ) ;
+		var regexDateDay			= new RegExp( '^(0[1-9]|[12][0-9]|3[01])$' ) ;
+		var regexDateYear			= new RegExp( '^((19|20)[0-9][0-9])$' ) ;
+		var regexText 				= new RegExp( '^([a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*)$' ) ;
+		
+		switch ( regex ) {
+		case 'regexEmail' : 
+			regex = regexEmail ;
+			break ;
+		case 'regexNumber1to3' : 
+			regex = regexNumber1to3 ;
+			break ;
+		case 'regexNumber3' : 
+			regex = regexNumber3 ;
+			break ;
+		case 'regexNumber4' : 
+			regex = regexNumber4 ;
+			break ;
+		case 'regexNumber7' : 
+			regex = regexNumber7 ;
+			break ;
+		case 'regexNumber0to4' :
+			regex = regexNumber0to4 ;
+			break ;
+		case 'regexPassword' : 
+			regex = regexPassword ;
+			break ;
+		case 'regexDate' : 
+			regex = regexDate ;
+			break ;
+		case 'regexDateMonth' : 
+			regex = regexDateMonth ;
+			break ;
+		case 'regexDateDay' : 
+			regex = regexDateDay ;
+			break ;
+		case 'regexDateYear' : 
+			regex = regexDateYear ;
+			break ;
+		case 'regexText' : 
+			regex = regexText ;
+			break ;
+		default :
+			return false ;
+		}
+		
+		// Check against regex
+		if( !regex.test( data ) ) {
+			// log error
+			$( '#' + parent + id ).css( "border-color" , "red" ) ;
+			console.log( 'ERROR: ' + id + ' : ' + data ) ;
+			return false ;
+		} else {
+			// success
+			return true ;
+		}	
+	} ;
+	
+	/**
+	 *  @name authenticateUser
+	 * 
+	 * 	This function logs a user in
+	 * 
+	 * 	@return	true	user was logged in 
+	 * 	@return false	User was not logged in
+	 */
+	this.authenticateUser = function( parameters ) {
+		
+		// Get Registration Form
+		var parent = 'sec-login-' ;
+		
+		//get fields
+		var usr_pwd_1 			= $.trim( $( '#' + parent + 'password-1' ).val() ) ;
+		var email 				= $.trim( $( '#' + parent + 'email' ).val() ) ;
+		console.log( email + ':' + usr_pwd_1);
+		// Validate Fields
+		var ret = false ;
+		
+		// Validate email
+		if( !this.validateField( parent ,
+							'email' ,
+							email ,
+							'regexEmail' ) ) 
+								ret = true ;
+		// validate password
+		if( !this.validateField( parent ,
+							'password-1' , 
+							usr_pwd_1 , 
+							'regexPassword' ) ) 
+								ret = true ;
+		
+		// respond with error
+		if ( ret ) { 
+			console.log( 'ERROR >> api.authenticateUser >> 1' ) ;
+			$( "#dialog" ).html( '<P> Error Processing Form. </p>' ) ;
+			$( "#dialog" ).dialog("open") ;
+			return 1 ;
+		}
+														 
+		var order = 1 ;
+		var call = 'authenticateUser' ;
+		var parameters = [{ "usr_email" : email , 
+			               "usr_pwd_1" : usr_pwd_1 }] ;
+		
+		// Process return 	               
+		if ( this.call( order , call , parameters ) ) {
+			// User Registered
+			$( "#dialog" ).html( '<P> User was succesfully logged in. </p>' ) ;
+		$( "#dialog" ).dialog("open") ;
+			return 0 ;
+		}
+		
+		// User Notification
+		$( "#dialog" ).html( '<P> User could not be logged in. </p>' ) ;
+		$( "#dialog" ).dialog("open") ;
+		console.log( 'ERROR >> api.authenticateUser >> 2' ) ;
+		return 2 ;
+	} ;
+	
 }
 
 /**
- * 	toolbar_menu_item
+ * 	@name	toolbar_menu_item
  * 
  * 	This is the toolbar menu function switch, it handles the operations
  * 	in the toolbar-menu PHP widget.
@@ -155,7 +503,7 @@ function toolbar_menu_item( item ) {
 }
 
 /**
- * 	addTab
+ * 	@name	addTab
  * 
  * 	This function adds a tab to the profile 
  */

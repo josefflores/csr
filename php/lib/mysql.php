@@ -1,19 +1,15 @@
 <?php
 	
     /**
-     *  @File	mysql.php
-     *  Author	Jose Flores
-     *          jose.flores.152@gmail.com
+     *  @file	mysql.php
+     *  @author	Jose Flores <jose.flores.152@gmail.com>
      *  
      *  This file holds the mysql class which uses the mysqli PHP object 
      *  to generate conections and perform querys from arrays.
-     * 
-     *  changelog      
-     *  5/20/14 	Version 1 complete, INSERT, DELETE, SELECT are available
      */
 
 	/**
-	 *	mysql
+	 *	@name	mysql
 	 * 
 	 * 	This class handles mysql connections
 	 * 
@@ -27,16 +23,18 @@
 	class mysql {
 		
 		//	VARIABLES
-		private $connection  ; 	// 	mysqli object instance
+		private $connection  ; 	// 	mysqli object instance, holds the connection
 		
 		//	CONSTUCTOR
 		 
 		/**
-		 * 	__construct
+		 * 	@name	__construct
 		 * 
 		 * 	This function is the class constructor, it instantiates an 
 		 * 	instance of the mysqli class and then checks for a valid 
 		 * 	connection
+		 * 
+		 * 	@param	$A	The application global
 		 */		
 		public function __construct( $A ) {
 			$this->connection = new mysqli( $A[ 'M_SERVER' ] , 
@@ -45,7 +43,8 @@
 							  $A[ 'M_DB' ] ) ;
 							  
 			if ( $this->connection->connect_errno > 0 ) {
-				throw new exception( 'Unable to connect to database [' . $this->connection->connect_error . ']' ) ;
+				throw new exception( 'Unable to connect to database [' . 
+					$this->connection->connect_error . ']' ) ;
 			}
 		}
 		
@@ -56,7 +55,6 @@
 		 * 
 		 * 	This function kills the thread and closes the database 
 		 * 	connection
-		 * 
 		 */
 		public function __destruct() {
 			//	determine thread id 
@@ -74,7 +72,7 @@
 		/**
 		 * 	@name	isTable
 		 * 
-		 * 	determines if a table exists
+		 * 	Determines if a table exists
 		 * 
 		 * 	@param 	$table	the table name
 		 * 
@@ -203,7 +201,9 @@
 		 * 						array( key => pair )
 		 * 	@param	$operators	The relationship betweent the key and value 
 		 * 						ie wether they must be equal or not, 
-		 * 						using php comparison operators for consistency
+		 * 						using php comparison operators for consistency.
+		 * 	@param	$newKeyPairs	The replacement keypairs
+		 *  
 		 * 	@return				Mysqli return values
 		 */
 		public function update( $table , $keyPairs , $operators , $newKeyPairs ) {

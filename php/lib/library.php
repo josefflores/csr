@@ -1,18 +1,10 @@
 <?php
 	/**
-	 *  @File			library.php
-	 * 	@Authors		Jose Flores
-	 * 					jose.flores.152@gmail.com
+	 *  @file			library.php
+	 * 	@author			Jose Flores <jose.flores.152@gmail.com>
 	 * 	
-	 * 	@Description	This is the application library, the configuration 
-	 * 					file needs to be included before it is.
-	 * 
-	 * 	@changelog		
-	 *	4/21/14			Created errorsOn from an existing if trigger to 
-	 * 					accomodate the new configuration flow
-	 * 	4/19/14			All existing API calls were added to apiCall
-	 * 	4/18/14			All API supporting methods were added
-	 * 	3/20/14			Function getDirectoryList was added	
+	 * 	This is the application library, the configuration file needs to 
+	 * 	be included before it is.
 	 */
     
     ////
@@ -28,18 +20,20 @@
      * 						reporting.
      */
     function errorsOn( $bool = false ) {
-		
-		// 	Turning errors on
-		ini_set( 'display_errors' , 'On' ) ;
-		
-		// 	Setting the error format
-		ini_set( 'error_prepend_string', '<div class="error">[ PHP ]' ) ;
-		ini_set( 'error_append_string',  '</div>' );
-		
-		// 	Displaying all errors
-		error_reporting( E_ALL ) ;	
+		if ( $bool ) {
+			// 	Turning errors on
+			ini_set( 'display_errors' , 'On' ) ;
+			
+			// 	Setting the error format
+			ini_set( 'error_prepend_string', '<div class="error">[ PHP ]' ) ;
+			ini_set( 'error_append_string',  '</div>' );
+			
+			// 	Displaying all errors
+			error_reporting( E_ALL ) ;	
+		}
 	}
 	errorsOn( $bool = true ) ;
+	
 	////
 	//  FUNCTIONS
 	////
@@ -47,7 +41,7 @@
 	// API INTERFACE FUNCTIONS
 	
 	/**
-	 * 	apiCall
+	 * 	@name	apiCall
 	 * 
 	 * 	This function is the API interface, it make the appropriate api 
 	 * 	calls and generates results
@@ -116,7 +110,7 @@
 	}
 	
 	/**
-	 * 	getWGT
+	 * 	@name	getWGT
 	 * 
 	 * 	This function generates a widget for returning via the API
 	 * 
@@ -151,7 +145,7 @@
 	}
 	
 	/**
-	 * 	jsoinValid
+	 * 	@name	jsoinValid
 	 * 
 	 * 	This function checks to see if a given json string is valid for 
 	 * 	use with the API
@@ -204,7 +198,7 @@
 	}
 	
 	/**
-	 * 	processJson
+	 * 	@name	processJson
 	 * 
 	 * 	This function processes a large json instruction set for the api
 	 * 	If the sting is not valid JSON it will abort with a SYNTAX error.
@@ -280,7 +274,7 @@
 	}
 
 	/**
-	 * 	processCall
+	 * 	@name 	processCall
 	 * 
 	 * 	This function calls the api methods and prepares their return 
 	 * 	json string
@@ -305,7 +299,7 @@
 	// 	COMPARISON FUNCTIONS 
 
 	/**
-	 * 	compareNum
+	 * 	@name	compareNum
 	 * 
 	 * 	This function is to be used in conjunction with php usort to sort 
 	 * 	numerical values in ascending order
@@ -345,7 +339,7 @@
 	//	GENERAL
 	
 	/**
-	 * 	getPublicMethods
+	 * 	@name	getPublicMethods
 	 * 
 	 * 	This function uses its out of scope position to get the public 
 	 * 	methods of a class.
@@ -353,7 +347,7 @@
 	 *  @param 	$A			The application configuration
 	 * 	@param	$className	The name of the class to query
 	 * 
-	 * 	@return				The alphabetically sorted array of public 
+	 * 	@return	$arr		The alphabetically sorted array of public 
 	 * 						methods
 	 */
 	function getPublicMethods( $A , $className ) {
@@ -366,7 +360,7 @@
 	}
 	
 	/**
-	 * 	getDirectoryList
+	 * 	@name 	getDirectoryList
 	 * 
 	 * 	This function generates an array of directory entries
 	 * 
@@ -395,7 +389,7 @@
 	}
 	
 	/**
-	 * 	getCSVArray
+	 * 	@name	getCSVArray
 	 * 
 	 * 	This function breaks appart a string of CSV and creates a table 
 	 * 	row from them.
@@ -403,7 +397,7 @@
 	 * 	@param	$arg		The argument string to break up
 	 * 
 	 * 	@return null		An empty array
-	 * 	@retrun $ret		An array with all CSV elements
+	 * 	@retrun $out		An array with all CSV elements
 	 */
 	function getCSVArray( $arg ) {
 		// 	Check for arguments
@@ -422,7 +416,7 @@
 	}
 
 	/**
-	 *	getDevRow
+	 *	@name	getDevRow
 	 * 
 	 * 	This function takes a CSV input and turns it into a table row
 	 * 
@@ -430,7 +424,7 @@
 	 * 	@param	$args 		the td element
 	 * 
 	 * 	@return null		No row
-	 * 	@return 			The table row
+	 * 	@return $rtn		The table row
 	 */
 	function getDevRow( $title , $args ) {
 		$rtn = '' ;
@@ -442,7 +436,7 @@
 	}
 	
 	/**
-	 * 	printDevHead
+	 * 	@name	printDevHead
 	 * 
 	 * 	This function breaks appart a string of CSV and creates a table 
 	 * 	row from them.
@@ -478,7 +472,7 @@
 	}
 	
 	/**
-	 * 	getDevHeadSrc
+	 * 	@name	getDevHeadSrc
 	 * 
 	 * 	This function produces the head JS and css includes
 	 * 
@@ -510,8 +504,12 @@
 	}
 	
 	/**
-	 * var_inspect
+	 * 	@name	var_inspect
 	 * 
+	 * 	This function turns a a var dump into a returnable string
+	 * 
+	 * 	@param	$var		The variable to inspect
+	 * 	@return $result 	a var dump string	 * 
 	 */
 	 function var_inspect( $var ) {
 		ob_start() ;

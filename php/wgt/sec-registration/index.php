@@ -53,7 +53,7 @@
 	////
 	// get the widget object and create an instance
 	////
-	include( $WGT[ 'PHP' ] . 'index.php' ) ;
+	include_once( $WGT[ 'PHP' ] . 'index.php' ) ;
 	
 	////
 	// execute the widget

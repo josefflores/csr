@@ -1,60 +1,47 @@
 <?php
     /**
-     *  @File           user.php
-     *  @Authors        Jose Flores
-     *                  jose.flores.152@gmail.com
+     *  @file           user.php
+     *  @author        	Jose Flores <jose.flores.152@gmail.com>
      *  
-     *  @Description    This is the user class, it manages the user sessions
-     * 
-     *  @changelog      
-     *  5/25/14			Session started
-     *  5/24/14			manage() REMOVE, REGISTER finished  
-     * 	4/28/14			Underlying methods written
+     *  This is the user class, it manages the user sessions
      */
 	
         
 	/**
-	 *  user
+	 *  @name		user
 	 * 
 	 *  This is tha application security, It will be used to validate 
 	 *  all users
-	 * 
-	 * 	$A			The application globals
-	 * 	$user		The user information	
-	 * 	$token		A generated token
-	 * 	$epoch		a unix timestamp generating array that limits 
-	 * 				the life of a session
-	 * 	$debug		Wether to run with a debug callstack
-	 * 	$tab		the callstack indenter count for visualization
 	 */
 	class user {
 		
 		// 	VARIABLES
 
-		private $A ;		//	The Global Settings and Paths       
-		private $user ;
-		private $token ;      
+		private $A ;		//	The application globals       
+		private $user ;		// The user information
+		private $token ;	// A generated token      
 		
+		private $epoch = array( 'W' => 0 , 'D' => 0 , 'H' => 0 , 'M' => 5 , 'S' => 0 ) ;
+		// a unix timestamp generating array that limits the life of a session
 		// How long sessions should be allowed to be active 
 		//		W = week
 		//		D = day
 		//		H = hour
 		//		M = minutes
 		//		S = seconds
-		private $epoch = array( 'W' => 0 , 'D' => 0 , 'H' => 0 , 'M' => 5 , 'S' => 0 ) ;
 		
-		private $debug = false ;
-		private $tab = -1 ;
+		private $debug = false ; // Wether to run with a debug callstack
+		private $tab = -1 ; // the callstack indenter count for visualization
 		//  CONSTRUCTOR
 		
 		/**
-		 *  __construct
+		 *  @name	__construct
 		 * 
 		 *  This function creates an instance of the user class
 		 * 
 		 *  @param  $A      The global configuration
 		 *  @param  $user   The user variable
-		 * 	@param $token	The current user token
+		 * 	@param 	$token	The current user token
 		 */ 
 		public function __construct( $A , $user , $token = false ) {
 		 
@@ -63,8 +50,7 @@
 			$this->A = $A ;
 			
 			if ( $token ) { 
-				
-
+				// Debug purposes
 			}
 			else {
 				$this->user = $user ;
@@ -86,6 +72,17 @@
 		
 		//	DEBUG
 		
+		/**
+		 * 	@name	callstack
+		 * 
+		 * 	This function helps to prints out a callstack  for debugging
+		 *
+		 * 	@param 	$str	The string to write
+		 * 	@param	$bool	True - Popping from the callstack
+		 * 					False - Pushing to the callstack
+		 * 
+		 *	@return null	Done iteration
+		 */ 
 		private function callStack( $str , $bool = false ) {
 			if( $bool){
 				--$this->tab ;
