@@ -688,15 +688,31 @@
 			$this->callStack( 'validateField' ) ;
 			// Valid Regex Switch
 			switch( $type ) {
+				
+		/*	var regexEmail 				= new RegExp( "^([a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)$" ) ;
+		var regexNumber1to3 		= new RegExp( '^(\\d{1,3})$' ) ;
+		var regexNumber3 			= new RegExp( '^(\\d{3})$' ) ;
+		var regexNumber4 			= new RegExp( '^(\\d{4})$' ) ;
+		var regexNumber7 			= new RegExp( '^(\\d{7})$' ) ;
+		var regexNumber0to4		 	= new RegExp( '^(\\d{0,4})$' ) ;
+		var regexPassword 			= new RegExp( '^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,20}$' ) ;
+		var regexDate 				= new RegExp( '^(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])((19|20)[0-9][0-9])$' ) ;
+		var regexDateMonth			= new RegExp( '^(0[1-9]|1[012])$' ) ;
+		var regexDateDay			= new RegExp( '^(0[1-9]|[12][0-9]|3[01])$' ) ;
+		var regexDateYear			= new RegExp( '^((19|20)[0-9][0-9])$' ) ;
+		var regexText 				= new RegExp( '^([a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*)$' ) ;*/
+		
 				//  EMAIL
 				case 'EMAIL' :
-					$regex = "/^([a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)$/" ; 
+					$regex = "/^([a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)$/" ;
+					//$regex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/' ; 
 					break ;
 				
 				//  STRINGS
 				case 'STRING' : 
 				case 'NAME' :
-					$regex = "/^([a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*)$/" ;
+					$this->callStack( null , true ) ;
+					return true ;
 					break ;
 				
 				// PHONE NUMBERS    
@@ -718,7 +734,8 @@
 				
 				// PASSWORDS    
 				case 'PWD' :
-					$regex = '/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,20}$/' ;
+					//$regex = '/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,20}/' ;
+					$regex = "/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,20}$/" ;
 					break ;
 					
 				//  DATES
