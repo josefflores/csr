@@ -6,6 +6,7 @@
 	 *  before it is.
 	 */
 
+	define( 'API_EVENT_ID' , time() ) ;
 	/**
 	 * 	api
 	 * 
@@ -375,7 +376,8 @@
 							 'csr_d_src' => $src ,
 							 'csr_d_src_id' => $srcId ,
 							 'csr_d_key' => $key ,
-							 'csr_d_val' => $value ) ;
+							 'csr_d_val' => $value , 
+							 'csr_d_event_id' => API_EVENT_ID ) ;
 			
 			
 			$tmp->insert( $table , $values ) ;

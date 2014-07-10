@@ -18,9 +18,6 @@
 	//	Set array lists 
 	////
 	
-	// 	Database list
-	$db = array( 'csr' , 'csr_d' ) ;
-	
 	//	Documentation list
 	$doc = array( 'api' ) ;
 	
@@ -30,20 +27,29 @@
 	// Begin Script
 	////
 	
-	
+	$files = scandir( './db' ) ;
 	
 	// 	Update databases
 	$i = 0 ;
 	echo '[ APP ] Updating  MySQL' ;
-	foreach( $db as $item ) {
-		exec( 'mysql -u ' . $_ENV[ 'CSR_MYSQL_USR' ] . ' -p' . $_ENV[ 'CSR_MYSQL_PWD' ] . ' ' . $item . ' < ./db/' . $item . '.sql' , $output , $return ) ;
-		if( $return  ) {
-			echo "\n" , '   ERROR[ ' . ++$i . ' ] Database update: ' , $item ;
-			return $i ;
-		}
-		echo "\n   Done ... " ;
-	}
 	
+	foreach( $dir as $sqlDirs ) {
+		if( $sqlDirs != array( '.' , '..' ) ) {
+			
+			$sqlFile = scandir( './db/'.$sqlDirs , 1 ) ;
+			
+			$item = explode( '-' , $sqlFile ) ; 
+			
+			exec( 'mysql -u ' . $_ENV[ 'CSR_MYSQL_USR' ] . ' -p' . $_ENV[ 'CSR_MYSQL_PWD' ] . ' ' . $item . ' < ./db/' . $sqlFile , $output , $return ) ;
+			if( $return  ) {
+				echo "\n" , '   ERROR[ ' . ++$i . ' ] Database update: ' , $item ;
+				return $i ;
+			}
+			echo "\n   Done ... " ;
+			
+		}	
+	}
+
 	// Build documentation
 	echo "\n" , '[ APP ] Updating  Documentation' , "\n"  ;	
 	foreach( $doc as $item ) {
