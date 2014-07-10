@@ -27,7 +27,7 @@
 	// Begin Script
 	////
 	
-	$files = scandir( './db' ) ;
+	$dir = scandir( './db' ) ;
 	
 	// 	Update databases
 	$i = 0 ;
