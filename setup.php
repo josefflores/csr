@@ -13,7 +13,9 @@
 	//	TODO make into class and use application configuration to determine 
 	// 	tasks, and automate array generation 
 	
-	
+	// Error response
+	$i = 0 ;
+		
 	////
 	//	Set array lists 
 	////
@@ -27,22 +29,19 @@
 	// Begin Script
 	////
 	
-	$dir = scandir( './db' ) ;
-	
 	// 	Update databases
-	$i = 0 ;
 	echo '[ APP ] Updating  MySQL' ;
 	
+	$dir = scandir( './db' ) ;
+	
 	foreach( $dir as $sqlDirs ) {
-		if( $sqlDirs != array( '.' , '..' ) ) {
+		if(  !in_array( $sqlDirs , array( '.' , '..' ) )  ) {
 			
-			$sqlFile = scandir( './db/'.$sqlDirs , 1 ) ;
-			
-			$item = explode( '-' , $sqlFile ) ; 
-			
-			exec( 'mysql -u ' . $_ENV[ 'CSR_MYSQL_USR' ] . ' -p' . $_ENV[ 'CSR_MYSQL_PWD' ] . ' ' . $item . ' < ./db/' . $sqlFile , $output , $return ) ;
+			$sqlFile = scandir( './db/'.$sqlDirs . '/', 1 ) ;
+				
+			exec( 'mysql -u ' . $_ENV[ 'CSR_MYSQL_USR' ] . ' -p' . $_ENV[ 'CSR_MYSQL_PWD' ] . ' ' . $sqlDirs . ' < ./db/' .$sqlDirs . '/' . $sqlFile[ 0 ] , $output , $return ) ;
 			if( $return  ) {
-				echo "\n" , '   ERROR[ ' . ++$i . ' ] Database update: ' , $item ;
+				echo "\n" , '   ERROR[ ' . ++$i . ' ] Database update: ' , $sqlDirs ;
 				return $i ;
 			}
 			echo "\n   Done ... " ;
