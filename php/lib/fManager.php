@@ -286,7 +286,7 @@
 					return 5 ;
 					
 				// Success
-				return 0 ;
+				return 0  ;
 			}
 			
 			// file did not write
@@ -335,6 +335,7 @@
 			$keyPairs[ 'csr_d_f_mime' ] 	= $mime ;
 			$keyPairs[ 'csr_d_f_path' ] 	= $filePath ;
 			$keyPairs[ 'csr_d_f_name' ] 	= $fileName ;
+			$keyPairs[ 'csr_d_f_event_id '] = API_EVENT_ID ;
 			
 			$table = 'csr_d_files' ;
 			//	Insert into database
