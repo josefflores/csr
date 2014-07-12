@@ -12,6 +12,9 @@
 	 
 	$A[ 'PROD_DOMAIN' ] = 'csr.cs.uml.edu' ;
 	
+
+		$_SERVER['SERVER_NAME'] = 'http://www.josefflores.com' ;
+	
 	if (  !defined( 'API' ) && $_SERVER['SERVER_NAME'] == $A[ 'PROD_DOMAIN' ] && $_SERVER[ 'SERVER_PORT' ] != 443  ) {
 		header( 'Location: https://' . $_SERVER[ 'HTTP_HOST' ] . $_SERVER[ 'PHP_SELF' ] ) ;
 		exit() ; 

@@ -36,12 +36,20 @@
 		 * 
 		 * 	@param	$A	The application global
 		 */		
-		public function __construct( $A ) {
-			$this->connection = new mysqli( $A[ 'M_SERVER' ] , 
-							  $A[ 'M_USR' ] ,  
-							  $A[ 'M_PWD' ] , 
-							  $A[ 'M_DB' ] ) ;
-							  
+		public function __construct( $A , $DB = null ) {
+			
+			if ( $DB == null ) {
+				$this->connection = new mysqli( $A[ 'M_SERVER' ] , 
+								  $A[ 'M_USR' ] ,  
+								  $A[ 'M_PWD' ] , 
+								  $A[ 'M_DB' ] ) ;
+			} else {
+				$this->connection = new mysqli( $A[ 'M_SERVER' ] , 
+								  $A[ 'M_USR' ] ,  
+								  $A[ 'M_PWD' ] , 
+								  $DB ) ;
+			}	
+								  
 			if ( $this->connection->connect_errno > 0 ) {
 				throw new exception( 'Unable to connect to database [' . 
 					$this->connection->connect_error . ']' ) ;
@@ -152,9 +160,10 @@
 		 * 	@param	$operators	The relationship betweent the key and value 
 		 * 						ie wether they must be equal or not, 
 		 * 						using php comparison operators for consistency
+		 * 	@param 	$columns	an array of columns to retrieve
 		 * 	@return				Mysqli return values
 		 */
-		public function select( $table , $keyPairs , $operators ) {
+		public function select( $table , $keyPairs , $operators , $columns = null ) {
 			
 			//VARIABLES
 			$i = 0 ;			//	operator incrementor
@@ -179,12 +188,27 @@
 				
 			}
 
-			// 	Generate Query
-			$query = 'SELECT * FROM `' . $table ; 
+			if ( $columns == null ) {
+				// 	Generate Query
+				$col = ' * ' ;
+			}
+			else {
+				$col = ' ' ;
+				$bool = false ;
+				foreach( $columns as $item ) {
+					if ( $bool ) {
+						$col .= ', '  ;
+					}
+					$col .=  '`'. $item . '` '  ; 
+					$bool = true ;
+				}
+			}
+			
+			$query = 'SELECT '.$col.' FROM `' . $table . '`' ;
 			
 			// 	If there where key pairs
 			if ( $options != '' ) 
-				$query .= '` WHERE ' . $options ;
+				$query .= ' WHERE ' . $options ;
 
 			// 	Query mysql
 			return $this->runQuery( $query ) ;
@@ -343,7 +367,7 @@
 		 * 
 		 * 	@return the mysqli response
 		 */
-		private function runQuery( $query) {
+		public function runQuery( $query) {
 			
 			// run query or report error
 			if ( !$result = $this->connection->query( $query ) ) {
