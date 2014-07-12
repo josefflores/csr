@@ -392,6 +392,7 @@
 			$DB = new mysql( $this->A ) ;
 			$result = $DB->select( $table , $keyPairs , $operators ) ;
 			$row = $result->fetch_array( MYSQLI_ASSOC ) ;
+			
 			$this->callStack( null , true ) ;
 			return $row ;
 		}

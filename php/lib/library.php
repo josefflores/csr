@@ -159,7 +159,8 @@
 	function jsonValid( $A , $json ) {
 		
 		// Try to parse json, and check for well formed json
-		if ( $json === null &&
+		if ( is_string( $json ) ||
+			 $json === null &&
 			 json_last_error() !== JSON_ERROR_NONE ) {
 				 // badly formed json found
 				return false ;
@@ -167,14 +168,16 @@
 		
 		// Getting number of instructions
 		$size = count( $json ) ;
-			
+		
 		// Setting order array for checking, 0 is preprocessing
 		$order = array( 0 ) ;
 			
 		// Iterating through instructions 
 		for ( $i = 0 ; $i < $size ; ++$i ) {
 
-			if ( !array_key_exists ( 'order' , $json[ $i ] ) ||
+			if ( is_string( $json[ $i ] ) ||
+				 !is_array( $json[ $i ] ) ||
+				 !array_key_exists ( 'order' , $json[ $i ] ) ||
 				 !array_key_exists ( 'call' , $json[ $i ] ) ||
 				 !array_key_exists ( 'parameter' , $json[ $i ] ) ) 
 					return false ;
@@ -245,6 +248,12 @@
 				}
 
 			}
+		} else if ( is_string( $json ) ) { 
+			// Send JSON malformed message
+			array_push( $result ,  processCall( $A , 
+									array( 'order' => 0 , 
+										  'call' => 'isBadSyntax' , 
+										  'parameter' => null ) ) ) ;
 		} else if ( $json[0][ 'call' ] == 'ssl' ) {
 			
 			// Send JSON malformed message
