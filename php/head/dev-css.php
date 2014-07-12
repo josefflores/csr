@@ -16,7 +16,7 @@
 	echo '<link href="' , $A[ 'W_CSS' ] , 'dev-tools.css" 				rel="stylesheet" type="text/css">' ;
 	echo '<link href="' , $A[ 'W_CSS' ] , 'navigation-menu.css" 		rel="stylesheet" type="text/css">' ;
 	echo '<link href="' , $A[ 'W_CSS' ] , 'toolbar-menu.css" 			rel="stylesheet" type="text/css">' ;
-	
+
 	//	Load optional CSS
 	if ( isset( $_GET[ 'css' ] ) )
 		echo getDevHeadSrc( $A , 'CSS' , $_GET[ 'css' ] ) ;
@@ -24,5 +24,5 @@
 	// 	The main css file this holds most styling elements to lend 
 	//	consistency to the application
 	echo '<link href="' , $A['W_CSS'] , 'main.css" 						rel="stylesheet" type="text/css">' ;
-	
+    echo '<link href="' , $A[ 'W_CSS' ] , 'profile-dropdown-timeline" 			rel="stylesheet" type="text/css">' ;
 ?>
