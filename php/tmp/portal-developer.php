@@ -17,7 +17,7 @@
 	echo '<html>
 	
 			<head>' ;
-				
+				$A[ 'DEV' ] = true ;
 				include( $A[ 'D_HEAD' ].'index.php' ) ;
 				
 	echo 	'</head>
