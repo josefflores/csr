@@ -24,5 +24,5 @@
 	// 	The main css file this holds most styling elements to lend 
 	//	consistency to the application
 	echo '<link href="' , $A['W_CSS'] , 'main.css" 						rel="stylesheet" type="text/css">' ;
-    echo '<link href="' , $A[ 'W_CSS' ] , 'profile-dropdown-timeline" 			rel="stylesheet" type="text/css">' ;
+    echo '<link href="' , $A[ 'W_CSS' ] , 'profile-dropdown-timeline.css" 			rel="stylesheet" type="text/css">' ;
 ?>
