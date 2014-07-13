@@ -138,7 +138,7 @@
 									'mfa_device_active' => 0 ) ;
 				
 				$DB->insert(  $table , $keyPairs ) ;
-				$this->emailPin() ;
+				$this->emailPin( $this->param[ 'USR_EMAIL' ] ) ;
 				return array( 'salt' => $this->param[ 'USR_SALT' ] , 'pepper' => $this->param[ 'USR_PEPPER' ] , 'time' => $this->param[ 'USR_TIMESTAMP' ] ) ; 
 
 			}
@@ -325,12 +325,12 @@
 			 * 	@return string	Error message
 			 */
 			private function emailPin( $to ) {
-				$from = array( 'EMAIL' => 'msgs@csr.cs.uml.edu' , 
-							   'NAME' => 'Messages' ) ; 
+				$from = array( 'EMAIL' => 'jose.flores.152@gmail.com' , 
+							   'NAME' => 'Jose Flores' ) ; 
 				$subj = 'Pin confirmation' ;
 				$msg = 'Please enter pin into device: ' . $this->pin ;
 				
-				$email = new email( $A ) ;
+				$email = new email( $this->A ) ;
 				
 				return $email->send( $from , array( 'EMAIL' => $to ) , $subj , $msg ) ;	
 			}
