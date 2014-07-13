@@ -55,7 +55,7 @@
 							
 				// Remove these next 3 lines if you dont need SMTP authentication 
 				$this->mail->SMTPAuth = true; 
-				$this->mail->Username = $A[ 'MAIL_SMTP_USR' ] ;
+				$this->mail->Username = $A[ 'MAIL_FROM_USR']. '@' . $A[ 'MAIL_FROM_DOMAIN']
 				$this->mail->Password = $A[ 'MAIL_SMTP_PWD' ] ;
 			}
 			
@@ -73,7 +73,7 @@
 							
 				// Set who the email is coming from 
 				$this->mail->SetFrom( $this->A[ 'MAIL_FROM_USR']. '@' . $this->A[ 'MAIL_FROM_DOMAIN'] , $this->A[ 'MAIL_FROM_DOMAIN'] ); 
-				
+				echo $this->A[ 'MAIL_FROM_USR']. '@' . $this->A[ 'MAIL_FROM_DOMAIN'] , ' ' , $this->A[ 'MAIL_FROM_DOMAIN'] ;
 				// Set who the email is sending to 
 				$this->mail->AddAddress( $to[ 'EMAIL' ] ); 
 				

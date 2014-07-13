@@ -16,7 +16,7 @@
 	$A[ 'MAIL_SMTP_PORT' ]	= 465 ;
 	$A[ 'MAIL_SMTP_SEC' ]   = 'ssl' ;
 	
-	$A[ 'MAIL_FROM_USR']	= 'admin' ;
+	$A[ 'MAIL_FROM_USR']	= 'no-reply' ;
 	$A[ 'MAIL_FROM_DOMAIN'] = 'csr.cs.uml.edu' ;
 	
 	$A[ 'MAIL_SMTP_USR' ] 	= $_ENV[ 'CSR_SMTP_USR' ] ;  	// SMTP username
