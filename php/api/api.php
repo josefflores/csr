@@ -677,11 +677,11 @@
 		 * 	@return		403		Forbidden
 		 */
 		public function activateMFA( $parameters) {
-			if( !isset( $parameters[ 'USR_PHONE' ] ) &&
-				!isset( $parameters[ 'USR_PIN' ] ) )
+			if( !isset( $parameters[0][ 'USR_PHONE' ] ) &&
+				!isset( $parameters[0][ 'USR_PIN' ] ) )
 					return $this->setReturn( 400 , null , null ) ;
 					
-			$mfa = new mfa( $A , $param ) ;
+			$mfa = new mfa( $this->A , $parameters[0] ) ;
 			$tmp = $mfa->manage( 'ACTIVATE' ) ;
 		
 			if ( $tmp == 0 ) 			 
@@ -725,11 +725,11 @@
 		 * 	@return	403		Forbidden
 		 */
 		public function authenticateMFA( $parameters) {
-			if( !isset( $parameters[ 'USR_PHONE' ] ) &&
-				!isset( $parameters[ 'USR_TOKEN' ] ) )
+			if( !isset( $parameters[0][ 'USR_PHONE' ] ) &&
+				!isset( $parameters[0][ 'USR_TOKEN' ] ) )
 					return $this->setReturn( 400 , null , null ) ;
 					
-			$mfa = new mfa( $A , $param ) ;
+			$mfa = new mfa( $this->A , $parameters[0] ) ;
 			$tmp = $mfa->manage( 'AUTHENTICATE' ) ;	
 		
 			if ( $tmp == 0 ) 		 
