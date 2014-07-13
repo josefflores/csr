@@ -124,6 +124,7 @@
 				$tk = new token( $this->A ) ;
 				$this->param[ 'USR_SALT' ] = $tk->genSalt() ;
 				$this->param[ 'USR_PEPPER' ] = $tk->genSalt() ;
+				$this->param[ 'USR_TIMESTAMP' ] = time() ;
 				
 				// Register Device
 				$table = 'csr_mfa_account' ;
@@ -138,7 +139,7 @@
 				
 				$DB->insert(  $table , $keyPairs ) ;
 				$this->emailPin() ;
-				return array( 'salt' => $this->param[ 'USR_SALT' ] , 'pepper' => $this->param[ 'USR_PEPPER' ] ) ; 
+				return array( 'salt' => $this->param[ 'USR_SALT' ] , 'pepper' => $this->param[ 'USR_PEPPER' ] , 'time' => $this->param[ 'USR_TIMESTAMP' ] ) ; 
 
 			}
 
