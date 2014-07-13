@@ -325,8 +325,7 @@
 			 * 	@return string	Error message
 			 */
 			private function emailPin( $to ) {
-				$from = array( 'EMAIL' => 'jose.flores.152@gmail.com' , 
-							   'NAME' => 'Jose Flores' ) ; 
+				$from = 'no-reply' ; 
 				$subj = 'Pin confirmation' ;
 				$msg = 'Please enter pin into device: ' . $this->pin ;
 				

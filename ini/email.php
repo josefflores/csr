@@ -12,9 +12,11 @@
 
 	
 	
-	$A[ 'MAIL_SMTP_HOST' ] 	= 'smtp.gmail.com' ;			// Specify main and backup SMTP servers
+	$A[ 'MAIL_SMTP_HOST' ] 	= 'smtp.zoho.com' ;			// Specify main and backup SMTP servers
 	$A[ 'MAIL_SMTP_PORT' ]	= 587 ;
 	$A[ 'MAIL_SMTP_SEC' ]   = 'tls' ;
+	
+	$A[ 'MAIL_FROM_DOMAIN'] = 'csr.cs.uml.edu' ;
 	
 	$A[ 'MAIL_SMTP_USR' ] 	= $_ENV[ 'CSR_SMTP_USR' ] ;  	// SMTP username
 	$A[ 'MAIL_SMTP_PWD' ] 	= $_ENV[ 'CSR_SMTP_PWD' ] ;  	// SMTP password

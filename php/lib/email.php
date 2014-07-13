@@ -72,7 +72,7 @@
 			public function send( $from , $to , $subj , $msg ) {
 							
 				// Set who the email is coming from 
-				$this->mail->SetFrom( $from[ 'EMAIL' ] , $from[ 'NAME' ] ); 
+				$this->mail->SetFrom( $from . '@' . $this->A[ 'MAIL_FROM_DOMAIN'] , $this->A[ 'MAIL_FROM_DOMAIN'] ); 
 				
 				// Set who the email is sending to 
 				$this->mail->AddAddress( $to[ 'EMAIL' ] ); 
