@@ -121,7 +121,7 @@
 					return 2 ;
 				}
 				
-				$tk = new token() ;
+				$tk = new token( $this->A ) ;
 				$this->param[ 'USR_SALT' ] = $tk->genSalt() ;
 				$this->param[ 'USR_PEPPER' ] = $tk->genSalt() ;
 				
