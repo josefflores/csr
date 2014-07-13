@@ -623,7 +623,7 @@
 		 * 
 		 * 	@param $parameters[ 0 ][ 'USR_PHONE' ]		the dievice MAC
 		 * 	@param $parameters[ 0 ][ 'USR_EMAIL' ]		the users email
-		 *  @param $parameters[ 0 ][ 'USR_PWD' ]			the user password
+		 *  @param $parameters[ 0 ][ 'USR_PWD' ]		the user password
 		 * 
 		 * 	@return 200				Success, data returned is  salt and pepper
 		 * 	@return 400				Bad Request
@@ -631,18 +631,19 @@
 		 */
 		public function registerMFA( $parameters ) {
 			
-			if( !isset( $parameters[ 'USR_PHONE' ] ) &&
-				!isset( $parameters[ 'USR_EMAIL' ] ) )
+			if( !isset( $parameters[ 0 ][ 'USR_PHONE' ] ) &&
+				!isset( $parameters[ 0 ][ 'USR_PWd' ] ) &&
+				!isset( $parameters[ 0 ][ 'USR_EMAIL' ] ) )
 				//!isset( $parameters[ 'USR_PWD' ] ) )
 					return $this->setReturn( 400 , null , null ) ;
 					
-			$mfa = new mfa( $A , $parameters ) ;
+			$mfa = new mfa( $this->A , $parameters[ 0 ] ) ;
 			$tmp = $mfa->manage( 'REGISTER' ) ;
 			
 			if ( is_array( $tmp ) ) 			 
 				return $this->setReturn( 200 , null , $tmp ) ;
 			else if ( $tmp == 1 )
-				return $this->setReturn( 401 , 'User / Password is incorect, or not registered.' , null ) ;
+				return $this->setReturn( 401 , 'User | Password is incorect, or not registered.' , null ) ;
 			else if ( $tmp == 2 )
 				return $this->setReturn( 401 , 'Device is already registered.' , null )  ;
 		}
