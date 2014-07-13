@@ -13,8 +13,8 @@
 	
 	
 	$A[ 'MAIL_SMTP_HOST' ] 	= 'smtp.zoho.com' ;			// Specify main and backup SMTP servers
-	$A[ 'MAIL_SMTP_PORT' ]	= 587 ;
-	$A[ 'MAIL_SMTP_SEC' ]   = 'tls' ;
+	$A[ 'MAIL_SMTP_PORT' ]	= 465 ;
+	$A[ 'MAIL_SMTP_SEC' ]   = 'ssl' ;
 	
 	$A[ 'MAIL_FROM_DOMAIN'] = 'csr.cs.uml.edu' ;
 	
