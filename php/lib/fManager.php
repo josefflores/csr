@@ -315,15 +315,14 @@
 			// check if user is signed in 
 			if ( !( defined( 'CURRENT_USER_ID' ) &&
 				    defined( 'CURRENT_WEB_OR_MFA' ) &&
-				    defined( 'CURRENT_SRC_ID' ) ) )
+				    defined( 'CURRENT_SRC_ID' ) &&
+				    defined( 'API_EVENT_ID' ) ) )
 					return 1 ;
 				
 			// Try to connect to database
 			try {	
 				// attempt database connection
-				$A = $this->A ;
-				$A[ 'M_DB' ] = 'csr_d' ;
-				$DB = new mysql( $A ) ;	
+				$DB = new mysql( $this->A , 'csr_d' ) ;	
 			}
 			catch ( exception $e ) {
 				// connection error
@@ -338,7 +337,7 @@
 			$keyPairs[ 'csr_d_f_mime' ] 	= $mime ;
 			$keyPairs[ 'csr_d_f_path' ] 	= CURRENT_USER_ID .'\\' ;
 			$keyPairs[ 'csr_d_f_name' ] 	= $fileName ;
-			$keyPairs[ 'csr_d_event_id '] = API_EVENT_ID ;
+			$keyPairs[ 'csr_d_event_id '] 	= API_EVENT_ID ;
 			
 			$table = 'csr_d_files' ;
 			//	Insert into database
