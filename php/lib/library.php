@@ -12,7 +12,7 @@
     ////
     
     /** 
-     * 	errorsOn
+     * 	@name	errorsOn
      * 
      * 	Error reporting trigger
      * 

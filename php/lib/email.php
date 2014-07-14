@@ -54,6 +54,8 @@
 			$this->mail->SMTPAuth = true; 
 			$this->mail->Username = $A[ 'MAIL_FROM_USR']. '@' . $A[ 'MAIL_FROM_DOMAIN'] ;
 			$this->mail->Password = $A[ 'MAIL_SMTP_PWD' ] ;
+			//$this->mail->AddEmbeddedImage( $A[ 'W_IMG' ] . 'logo/logo.png' , 'logo');
+
 		}
 		
 		/**
@@ -78,7 +80,7 @@
 			$this->mail->Subject = $subj ; 
 			
 			//Set the message 
-			$this->mail->MsgHTML( $msg ) ; 
+			$this->mail->MsgHTML( '<img src="'. $this->A[ 'W_IMG' ] . 'logo/logo.png" /><br/><div style="margin-left:128px" >' . $msg .'</div>') ; 
 			//$this->mail->AltBody(strip_tags($message)); 
 			
 			// Send the email 
