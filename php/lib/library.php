@@ -95,6 +95,9 @@
 				
 			case 'authenticateUser' :
 				return $apiObj->authenticateUser( $parameters ) ;
+				
+			case 'deauthenticateUser' :
+				return $apiObj->deauthenticateUser( $parameters ) ;
 			
 			// order 0 preprocessing messages
 			case 'switchToSsl' : 

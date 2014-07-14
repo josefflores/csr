@@ -404,10 +404,20 @@
 		 * 	JSON=[ 
 		 * 		{ 
 		 * 			"order": 1,
+		 *      		"call": "authenticateMFA",
+		 *    	    		"parameter": [
+		 * 			    	{
+		 * 	                		"USR_PHONE": "123456780",
+		 * 	                		"USR_TOKEN": "ASDFASDFSADGDRSGDFSDFDFSGSDGSDFGDFGSDFGSDFGSDFGSDFGSDFG"
+		 *             			}	        
+		 * 			]
+		 * 	    },
+		 * 		{ 
+		 * 			"order": 2,
 		 *      	"call": "storeFile",
 		 *    	    "parameter": [
 		 * 			   	{
-		 * 	           		"MIME":"table" ,
+		 * 	           		"MIME":"mime/type" ,
 		 * 					"DATA": "ASFDSGSDGSDFGDF...." ,
 		 * 					"ENCODING": "base64" 	                		
 		 *         		}	        
@@ -439,7 +449,7 @@
 				
 			$tmp[ 'mime' ] = $parameters[0][ 'MIME' ] ;
 			$tmp[ 'data' ] = $parameters[0][ 'DATA' ] ;
-			$tmp[ 'encoding' ] = $parameters[0][ 'ENCODING' ] ;
+			$tmp[ 'encoded' ] = $parameters[0][ 'ENCODING' ] ;
 			
 			$file = new fManager( $this->A ) ;
 	
@@ -578,7 +588,7 @@
 		 * 	@param $parameters[ 0 ][ 'usr_pwd_1' ] 	Password String
 		 * 
 		 * 	@return 204				Success
-		 * 	@return 400				Baad request
+		 * 	@return 400				Bad request
 		 * 	@return 500				Failure
 		 */
 		 public function authenticateUser( $parameters ) {
@@ -598,6 +608,38 @@
 			return $this->setReturn( 500 , 'Authentication failed' , $tmp ) ;
 		 }
 		
+		
+		
+		/**
+		 * 	@name 		deauthenticateUser
+		 * 
+		 * 	Requires authentication : false
+		 * 
+		 * 	This function logs a user iout of the website
+		 * 
+		 * 	JSON=[ 
+		 * 		{ 
+		 * 			"order": 1,
+		 *      		"call": "deauthenticateUser",
+		 *    	    		"parameter": [
+		 * 			    	{
+		 * 	                		null
+		 *             			}	        
+		 * 			]
+		 * 	    	}
+		 * 	]
+		 * 
+		 * 	@return 204				Success
+		 */
+		 public function deauthenticateUser( $parameters ) {
+					
+			$user = new user( $this->A , null ) ;
+			$tmp = $user->manage( 'SESSION' , 'STOP' ) ;
+			
+			return $this->setReturn( 204 , array( 'Deauthentication succesful' , 'Session ended' ) , null ) ; 
+			
+		 }
+		 
 		// MFA METHODS
 		
 		/**
@@ -687,7 +729,7 @@
 			if ( $tmp == 0 ) 			 
 				return $this->setReturn( 204 , 'Device was Activated' , null ) ;
 			else if ( $tmp == 1 )
-				return $this->setReturn( 401 , 'User is not registered.' , null ) ;
+				return $this->setReturn( 401 , 'Device is not registered , or is already active.' , null ) ;
 			else if ( $tmp == 2 )
 				return $this->setReturn( 403 , 'Device was Banned.' , null )  ;
 			else if ( $tmp == 3 )

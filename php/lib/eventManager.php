@@ -115,7 +115,7 @@
 				$table = 'csr_d_files' ;
 				$keyPairs = array( 'csr_d_f_usr_id' => $user ) ;
 				$operators = array( '==' ) ;
-				$columns = array( 'csr_d_f_event_id' ) ;
+				$columns = array( 'csr_d_event_id' ) ;
 				$result = $DB_D->select( $table , $keyPairs , $operators , $columns )  ;
 				
 				while ($row = $result->fetch_row()) {
@@ -173,7 +173,7 @@
 			
 			//	Query the File Database
 			$table = 'csr_d_files' ;
-			$keyPairs = array( 'csr_d_f_event_id'=>  $eventId , 'csr_d_f_usr_id' => $user ) ;
+			$keyPairs = array( 'csr_d_event_id'=>  $eventId , 'csr_d_f_usr_id' => $user ) ;
 			$operators = array( '==' , '==' ) ;
 			$rowFiles = $DB->select( $table , $keyPairs , $operators )  ;
 			

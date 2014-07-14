@@ -20,6 +20,7 @@ var scripts = document.getElementsByTagName("script") ;
 var filepath = scripts[scripts.length-1].src.slice( 0 , -12 ) ;
 var apiPath = filepath + '../../_api/index.php' ;	// holds the location of the API
 	console.log( apiPath ) ;
+var webRoot = filepath + '../../' ;
 	
 // 	TEMPLATES
 // 	Holds the template for the tab button

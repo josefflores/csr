@@ -27,9 +27,9 @@
 	$A[ 'D_INI' ]		= $A[ 'D_ROOT' ].'ini\\' ;
 	$A[ 'D_PHP' ]		= $A[ 'D_ROOT' ].'php\\' ;
 	$A[ 'D_JAVA' ]		= $A[ 'D_ROOT' ].'java\\' ;
-	$A[ 'D_USR' ]		= $A[ 'D_ROOT' ].'usr\\' ;
+	$A[ 'D_USR' ]		= 'C:\\csr_files\\usr\\' ;
 	$A[ 'D_WWW' ]		= $A[ 'D_ROOT' ].'www\\' ;
-	$A[ 'D_UPLOAD_TMP' ]= $A[ 'D_ROOT' ].'tmp\\' ; // This should be kept externall to the application 
+	//$A[ 'D_UPLOAD_TMP' ]= $A[ 'D_ROOT' ].'tmp\\' ; // This should be kept externall to the application 
 	
 	$A[ 'D_HEAD' ]		= $A[ 'D_PHP' ].'head\\' ;
 	$A[ 'D_API' ]		= $A[ 'D_PHP' ].'api\\' ;

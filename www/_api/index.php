@@ -34,7 +34,7 @@
 	$A[ 'SECURE' ] = false ;	
 	$A[ 'ACCESS' ] = array( 'ALL' ) ;
 	include( $A[ 'D_TMP' ].'includes.php' ) ;
-
+	
 	////
 	//	FUNCTION TRIGGERS	
 	////

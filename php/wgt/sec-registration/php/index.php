@@ -37,23 +37,23 @@
 				
 				$str .= '<tr class="sec-registration-line">	<td colspan="2"><h3> Register</h3></td></tr>' ;
 					
-					$str .= $this->input( $parent , 'Email' 					, array( array( 'class' => 'input-text' , 'id' => 'email' , 'type' => 'text' , 'required' => true ) ) ) ;
-					$str .= $this->input( $parent , 'First Name' 				, array( array( 'class' => 'input-text' , 'id' => 'first-name' , 'type' => 'text' , 'required' => true ) ) ) ;
-					$str .= $this->input( $parent , 'Middle Name' 				, array( array( 'class' => 'input-text' , 'id' => 'middle-name' , 'type' => 'text' , 'required' => true ) ) ) ;
-					$str .= $this->input( $parent , 'Last Name' 				, array( array( 'class' => 'input-text' , 'id' => 'last-name' , 'type' => 'text' , 'required' => true ) ) ) ;
+					$str .= $this->input( $parent , 'Email' 					, array( array( 'class' => 'input-text' , 'length' => 0 , 'id' => 'email' , 'type' => 'text' , 'required' => true , 'b' => '' , 'a' => '' ) ) ) ;
+					$str .= $this->input( $parent , 'First Name' 				, array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'first-name' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => '' ) ) ) ;
+					$str .= $this->input( $parent , 'Middle Name' 				, array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'middle-name' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
+					$str .= $this->input( $parent , 'Last Name' 				, array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'last-name' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
 				
-					$str .= $this->input( $parent , 'Password' 					, array( array( 'class' => 'input-text' , 'id' => 'password-1' , 'type' => 'password' , 'required' => true ) ) ) ;
-					$str .= $this->input( $parent , 'Confirm Password' 			, array( array( 'class' => 'input-text' , 'id' => 'password-2' , 'type' => 'password' , 'required' => true ) ) ) ;
+					$str .= $this->input( $parent , 'Password' 					, array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'password-1' , 'type' => 'password' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
+					$str .= $this->input( $parent , 'Confirm Password' 			, array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'password-2' , 'type' => 'password' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
 					
-					$str .= $this->input( $parent , 'Date of Birth MM DD YYYY ' , array( array( 'class' => 'input-text-2' , 'id' => 'date-month' , 'type' => 'text' , 'required' => true ) ,
-																						 array( 'class' => 'input-text-2' , 'id' => 'date-day' , 'type' => 'text' , 'required' => true ) ,
-																						 array( 'class' => 'input-text-4' , 'id' => 'date-year' , 'type' => 'text' , 'required' => true ) ) ) ;
+					$str .= $this->input( $parent , 'Date of Birth MM DD YYYY ' , array( array( 'class' => 'input-text-2' , 'length' => '2' ,'id' => 'date-month' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => ' / ') ,
+																						 array( 'class' => 'input-text-2' , 'length' => '2' ,'id' => 'date-day' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => ' / ') ,
+																						 array( 'class' => 'input-text-4' , 'length' => '4' ,'id' => 'date-year' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
 					
-					$str .= $this->input( $parent , 'Phone #(###)###-####X#### ', array( array( 'class' => 'input-text-3' , 'id' => 'phone-country' , 'type' => 'text' , 'required' => true ) ,
-																						 array( 'class' => 'input-text-3' , 'id' => 'phone-area' , 'type' => 'text' , 'required' => true ) ,
-																						 array( 'class' => 'input-text-3' , 'id' => 'phone-1' , 'type' => 'text' , 'required' => true ) ,
-																						 array( 'class' => 'input-text-4' , 'id' => 'phone-2' , 'type' => 'text' , 'required' => true ) ,
-																						 array( 'class' => 'input-text-4' , 'id' => 'phone-ext' , 'type' => 'text' , 'required' => false ) ) ) ;
+					$str .= $this->input( $parent , 'Phone ', array( array( 'class' => 'input-text-3' , 'length' => '3' ,'id' => 'phone-country' , 'type' => 'text' , 'required' => true , 'b' => '' , 'a' => '' ) ,
+																						 array( 'class' => 'input-text-3' , 'length' => '3' ,'id' => 'phone-area' , 'type' => 'text' , 'required' => true  , 'b' => ' ( ' , 'a' => ' ) ') ,
+																						 array( 'class' => 'input-text-3' , 'length' => '3' ,'id' => 'phone-1' , 'type' => 'text' , 'required' => true , 'b' => '' , 'a' => '' ) ,
+																						 array( 'class' => 'input-text-4' , 'length' => '4' ,'id' => 'phone-2' , 'type' => 'text' , 'required' => true , 'b' => ' - ' , 'a' => '' ) ,
+																						 array( 'class' => 'input-text-4' , 'length' => '4' ,'id' => 'phone-ext' , 'type' => 'text' , 'required' => false , 'b' => ' EXT ' , 'a' => '' ) ) ) ;
 																						 									
 				$str .= '<tr class="sec-registration-line"><td></td><td><button onclick="api.registerUser(); return false ; " >Register</button></td></tr></table>' ;
 					
@@ -65,10 +65,24 @@
 				
 				foreach( $items as $item ){
 					
+					//if ( $item[ 'b'] != 0 )
+						$str .= $item[ 'b' ] ;
+					
 					$str .= '<input class="'. $parent . $item[ 'class' ] ;
+					
 					if ( $item[ 'required' ]) 
 						$str .= ' ' . $parent . 'required' ;
-					$str .='" id="'. $parent . $item[ 'id' ] . '" name="'. $parent . $item[ 'id' ] . '" type="'. $item[ 'type' ] .'"/>' ;
+					
+					$str .='"' ;
+					
+					if ( $item[ 'length' ] != 0 )
+						$str .= ' maxlength="'.$item[ 'length' ].'" ' ;
+						
+						
+					$str .= 'id="'. $parent . $item[ 'id' ] . '" name="'. $parent . $item[ 'id' ] . '" type="'. $item[ 'type' ] .'"/>' ;
+					
+					//if ( $item[ 'a'] != 0 )
+						$str .= $item[ 'a' ] ;
 				}
 				
 				$str .= '</td></tr>' ;

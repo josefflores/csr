@@ -259,7 +259,7 @@
 
 			// generate target information
 			$timeStamp = time( ) ;
-			$filePath = $this->A[ 'D_ROOT' ] . 'www\\' ;
+			$filePath = $this->A[ 'D_USR' ] . CURRENT_USER_ID . '\\' ;
 			$fileName = CURRENT_USER_ID . '_' . $timeStamp . '.' . $ext ;
 			
 			// target file check, File must not exist
@@ -267,7 +267,10 @@
 				return 3 ;
 				
 			// begin file write	
-			$fp = fopen( $filePath . $fileName , "wb" ) ; 
+			if ( !file_exists( $filePath ) )
+				mkdir( $filePath , 0777, true);
+				
+			$fp = fopen( $filePath . $fileName , "w+" ) ; 
 		
 			// decode string
 			$data = str_replace( ' ' , '+' , $data ) ;// deal with a php bug since 5.0.5
@@ -282,7 +285,7 @@
 			if ( file_exists ( $filePath . $fileName ) ) {
 				
 				// update db
-				if ( $this->record( $mime , $timeStamp , $filePath, $fileName ) )
+				if ( $this->record( $mime , $timeStamp , $fileName ) )
 					return 5 ;
 					
 				// Success
@@ -307,20 +310,19 @@
 		 * 	@return 1	The user is not logged in
 		 * 	@return 2	The mysql connection failed
 		 */
-		private function record( $mime , $timeStamp , $filePath, $fileName ) {
+		private function record( $mime , $timeStamp , $fileName ) {
 			
 			// check if user is signed in 
 			if ( !( defined( 'CURRENT_USER_ID' ) &&
 				    defined( 'CURRENT_WEB_OR_MFA' ) &&
-				    defined( 'CURRENT_SRC_ID' ) ) )
+				    defined( 'CURRENT_SRC_ID' ) &&
+				    defined( 'API_EVENT_ID' ) ) )
 					return 1 ;
 				
 			// Try to connect to database
 			try {	
 				// attempt database connection
-				$A = $this->A ;
-				$A[ 'M_DB' ] = 'csr_d' ;
-				$DB = new mysql( $A ) ;	
+				$DB = new mysql( $this->A , 'csr_d' ) ;	
 			}
 			catch ( exception $e ) {
 				// connection error
@@ -333,10 +335,10 @@
 			$keyPairs[ 'csr_d_f_src' ] 		= CURRENT_WEB_OR_MFA ;
 			$keyPairs[ 'csr_d_f_src_id' ] 	= CURRENT_SRC_ID ;	
 			$keyPairs[ 'csr_d_f_mime' ] 	= $mime ;
-			$keyPairs[ 'csr_d_f_path' ] 	= $filePath ;
+			$keyPairs[ 'csr_d_f_path' ] 	= CURRENT_USER_ID .'\\' ;
 			$keyPairs[ 'csr_d_f_name' ] 	= $fileName ;
-			$keyPairs[ 'csr_d_f_event_id '] = API_EVENT_ID ;
-			
+			$keyPairs[ 'csr_d_event_id'] 	= API_EVENT_ID ;
+	
 			$table = 'csr_d_files' ;
 			//	Insert into database
 			$DB->insert( $table , $keyPairs ) ;
