@@ -33,20 +33,30 @@
 		 public function __construct( $A ) {
 			
 			$this->A = $A ;
-			
+			$this->user = new user( $A , null , true ) ;
 			// Security is not required
 			if ( $A[ 'SECURE' ] ) {
 
 				// Security required
-				$this->user = new user( $A , null , true ) ;
 				
 				// perform authentication
 				$id = $this->authenticate() ;				
 				
 				// Authenticate user
+				define( 'LOGGED_IN' , true ) ;
 				define( 'CURRENT_USER_ID' , $id ) ;
 				define( 'CURRENT_WEB_OR_MFA' , 'wEB' ) ;
 				define( 'CURRENT_SRC_ID' , $_SERVER[ 'REMOTE_ADDR' ] ) ;
+			}
+			else {
+				
+				$session =  $this->user->manage( 'SESSION' , 'INFO' ) ;
+				if ( $session[ 'session_active' ] == 1 ) {
+					define( 'LOGGED_IN' , true ) ;
+				}
+				else {
+					define( 'LOGGED_IN' , false ) ;
+				}	
 			}
 
 		 }
@@ -74,7 +84,7 @@
 		public function authenticate( ) {
 				
 			// Redirect possibilities
-			$login = 'Location: ' . $this->A[ 'W_ROOT' ].'login' ;
+			$login = 'Location: ' . $this->A[ 'W_ROOT' ] ;
 			
 			$session =  $this->user->manage( 'SESSION' , 'INFO' ) ;
 			

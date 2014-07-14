@@ -31,6 +31,9 @@
 							$WGT[ 'CONFIG' ] = 'main-navigation.php' ;
 							include( $A[ 'D_WGT' ].'navigation-menu/index.php' ) ;
 							
+							$WGT[ 'CONFIG' ] = 'sec-login.php' ;
+							include( $A[ 'D_WGT' ].'sec-login/index.php' ) ;
+							
 			echo 	'</div>
 				
 					<div class="main">' ;

@@ -83,7 +83,7 @@ function Api( apiPath ) {
 		json = lastResponse ;
 		
 		// Log response
-		console.log( 'API  >> ' + json[0][ 'code' ][0] + ' - ' + json[0][ 'code' ][1] ) ;
+		console.log( 'API  >> ' + json[0][ 'code' ] ) ;
 		
 		// 	Check if the api had returned success
 		if ( json[0][ 'code' ][0] >= 200 &&
@@ -465,7 +465,10 @@ function Api( apiPath ) {
 		if ( this.call( order , call , parameters ) ) {
 			// User Registered
 			$( "#dialog" ).html( '<P> User was succesfully logged in. </p>' ) ;
-		$( "#dialog" ).dialog("open") ;
+			$( '#dialog' ).bind( 'dialogclose', function( event ) {
+				window.location.replace( webRoot + 'profile/' ) ;
+			} ) ;
+			$( "#dialog" ).dialog("open") ;
 			return 0 ;
 		}
 		
@@ -473,6 +476,38 @@ function Api( apiPath ) {
 		$( "#dialog" ).html( '<P> User could not be logged in. </p>' ) ;
 		$( "#dialog" ).dialog("open") ;
 		console.log( 'ERROR >> api.authenticateUser >> 2' ) ;
+		return 2 ;
+	} ;
+	
+	/**
+	 *  @name deauthenticateUser
+	 * 
+	 * 	This function logs a user out
+	 * 
+	 * 	@return	0		user was logged out
+	 * 	@return 1		User was not logget out
+	 */
+	this.deauthenticateUser = function() {
+																 
+		var order = 1 ;
+		var call = 'deauthenticateUser' ;
+		var parameters = null ;
+		
+		// Process return 	               
+		if ( this.call( order , call , parameters ) ) {
+			// User Registered
+			$( "#dialog" ).html( '<P> User was succesfully logged out . </p>' ) ;
+			$( '#dialog' ).bind( 'dialogclose', function( event ) {
+				window.location.replace( webRoot ) ;
+			} ) ;
+			$( "#dialog" ).dialog("open") ;
+			return 0 ;
+		}
+		
+		// User Notification
+		$( "#dialog" ).html( '<P> User could not be logged out. </p>' ) ;
+		$( "#dialog" ).dialog("open") ;
+		console.log( 'ERROR >> api.deauthenticateUser >> 1' ) ;
 		return 2 ;
 	} ;
 	

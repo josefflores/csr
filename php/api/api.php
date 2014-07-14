@@ -588,7 +588,7 @@
 		 * 	@param $parameters[ 0 ][ 'usr_pwd_1' ] 	Password String
 		 * 
 		 * 	@return 204				Success
-		 * 	@return 400				Baad request
+		 * 	@return 400				Bad request
 		 * 	@return 500				Failure
 		 */
 		 public function authenticateUser( $parameters ) {
@@ -608,6 +608,38 @@
 			return $this->setReturn( 500 , 'Authentication failed' , $tmp ) ;
 		 }
 		
+		
+		
+		/**
+		 * 	@name 		deauthenticateUser
+		 * 
+		 * 	Requires authentication : false
+		 * 
+		 * 	This function logs a user iout of the website
+		 * 
+		 * 	JSON=[ 
+		 * 		{ 
+		 * 			"order": 1,
+		 *      		"call": "deauthenticateUser",
+		 *    	    		"parameter": [
+		 * 			    	{
+		 * 	                		null
+		 *             			}	        
+		 * 			]
+		 * 	    	}
+		 * 	]
+		 * 
+		 * 	@return 204				Success
+		 */
+		 public function deauthenticateUser( $parameters ) {
+					
+			$user = new user( $this->A , null ) ;
+			$tmp = $user->manage( 'SESSION' , 'STOP' ) ;
+			
+			return $this->setReturn( 204 , array( 'Deauthentication succesful' , 'Session ended' ) , null ) ; 
+			
+		 }
+		 
 		// MFA METHODS
 		
 		/**
