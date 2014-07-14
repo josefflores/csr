@@ -386,7 +386,7 @@
 				$operators = array( '==' , '==' ) ;
 				$result = $DB->select( $table , $keyPairs , $operators ) ;
 				
-				// user does not exist
+				// device does not exist or is active
 				$row_cnt = $result->num_rows ;
 				if ( $row_cnt == 0 ) {
 					return 1 ;

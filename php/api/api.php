@@ -404,10 +404,20 @@
 		 * 	JSON=[ 
 		 * 		{ 
 		 * 			"order": 1,
+		 *      		"call": "authenticateMFA",
+		 *    	    		"parameter": [
+		 * 			    	{
+		 * 	                		"USR_PHONE": "123456780",
+		 * 	                		"USR_TOKEN": "ASDFASDFSADGDRSGDFSDFDFSGSDGSDFGDFGSDFGSDFGSDFGSDFGSDFG"
+		 *             			}	        
+		 * 			]
+		 * 	    },
+		 * 		{ 
+		 * 			"order": 2,
 		 *      	"call": "storeFile",
 		 *    	    "parameter": [
 		 * 			   	{
-		 * 	           		"MIME":"table" ,
+		 * 	           		"MIME":"mime/type" ,
 		 * 					"DATA": "ASFDSGSDGSDFGDF...." ,
 		 * 					"ENCODING": "base64" 	                		
 		 *         		}	        
@@ -439,7 +449,7 @@
 				
 			$tmp[ 'mime' ] = $parameters[0][ 'MIME' ] ;
 			$tmp[ 'data' ] = $parameters[0][ 'DATA' ] ;
-			$tmp[ 'encoding' ] = $parameters[0][ 'ENCODING' ] ;
+			$tmp[ 'encoded' ] = $parameters[0][ 'ENCODING' ] ;
 			
 			$file = new fManager( $this->A ) ;
 	
@@ -687,7 +697,7 @@
 			if ( $tmp == 0 ) 			 
 				return $this->setReturn( 204 , 'Device was Activated' , null ) ;
 			else if ( $tmp == 1 )
-				return $this->setReturn( 401 , 'User is not registered.' , null ) ;
+				return $this->setReturn( 401 , 'Device is not registered , or is already active.' , null ) ;
 			else if ( $tmp == 2 )
 				return $this->setReturn( 403 , 'Device was Banned.' , null )  ;
 			else if ( $tmp == 3 )

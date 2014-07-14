@@ -38,25 +38,49 @@
 						
 				$mime = explode( '/' , $RANGE[ $j ][ $LIST[ $j ] ][ 'FILE' ][ $i ][ 'MIME' ] ) ;
 				
-				$file = $RANGE[ $j ][ $LIST[ $j ] ][ 'FILE' ][ $i ][ 'PATH' ] .
+				$file = $A[ 'D_USR' ] .
+						$RANGE[ $j ][ $LIST[ $j ] ][ 'FILE' ][ $i ][ 'PATH' ] .
 						$RANGE[ $j ][ $LIST[ $j ] ][ 'FILE' ][ $i ][ 'NAME' ] ;
-				if( $mime[ 0 ] == 'image' ){
-					
-					$F = new fManager( $A ) ;
-					$arr = $F->encodeB64( $file ) ;
-					echo '<img src="data:' , $arr[ 'mime' ] , ';' , $arr[ 'encoded' ] ,',', $arr[ 'data' ] , ' alt="'. $RANGE[ $j ][ $LIST[ $j ] ][ 'FILE' ][ $i ][ 'NAME' ] .'"  />' ;
-					unset( $F ) ;
-				}
-				if( $mime[ 0 ] == 'video' ){ 
-					echo '<video width="320" height="240" controls>
-							<source src="data:' , $arr[ 'mime' ] , ';' , $arr[ 'encoded' ] ,',', $arr[ 'data' ] , ' alt="'. $RANGE[ $j ][ $LIST[ $j ] ][ 'FILE' ][ $i ][ 'NAME' ] .'" type="'. $mime[0] . '/' . $mime[1] .'">
-								Your browser does not support the video tag.
-							</video>' ; 
-				}
 				
+				if ( file_exists( $file ) ) {
+					if( $mime[ 0 ] == 'image' ){
+						
+						$F = new fManager( $A ) ;
+						$arr = $F->encodeB64( $file ) ;
+						echo '<img src="data:' , $arr[ 'mime' ] , ';' , $arr[ 'encoded' ] ,',', $arr[ 'data' ] , ' alt="'. $RANGE[ $j ][ $LIST[ $j ] ][ 'FILE' ][ $i ][ 'NAME' ] .'"  />' ;
+						unset( $F ) ;
+					}
+					else if( $mime[ 0 ] == 'video' ){ 
+						$F = new fManager( $A ) ;
+						$arr = $F->encodeB64( $file ) ;
+						echo '<video width="320" height="240" controls>
+								<source src="data:' , $arr[ 'mime' ] , ';' , $arr[ 'encoded' ] ,',', $arr[ 'data' ] , '" type="'. $mime[0] . '/' . $mime[1] .'" alt="' .$file. '">
+									Your browser does not support the video tag.
+								</video>' ; 
+						unset( $F ) ;
+					}
+					
+				}
+				else { echo " File Missing " , $file ;}
 				
 				
 				echo 	'</div>' ;
 		}
+		
+		if( $RANGE[ $j ][ $LIST[ $j ] ][ 'KEY_PAIRS' ][ 'COUNT' ] > 0 )
+			echo '<table>' ;
+		
+		for( $j = count( $LIST ) - 1 ; $j >= 0 ; --$j ) {
+			for ( $i = 0 ; $i < $RANGE[ $j ][ $LIST[ $j ] ][ 'KEY_PAIRS' ][ 'COUNT' ] ; ++$i ) {
+					//echo 	'<pre>' ; var_dump( $RANGE[ $eventEntry ] ) ; echo  '</pre>' ;
+					echo 	'<tr> ' ; 
+							
+					
+					
+					echo 	'</tr>' ;
+			}
+		}
+		if( $RANGE[ $j ][ $LIST[ $j ] ][ 'KEY_PAIRS' ][ 'COUNT' ] > 0 )
+			echo '</table>' ;
 		echo '</div>' ;
 	}
