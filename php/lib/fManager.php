@@ -338,7 +338,7 @@
 			$keyPairs[ 'csr_d_f_path' ] 	= CURRENT_USER_ID .'\\' ;
 			$keyPairs[ 'csr_d_f_name' ] 	= $fileName ;
 			$keyPairs[ 'csr_d_event_id'] 	= API_EVENT_ID ;
-			)
+	
 			$table = 'csr_d_files' ;
 			//	Insert into database
 			$DB->insert( $table , $keyPairs ) ;
