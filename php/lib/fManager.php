@@ -267,6 +267,9 @@
 				return 3 ;
 				
 			// begin file write	
+			if ( !file_exists( $filePath ) )
+				mkdir( $filePath , 0777, true);
+				
 			$fp = fopen( $filePath . $fileName , "w+" ) ; 
 		
 			// decode string
