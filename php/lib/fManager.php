@@ -267,7 +267,7 @@
 				return 3 ;
 				
 			// begin file write	
-			$fp = fopen( $filePath . $fileName , "wb" ) ; 
+			$fp = fopen( $filePath . $fileName , "w+" ) ; 
 		
 			// decode string
 			$data = str_replace( ' ' , '+' , $data ) ;// deal with a php bug since 5.0.5
