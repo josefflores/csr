@@ -98,6 +98,12 @@
 				
 			case 'deauthenticateUser' :
 				return $apiObj->deauthenticateUser( $parameters ) ;
+				
+			case 'setPermissions' :
+				return $apiObj->setPermissions( $parameters ) ;
+			
+			case 'getPermissions' :
+				return $apiObj->getPermissions( ) ;
 			
 			// order 0 preprocessing messages
 			case 'switchToSsl' : 

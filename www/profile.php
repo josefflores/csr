@@ -70,16 +70,16 @@
 		if( $RANGE[ $j ][ $LIST[ $j ] ][ 'KEY_PAIRS' ][ 'COUNT' ] > 0 )
 			echo '<table>' ;
 		
-		for( $j = count( $LIST ) - 1 ; $j >= 0 ; --$j ) {
-			for ( $i = 0 ; $i < $RANGE[ $j ][ $LIST[ $j ] ][ 'KEY_PAIRS' ][ 'COUNT' ] ; ++$i ) {
-					//echo 	'<pre>' ; var_dump( $RANGE[ $eventEntry ] ) ; echo  '</pre>' ;
-					echo 	'<tr> ' ; 
+//for( $j = count( $LIST ) - 1 ; $j >= 0 ; --$j ) {
+	//		for ( $i = 0 ; $i < $RANGE[ $j ][ $LIST[ $j ] ][ 'KEY_PAIRS' ][ 'COUNT' ] ; ++$i ) {
+		//			//echo 	'<pre>' ; var_dump( $RANGE[ $eventEntry ] ) ; echo  '</pre>' ;
+			//		echo 	'<tr> ' ; 
 							
 					
 					
-					echo 	'</tr>' ;
-			}
-		}
+				//	echo 	'</tr>' ;
+		//	}
+//		}
 		if( $RANGE[ $j ][ $LIST[ $j ] ][ 'KEY_PAIRS' ][ 'COUNT' ] > 0 )
 			echo '</table>' ;
 		echo '</div>' ;
