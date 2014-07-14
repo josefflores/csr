@@ -1,72 +1,92 @@
-.vertical-nav {
-    height:auto;
-    list-style:none;
-    margin: 20px 0 0 0;
+
+nav {
+    font-family: Helvetica, Arial, "Lucida Grande", sans-serif;
+    line-height: 1;
+    margin: 50px auto; /*for display only*/
+    width: 200px;
+    -webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    -moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    padding: 0px;
 }
-.vertical-nav li {
-    height: 25px;
-    margin: 0;
-    padding: 5px 0;
-    background-color: #666;
-    border: none;
-    text-align: center;
-    display: inline-block;
-    float: left;
-    min-width: 125px;  /******* MODIFIED ********/
+
+.menu-item {
+    background: #fff;
+    width: 200px;
 }
-.vertical-nav li:hover {
-    background-color:#f36f25;
-    color:#FFFFFF;
+.menu-item h4 {
+    color: cornflowerblue;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 7px 12px;
+    background: cornflowerblue;
 }
-.vertical-nav li a {
-    font-family:Calibri, Arial;
-    font-size:18px;
-    font-weight:bold;
-    color:#ffffff;
-    text-decoration:none;
-}
-.vertical-nav li.current {
-    background-color:#F36F25;
-}
-.vertical-nav li.current a {
-    color:#FFFFFF;
-}
-vertical-nav ul li ul {
-    display:none;
-    list-style-type:none;
-    width:125px;
-    padding:0px;
-    margin-top:3px;
-    margin-left:-5px;
-}
-vertical-nav ul li:hover ul {
-    display:block;
-}
-vertical-nav ul li:hover ul li {
-    background-color:#555555;
-    width:125px;
-    height:30px;
-    display:inline-block;
-}
-vertical-nav ul li ul li:hover {
-    background-color:#333333;
-}
-vertical-nav ul li ul li a {
-    color:#FFF;
-    text-decoration:underline;
-}
-vertical-nav ul li ul li a:hover {
-    text-decoration:none;
-}
-.vertical-nav li ul {
-    display: none;
-    margin-top: 6px;
-    padding: 0;
-}
-.vertical-nav li:hover ul {
+
+.menu-item h4 a {
+    color: #ffffff;
     display: block;
+    text-decoration: none;
+    width: 200px;
 }
-.sub-menu li
-{
-    clear: both;
+.menu-item h4:hover {
+    background: #cc002c; /* Old browsers */
+    background: -moz-linear-gradient(top,  #cc002c 0%, #6d0019 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cc002c), color-stop(100%,#6d0019)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #cc002c 0%,#6d0019 100%); /* Chrome10+,Safari5.1+ */
+    background: linear-gradient(top,  #cc002c 0%,#6d0019 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc002c', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
+}
+
+
+/*ul Styles
+.menu-item ul {
+    background: #fff;
+    font-size: 13px;
+    line-height: 30px;
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0px;
+}
+*/
+.menu-item ul a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #aaa;
+    display: block;
+    width: 200px;
+}
+
+/*li Styles*/
+.menu-item li {
+    border-bottom: 1px solid #eee;
+}
+
+.menu-item li:hover {
+    background: #eee;
+}
+
+.menu-item ul {
+    background: #fff;
+    font-size: 13px;
+    line-height: 30px;
+    height: 0px; /*Collapses the menu*/
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0px;
+
+    -webkit-transition: height 1s ease;
+    -moz-transition: height 1s ease;
+    -o-transition: height 1s ease;
+    -ms-transition: height 1s ease;
+    transition: height 1s ease;
+}
+
+.menu-item:hover ul {
+    height: 365px;
+}
+
+.current-month-table {
+    height: 400px;
+    width: 400px;
+    margin-top: 100px;
 }
