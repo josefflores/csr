@@ -18,7 +18,7 @@
 		$str .= '<tr class="sec-registration-line">
 					<td></td>
 					<td><button onclick="api.authenticateUser(); return false ; ">Log in</button>
-					<a class="button" href="'. $A[ 'W_ROOT' ] . 'register/">Register</a></td>
+					<button onclick="window.location.replace(\''. $A[ 'W_ROOT' ] . 'register/\') ; ">Register</button></td>
 				</tr></table>' ;
 		
 		echo $str ;				
