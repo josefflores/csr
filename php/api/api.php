@@ -608,6 +608,96 @@
 			return $this->setReturn( 500 , 'Authentication failed' , $tmp ) ;
 		 }
 		
+		/**
+		 * 	@name 		setPermssions
+		 * 
+		 * 	Requires authentication : true
+		 * 
+		 * 	This function allows a user to manage their permissions
+		 * 	
+		 * 	@parameters[ 0 ][ 'TARGET' ]	The user permissions are 
+		 * 									being given to
+		 * 	@parameters[ 0 ][ 'READ' ]		( bool ) Read access
+		 * 	@parameters[ 0 ][ 'WRITE' ]		( bool ) Write access
+		 * 
+		 * 	@return	204		Succes
+		 * 	@return	400		parameter error
+		 * 	@return	401		not authorized
+		 * 	@return	500		Mysql error or server error
+		 */
+		 public function setPermissions( $parameters ) {
+			 
+			if ( ! defined( 'CURRENT_USER_ID' ) ) {
+				return $this->setReturn( 401 , null , null ) ;	
+			}
+			
+			if( !isset( $parameters[0][ 'TARGET' ] ) &&
+				!isset( $parameters[0][ 'READ' ] ) &&
+				!isset( $parameters[0][ 'WRITE' ] ) )
+					return $this->setReturn( 400 , null , null ) ;
+				
+			
+			$p[ 'target' ] = $parameters[0][ 'TARGET' ] ;
+			$p[ 'read' ] = $parameters[0][ 'READ' ] ;
+			$p[ 'write' ] = $parameters[0][ 'WRITE' ] ;
+			 
+			$tmp = new permissions(  $this->A ) ;
+			$ret = $tmp->manage( $p )  ;
+			
+			if ( $ret == -1 ) {
+				// 
+				return $this->setReturn( 400 , null , null ) ;
+			}
+			else if ( $ret == 0 ) {
+				// Success
+				return $this->setReturn( 204 , 'Registration succesful' , null ) ; 
+			}
+			else if ( $ret == 1 ) {
+				// failure
+				return $this->setReturn( 500 , 'MySQL connection error' , null ) ;
+			}
+			
+			// failure
+			return $this->setReturn( 500 , null , null ) ;
+			
+		 }
+		 
+		/**
+		 * 	@name		getPermissions
+		 * 
+		 * 	This function allows a user to view their acces permissions
+		 * 
+		 * 	@return	200		Succes and the permission list, null if none
+		 * 	@return	401		Not Authorized
+		 * 	@return	500		Mysql Error or server error
+		 */	
+		 public function getPermissions( ) {
+			 
+			if ( ! defined( 'CURRENT_USER_ID' ) ) {
+				return $this->setReturn( 401 , null , null ) ;	
+			}
+				
+			 
+			$tmp = new permissions(  $this->A ) ;
+			$ret = $tmp->manage( 'GET' )  ;
+			
+			if ( is_array( $ret ) || $ret == null ) {
+				// Success
+				return $this->setReturn( 200 , 'Permissions found' , $ret ) ; 
+			}
+			if ( $ret == -1 ) {
+				// 
+				return $this->setReturn( 401 , null , null ) ;
+			}
+			else if ( $ret == 1 ) {
+				// failure
+				return $this->setReturn( 500 , 'MySQL connection error' , null ) ;
+			}
+			
+			// failure
+			return $this->setReturn( 500 , null , null ) ;
+			
+		 }
 		
 		
 		/**

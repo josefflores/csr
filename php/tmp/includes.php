@@ -24,7 +24,8 @@
 	include_once( $A[ 'D_LIB' ] . 'email.php'  ) ;
 	include_once( $A[ 'D_LIB' ] . 'mfa.php'  ) ;
 	include_once( $A[ 'D_LIB' ] . 'fManager.php'  ) ;
-	include_once( $A[ 'D_LIB' ] . 'eventManager.php'  ) ;	
+	include_once( $A[ 'D_LIB' ] . 'eventManager.php'  ) ;
+	include_once( $A[ 'D_LIB' ] . 'permissions.php'  ) ;	
 
 	//	Including the application library
 	include_once( $A[ 'D_LIB' ] . 'library.php' ) ;
