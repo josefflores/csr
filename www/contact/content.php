@@ -17,7 +17,10 @@
 		header( 'Location: ./' ) ;
 		
 	// Content begin
+	echo '<div class="article" ><h2>Contact Form</h2>' ;
+	
 	$WGT[ 'CONFIG' ] = 'website-contact.php' ;
 	include( $A[ 'D_WGT' ].'contact-form/index.php' ) ;
 
+	echo '</div>' ;
 ?>

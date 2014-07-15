@@ -16,5 +16,21 @@
 		header( 'Location: ./' ) ;
 		
 	// Content begin
-	echo 'MyPageContent' ;
+	
+	
+	echo '<div class="article">
+			
+			<div class="center">
+				<h1> Computational Sensing Research Project</h1>
+				
+				<img src="' . $A[ 'W_IMG' ] . 'devices.png "/>
+				
+			</div>
+			
+			<div class="center">
+				
+				<button class="large" onclick="window.location.replace(\'http://www.josefflores.com/csr/register/\') ; " > Register </button>
+			</div>
+		
+		</div>' ;
 ?>

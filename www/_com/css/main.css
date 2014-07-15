@@ -11,13 +11,13 @@
  * 					http://www.csscompressor.com/, 
  * 					note that the gradients cannot be compressed
  */
-html {font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;} 
-body{background:#fff;font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;margin:0;padding:0}
+html {font-family: 'ABeeZee', sans-serif;} 
+body{background:#fff; margin:0;padding:0}
 a{color:#4484BA;cursor:pointer;display:block;text-decoration:none}
 th{font-weight:700}
 
 
-div.main{float:left;margin:170px 0 10px 0 ;min-height:400px;padding:0;width:100%}
+div.main{float:left;margin:170px 0 60px 0 ;min-height:400px;padding:0;width:100%}
 span.my-tab{float:left;margin:0;min-width:25px}
 span.my-close-button{float:left;margin:0}
 div.header{ 
@@ -32,10 +32,10 @@ box-shadow: 0 1px 3px 0 rgba(0,0,0,0.35);
 height:150px;margin:0;min-width:1100px;padding:0;width:100%
 }
 #page,div.profile{height:100%;width:100%}
-div.footer{float:left;font-family:Trajan-Pro;height:300px;margin:0;padding:0;text-align:center;width:100%}
+div.footer{background:#fff;position:fixed; bottom:0;left:0;box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.35);height:40px;margin:0;padding:0;text-align:center;width:100%}
 div.footer > ul{height:150px;list-style-type:none;margin:10px auto 0;padding:0;width:1150px}
-div.footer > ul > li{color:#000;float:left;font-family:Trajan-Pro;font-size:14px;height:30px;line-height:30px;text-align:center;text-transform:uppercase;width:191px}
-div.footer > ul > li > ul{font-family:sans-serif;font-size:12px;font-weight:400;line-height:20px;list-style-type:none;margin:0;padding:0}
+div.footer > ul > li{color:#000;float:left;font-size:14px;height:30px;line-height:30px;text-align:center;text-transform:uppercase;width:191px}
+div.footer > ul > li > ul{font-size:12px;font-weight:400;line-height:20px;list-style-type:none;margin:0;padding:0}
 div.footer > ul > li > ul > li > a{font-weight:bold;color:#000;font-size:10px;height:20px;line-height:20px;text-decoration:none}
 div.footer > ul > li > ul > li > a:hover{color:#4484BA ;text-decoration:underline}
 div.error{background:#fff;border:1px solid red;margin:5px;padding:5px;width:95%}
@@ -51,7 +51,7 @@ line-height: 150px;
 width: 75px;
 margin-right: 50px;
 }
-a.button, button { width:75px;}
+a.button, button { width:74px;}
 
 
 div.header, div.navigation {
@@ -72,3 +72,22 @@ input.sec-registration-input-text-3  {width: 2.25em ;margin: 0 10px ;}
 input.sec-registration-input-text-4 {width: 3em ;margin: 0 10px ;}
 
 input.sec-registration-required {}
+div.article {margin: 20px;}
+
+table { padding:5px 10px; }
+div.center { text-align:center; width:100%}
+button.large , button{  background:#4484BA; color:#fff; border: 1px solid #fff ;}
+button.large:hover , button:hover{  color:#4484BA; background:#fff; border: 1px solid #4484BA ;}
+button.large {width: 250px; height :50px; font-size:1.3em;}
+
+h1,h2,h3,h4,h5,h6 { color:#4484BA; }
+textarea { width:900px ; height:300px; resize: none ;}
+
+.input-error { border-color:  #bf4e4e ; }
+
+.ui-dialog-titlebar-close {
+  visibility: hidden;
+}
+.ui-state-error{ padding: 10px; }
+.ui-icon {float: left;
+margin-right: 5px;}

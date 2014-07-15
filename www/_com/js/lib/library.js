@@ -172,20 +172,6 @@ function Api( apiPath ) {
 		var ret = false ;
 		
 		// reset borders
-		$( '#' + parent + 'email' 			).css( "border-color" , "black" ) ;
-		$( '#' + parent + 'first-name' 		).css( "border-color" , "black" ) ;
-		$( '#' + parent + 'middle-name' 	).css( "border-color" , "black" ) ;
-		$( '#' + parent + 'last-name' 		).css( "border-color" , "black" ) ;
-		$( '#' + parent + 'phone-country' 	).css( "border-color" , "black" ) ;
-		$( '#' + parent + 'phone-area' 		).css( "border-color" , "black" ) ;
-		$( '#' + parent + 'phone-1' 		).css( "border-color" , "black" ) ;
-		$( '#' + parent + 'phone-2' 		).css( "border-color" , "black" ) ;
-		$( '#' + parent + 'phone-ext' 		).css( "border-color" , "black" ) ;
-		$( '#' + parent + 'password-1' 		).css( "border-color" , "black" ) ;
-		$( '#' + parent + 'password-2' 		).css( "border-color" , "black" ) ;
-		$( '#' + parent + 'date-month' 		).css( "border-color" , "black" ) ;
-		$( '#' + parent + 'date-day' 		).css( "border-color" , "black" ) ;
-		$( '#' + parent + 'date-year' 		).css( "border-color" , "black" ) ;
 		
 		// Validate email
 		if( !this.validateField( parent ,
@@ -258,21 +244,24 @@ function Api( apiPath ) {
 							'regexPassword' ) ) 
 								ret = true ;
 
+		$( '#' + parent + 'password-1' ).removeClass('input-error');
+		$( '#' + parent + 'password-2' ).removeClass('input-error');
+		
 		if ( usr_pwd_1 == '' ) {
-			$( '#' + parent + 'password-1' ).css( "border-color" , "red" ) ;
+			$( '#' + parent + 'password-1' ).addClass('input-error');
 			ret = true ;
 		}
 		
 
 		if ( usr_pwd_2 == '' ) {
-			$( '#' + parent + 'password-2' ).css( "border-color" , "red" ) ;
+			$( '#' + parent + 'password-2' ).addClass('input-error');
 			ret = true ;
 		}
 			
 
 		if ( usr_pwd_1 != usr_pwd_2 ) {	
-				$( '#' + parent + 'password-1' ).css( "border-color" , "red" ) ;
-				$( '#' + parent + 'password-2' ).css( "border-color" , "red" ) ;
+				$( '#' + parent + 'password-1' ).addClass('input-error');
+				$( '#' + parent + 'password-2' ).addClass('input-error');
 				ret = true ;
 		}
 			
@@ -297,7 +286,9 @@ function Api( apiPath ) {
 		// Respond with Error
 		if ( ret ) { 
 			console.log( 'ERROR >> api.registerUser >> 1' ) ;
-			$( "#dialog" ).html( '<P> Error Processing Form. </p>' ) ;
+			$( "#dialog" ).html( '<P> <span class="ui-icon ui-icon-alert"></span> Error Processing Form. </p>' ) ;
+			$( "#dialog" ).dialog('option', 'title', 'Error');
+			$( '#dialog p' ).addClass('ui-state-error') ;
 			$( "#dialog" ).dialog("open") ;
 			return 1 ;
 		}
@@ -321,12 +312,16 @@ function Api( apiPath ) {
 		if ( this.call( order , call , parameters ) ) {
 			// User Registered
 			$( "#dialog" ).html( '<P> User was succesfully registered. </p>' ) ;
+			$( "#dialog" ).dialog('option', 'title', 'Confirmation');
+			$( '#dialog p' ).removeClass('ui-state-error') ;
 		$( "#dialog" ).dialog("open") ;
 			return 0 ;
 		}
 		
 		// User Notification
-		$( "#dialog" ).html( '<P> User could not be registered. </p>' ) ;
+		$( "#dialog" ).html( '<P> <span class="ui-icon ui-icon-alert"></span> User could not be registered. </p>' ) ;
+		$( '#dialog p' ).addClass('ui-state-error') ;
+		$( "#dialog" ).dialog('option', 'title', 'Error');
 		$( "#dialog" ).dialog("open") ;
 		console.log( 'ERROR >> api.registerUser >> 2' ) ;
 		return 2 ;
@@ -360,7 +355,7 @@ function Api( apiPath ) {
 		var regexDateMonth			= new RegExp( '^(0[1-9]|1[012])$' ) ;
 		var regexDateDay			= new RegExp( '^(0[1-9]|[12][0-9]|3[01])$' ) ;
 		var regexDateYear			= new RegExp( '^((19|20)[0-9][0-9])$' ) ;
-		var regexText 				= new RegExp( '^([a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*)$' ) ;
+		var regexText 				= new RegExp( '^(?!\s*$).+' ) ;
 		
 		switch ( regex ) {
 		case 'regexEmail' : 
@@ -396,17 +391,18 @@ function Api( apiPath ) {
 		case 'regexDateYear' : 
 			regex = regexDateYear ;
 			break ;
-		case 'regexText' : 
+		case 'regexText' : 			
 			regex = regexText ;
 			break ;
 		default :
 			return false ;
 		}
 		
+		$( '#' + parent + id ).removeClass('input-error');
 		// Check against regex
 		if( !regex.test( data ) ) {
 			// log error
-			$( '#' + parent + id ).css( "border-color" , "red" ) ;
+			$( '#' + parent + id ).addClass('input-error');
 			console.log( 'ERROR: ' + id + ' : ' + data ) ;
 			return false ;
 		} else {
@@ -451,7 +447,9 @@ function Api( apiPath ) {
 		// respond with error
 		if ( ret ) { 
 			console.log( 'ERROR >> api.authenticateUser >> 1' ) ;
-			$( "#dialog" ).html( '<P> Error Processing Form. </p>' ) ;
+			$( "#dialog" ).html( '<P> <span class="ui-icon ui-icon-alert"></span> Error Processing Form. </p>' ) ;
+			$( "#dialog" ).dialog('option', 'title', 'Error');
+			$( '#dialog p' ).addClass('ui-state-error') ;
 			$( "#dialog" ).dialog("open") ;
 			return 1 ;
 		}
@@ -465,6 +463,8 @@ function Api( apiPath ) {
 		if ( this.call( order , call , parameters ) ) {
 			// User Registered
 			$( "#dialog" ).html( '<P> User was succesfully logged in. </p>' ) ;
+			$( "#dialog" ).dialog('option', 'title', 'Confirmation');
+			$( '#dialog p' ).removeClass('ui-state-error') ;
 			$( '#dialog' ).bind( 'dialogclose', function( event ) {
 				window.location.replace( webRoot + 'profile/' ) ;
 			} ) ;
@@ -473,7 +473,9 @@ function Api( apiPath ) {
 		}
 		
 		// User Notification
-		$( "#dialog" ).html( '<P> User could not be logged in. </p>' ) ;
+		$( "#dialog" ).html( '<P> <span class="ui-icon ui-icon-alert"></span> User could not be logged in. </p>' ) ;
+		$( "#dialog" ).dialog('option', 'title', 'Error');
+		$( '#dialog p' ).addClass('ui-state-error') ;
 		$( "#dialog" ).dialog("open") ;
 		console.log( 'ERROR >> api.authenticateUser >> 2' ) ;
 		return 2 ;
@@ -497,6 +499,8 @@ function Api( apiPath ) {
 		if ( this.call( order , call , parameters ) ) {
 			// User Registered
 			$( "#dialog" ).html( '<P> User was succesfully logged out . </p>' ) ;
+			$( "#dialog" ).dialog('option', 'title', 'Confirmation');
+			$( '#dialog p' ).removeClass('ui-state-error') ;
 			$( '#dialog' ).bind( 'dialogclose', function( event ) {
 				window.location.replace( webRoot ) ;
 			} ) ;
@@ -505,12 +509,95 @@ function Api( apiPath ) {
 		}
 		
 		// User Notification
-		$( "#dialog" ).html( '<P> User could not be logged out. </p>' ) ;
+		$( "#dialog" ).html( '<P> <span class="ui-icon ui-icon-alert"></span> User could not be logged out. </p>' ) ;
+		$( "#dialog" ).dialog('option', 'title', 'Error');
+		$( '#dialog p' ).addClass('ui-state-error') ;
 		$( "#dialog" ).dialog("open") ;
 		console.log( 'ERROR >> api.deauthenticateUser >> 1' ) ;
 		return 2 ;
 	} ;
 	
+	/**
+	 * 	@name 	sendmail
+	 * 	
+	 * 	This function sends a contact form email
+	 * 
+	 * 	@return	0	Success
+	 * 	@return	1	bad form
+	 * 	@return 2	api error
+	 */
+	this.sendMail = function( ) {
+		var name = $( '#contact-form-name' ).val() ;
+		var email = $( '#contact-form-email' ).val() ;
+		var subject = $( '#contact-form-subject' ).val() ;
+		var text = $( '#contact-form-text' ).val() ;
+		
+		var parent = 'contact-form-' ;
+		var ret = false ;
+		
+		// Validate email
+		if( !this.validateField( parent ,
+								'email' ,
+								email ,
+								'regexEmail' ) ) 
+									ret = true ;
+										
+		// Validate name
+		if( !this.validateField( parent ,
+								'name' ,
+								name ,
+								'regexText' ) ) 
+									ret = true ;
+									
+		// Validate subject
+		if( !this.validateField( parent ,
+								'subject' ,
+								subject ,
+								'regexText' ) ) 
+									ret = true ;
+									
+		// Validate name
+		if( !this.validateField( parent ,
+								'text' ,
+								text ,
+								'regexText' ) ) 
+									ret = true ;
+		
+		// respond with error
+		if ( ret ) { 
+			console.log( 'ERROR >> api.sendMail >> 1' ) ;
+			$( "#dialog" ).html( '<P> <span class="ui-icon ui-icon-alert"></span> Error processing contact form. </p>' ) ;
+			$( "#dialog" ).dialog('option', 'title', 'Error');
+			$( '#dialog p' ).addClass('ui-state-error') ;
+			$( "#dialog" ).dialog("open") ;
+			return 1 ;
+		}
+														 
+		var order = 1 ;
+		var call = 'sendMail' ;
+		var parameters = [{ "email" : email , 
+							"name"	: name ,
+							"subject" : subject ,
+							"text" : text   }] ;
+		
+		// Process return 	               
+		if ( this.call( order , call , parameters ) ) {
+			// User Registered
+			$( "#dialog" ).html( '<P> Mail was sent. </p>' ) ;
+			$( "#dialog" ).dialog('option', 'title', 'Confirmation');
+			$( '#dialog p' ).removeClass('ui-state-error') ;
+			$( "#dialog" ).dialog("open") ;
+			return 0 ;
+		}
+		
+		// User Notification
+		$( "#dialog" ).html( '<P> <span class="ui-icon ui-icon-alert"></span> Mail could not be sent. </p>' ) ;
+		$( "#dialog" ).dialog('option', 'title', 'Error');
+		$( '#dialog p' ).addClass('ui-state-error') ;
+		$( "#dialog" ).dialog("open") ;
+		console.log( 'ERROR >> api.sendMail >> 2' ) ;
+		return 2 ;
+	} ;
 }
 
 /**
@@ -567,3 +654,5 @@ function addTab() {
 	// update the number of tabs created
 	tabCounter++;
 }
+
+

@@ -4,9 +4,9 @@
 	 * This file contains the widget class
 	 */
 	
-	if ( !defined( 'exampleWgt' ) )  {
+	if ( !defined( 'contactForm' ) )  {
 		
-		define( 'exampleWgt' , TRUE ) ;
+		define( 'contactForm' , TRUE ) ;
 		
 		class contactForm {
 			
@@ -26,7 +26,7 @@
 					
 				$str .= $this->getFormBox( $formId.'-text' ) ;
 				
-				$str .= $this->getSubmitButton( 'Submit' , $formId.'-submit' , 'contactForm' ) ;
+				$str .= $this->getSubmitButton( 'Submit' , $formId.'-submit' , 'api.sendMail(); return false' ) ;
 				return  $str ;
 						
 			}
@@ -36,12 +36,12 @@
 				return $str ;	
 			}
 			public function getFormBox( $id ) {
-				$str = '<textarea id="'.$id.'" name="'.$id.'"></textarea>';
+				$str = '<br/><textarea id="'.$id.'" name="'.$id.'"></textarea>';
 				return $str ;	
 			}
 			
 			public function getSubmitButton( $title , $id , $onClick ) {
-				$str = '<div class=\"formSubmission\"><button id="'.$id.'" onclick="'.$onClick.'('.$id.');">'.$title.'</button></div>' ;
+				$str = '<div class=\"formSubmission\"><br/><button id="'.$id.'" onclick="'.$onClick.';">'.$title.'</button></div>' ;
 				return $str ;
 			}
 		}
