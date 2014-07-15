@@ -10,12 +10,13 @@
  * 					http://www.csscompressor.com/, 
  * 					note that the gradients cannot be compressed
  */
+
 .container1 {
     width: 100%;
 }
 
 .panel {
-    height: 600px;
+    height: 100%;
     overflow: auto;
 }
 
@@ -30,7 +31,7 @@ div.profile-generator-left {
     float: left;
     height: 100%;
     padding: 10px;
-    width: 500px
+    width: 370px
 }
 
 div.profile-generator-id {
@@ -41,7 +42,7 @@ div.profile-generator-id {
 div.profile-generator-picture {
     border: 5px solid #999;
     margin-top: 20px;
-    margin-left: 150px;
+    margin-left: 50px;
     height: 300px;
     padding: 5px;
     width: 200px
@@ -58,21 +59,64 @@ textarea.profile-generator-input {
     width: 500px
 }
 
-div.profile-generator-center {
+div.profile-generator-center-line {
     background: #ddd;
     float: left;
     height: 100%;
-    margin: 10px 0;
     width: 5px
 }
 
-div.profile-generator-right {
-    float: left;
+div.profile-generator-right-line {
+    background: #ddd;
+    float : left;
     height: 100%;
-    padding: 10px
+    width: 5px
+}
+
+div.profile-generator-right-panel {
+    float: right;
+    height: 100%;
+    padding: 10px;
+    min-width: 150px;
+}
+
+div.profile-generator-right {
+    float: right;
 }
 
 div.profile-generator-name-card1 {
     margin-top: 15px;
-    margin-left: 150px;
+    margin-left: 70px;
 }
+
+div.profile-generator-center-pane {
+    float: left;
+    margin-left: 400px;
+    position: relative;
+
+}
+
+/*** The Essential Code **
+
+#tabs-1 {
+    padding-left: 200px;   /* LC width
+    padding-right: 150px;  /* RC width
+}
+#tabs-1 .column {
+    position: relative;
+    float: left;
+}
+#center {
+    width: 100%;
+}
+#left {
+    width: 200px;          /* LC width
+    right: 200px;          /* LC width
+    margin-left: -100%;
+}
+#right {
+    width: 150px;          /* RC width
+    margin-right: -150px;   /*RC width
+}
+
+*/

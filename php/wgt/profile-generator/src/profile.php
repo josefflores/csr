@@ -8,15 +8,15 @@
                 <li><a href="#tabs-4">Brian</a></li>
             </ul>
             <div id="tabs-1" class='panel'>
-                <div class='column' id="left">
+                <div class='profile-generator-left'>
 
-                    <div class='profile-generator-id' id="left">
+                    <div class='profile-generator-id'>
 
-                        <div class='profile-generator-picture' id="left">
+                        <div class='profile-generator-picture'>
                             <image src='profile-generator-pic' />
                         </div>
 
-                        <div class='profile-generator-name-card1' id="left">
+                        <div class='profile-generator-name-card1'>
                             <table>
 
                                 <tr>
@@ -78,12 +78,12 @@
 
                 </div>
 
-                <div class = 'column' id="center">
-                    <table id="center">
+                <div class = 'profile-generator-center-pane' >
+                    <table class = 'current-month-table'>
                         <caption>
                             <a href="index.html" class="prev">&laquo;</a>
                             <a href="index.html" class="next">&raquo;</a>
-                            May 2012
+                            July 2014
                         </caption>
                         <tbody class="cal-body">
                         <tr>
@@ -135,101 +135,115 @@
                     </table>
                 </div>
 
-                <div class='profile-generator-right-line'>
 
-                </div>
+                <div class='profile-generator-right-panel'>
 
-                <div class='column' id="right">
-                    <div class='profile-generator-right' id="right">
+                    <div class='profile-generator-right-line'>
 
-                            <ul class="vertical-nav" id="right">
-                                <li><a href="index.php">2014 </a></li>
-                                <ul class="sub-menu">
-                                    <li><a href="date-views-thumbnails.php">July</a></li>
-                                    <li><a href="date-views-thumbnails.php">August</a></li>
-                                    <li><a href="date-views-thumbnails.php">September</a></li>
-                                    <li><a href="date-views-thumbnails.php">October</a></li>
-                                    <li><a href="date-views-thumbnails.php">November</a></li>
-                                    <li><a href="date-views-thumbnails.php">December</a></li>
-                                </ul>
-                                <li><a href="index.php">2015 </a></li>
-                                <ul class="sub-menu">
-                                    <li><a href="date-views-thumbnails.php">January</a></li>
-                                    <li><a href="date-views-thumbnails.php">February</a></li>
-                                    <li><a href="date-views-thumbnails.php">March</a></li>
-                                    <li><a href="date-views-thumbnails.php">April</a></li>
-                                    <li><a href="date-views-thumbnails.php">May</a></li>
-                                    <li><a href="date-views-thumbnails.php">June</a></li>
-                                    <li><a href="date-views-thumbnails.php">July</a></li>
-                                    <li><a href="date-views-thumbnails.php">August</a></li>
-                                    <li><a href="date-views-thumbnails.php">September</a></li>
-                                    <li><a href="date-views-thumbnails.php">October</a></li>
-                                    <li><a href="date-views-thumbnails.php">November</a></li>
-                                    <li><a href="date-views-thumbnails.php">December</a></li>
-                                </ul>
-                                <li><a href="index.php">2016 </a></li>
-                                <ul class="sub-menu">
-                                    <li><a href="date-views-thumbnails.php">January</a></li>
-                                    <li><a href="date-views-thumbnails.php">February</a></li>
-                                    <li><a href="date-views-thumbnails.php">March</a></li>
-                                    <li><a href="date-views-thumbnails.php">April</a></li>
-                                    <li><a href="date-views-thumbnails.php">May</a></li>
-                                    <li><a href="date-views-thumbnails.php">June</a></li>
-                                    <li><a href="date-views-thumbnails.php">July</a></li>
-                                    <li><a href="date-views-thumbnails.php">August</a></li>
-                                    <li><a href="date-views-thumbnails.php">September</a></li>
-                                    <li><a href="date-views-thumbnails.php">October</a></li>
-                                    <li><a href="date-views-thumbnails.php">November</a></li>
-                                    <li><a href="date-views-thumbnails.php">December</a></li>
-                                </ul>
-                                <li><a href="index.php">2017 </a></li>
-                                <ul class="sub-menu">
-                                    <li><a href="date-views-thumbnails.php">January</a></li>
-                                    <li><a href="date-views-thumbnails.php">February</a></li>
-                                    <li><a href="date-views-thumbnails.php">March</a></li>
-                                    <li><a href="date-views-thumbnails.php">April</a></li>
-                                    <li><a href="date-views-thumbnails.php">May</a></li>
-                                    <li><a href="date-views-thumbnails.php">June</a></li>
-                                    <li><a href="date-views-thumbnails.php">July</a></li>
-                                    <li><a href="date-views-thumbnails.php">August</a></li>
-                                    <li><a href="date-views-thumbnails.php">September</a></li>
-                                    <li><a href="date-views-thumbnails.php">October</a></li>
-                                    <li><a href="date-views-thumbnails.php">November</a></li>
-                                    <li><a href="date-views-thumbnails.php">December</a></li>
-                                </ul>
-                                <li><a href="index.php">2018 </a></li>
-                                <ul class="sub-menu">
-                                    <li><a href="date-views-thumbnails.php">January</a></li>
-                                    <li><a href="date-views-thumbnails.php">February</a></li>
-                                    <li><a href="date-views-thumbnails.php">March</a></li>
-                                    <li><a href="date-views-thumbnails.php">April</a></li>
-                                    <li><a href="date-views-thumbnails.php">May</a></li>
-                                    <li><a href="date-views-thumbnails.php">June</a></li>
-                                    <li><a href="date-views-thumbnails.php">July</a></li>
-                                    <li><a href="date-views-thumbnails.php">August</a></li>
-                                    <li><a href="date-views-thumbnails.php">September</a></li>
-                                    <li><a href="date-views-thumbnails.php">October</a></li>
-                                    <li><a href="date-views-thumbnails.php">November</a></li>
-                                    <li><a href="date-views-thumbnails.php">December</a></li>
-                                </ul>
-                                <li><a href="index.php">2019 </a></li>
-                                <ul class="sub-menu">
-                                    <li><a href="date-views-thumbnails.php">January</a></li>
-                                    <li><a href="date-views-thumbnails.php">February</a></li>
-                                    <li><a href="date-views-thumbnails.php">March</a></li>
-                                    <li><a href="date-views-thumbnails.php">April</a></li>
-                                    <li><a href="date-views-thumbnails.php">May</a></li>
-                                    <li><a href="date-views-thumbnails.php">June</a></li>
-                                    <li><a href="date-views-thumbnails.php">July</a></li>
-                                    <li><a href="date-views-thumbnails.php">August</a></li>
-                                    <li><a href="date-views-thumbnails.php">September</a></li>
-                                    <li><a href="date-views-thumbnails.php">October</a></li>
-                                    <li><a href="date-views-thumbnails.php">November</a></li>
-                                    <li><a href="date-views-thumbnails.php">December</a></li>
-                                </ul>
-                            </ul>
+                    </div>
 
+                    <div class='profile-generator-right'>
+                        <div class = 'profile-generator-right-dropdown'>
+                            <nav>
+                                <div class="menu-item">
+                                    <h4><a href="index.php">2014</a></h4>
+                                    <ul class="sub-menu">
+                                        <li><a href="date-views-thumbnails.php">July</a></li>
+                                        <li><a href="date-views-thumbnails.php">August</a></li>
+                                        <li><a href="date-views-thumbnails.php">September</a></li>
+                                        <li><a href="date-views-thumbnails.php">October</a></li>
+                                        <li><a href="date-views-thumbnails.php">November</a></li>
+                                        <li><a href="date-views-thumbnails.php">December</a></li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <h4><a href="index.php">2015</a></h4>
+                                    <ul class="sub-menu">
+                                        <li><a href="date-views-thumbnails.php">January</a></li>
+                                        <li><a href="date-views-thumbnails.php">February</a></li>
+                                        <li><a href="date-views-thumbnails.php">March</a></li>
+                                        <li><a href="date-views-thumbnails.php">April</a></li>
+                                        <li><a href="date-views-thumbnails.php">May</a></li>
+                                        <li><a href="date-views-thumbnails.php">June</a></li>
+                                        <li><a href="date-views-thumbnails.php">July</a></li>
+                                        <li><a href="date-views-thumbnails.php">August</a></li>
+                                        <li><a href="date-views-thumbnails.php">September</a></li>
+                                        <li><a href="date-views-thumbnails.php">October</a></li>
+                                        <li><a href="date-views-thumbnails.php">November</a></li>
+                                        <li><a href="date-views-thumbnails.php">December</a></li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <h4><a href="index.php">2016</a></h4>
+                                    <ul class="sub-menu">
+                                        <li><a href="date-views-thumbnails.php">January</a></li>
+                                        <li><a href="date-views-thumbnails.php">February</a></li>
+                                        <li><a href="date-views-thumbnails.php">March</a></li>
+                                        <li><a href="date-views-thumbnails.php">April</a></li>
+                                        <li><a href="date-views-thumbnails.php">May</a></li>
+                                        <li><a href="date-views-thumbnails.php">June</a></li>
+                                        <li><a href="date-views-thumbnails.php">July</a></li>
+                                        <li><a href="date-views-thumbnails.php">August</a></li>
+                                        <li><a href="date-views-thumbnails.php">September</a></li>
+                                        <li><a href="date-views-thumbnails.php">October</a></li>
+                                        <li><a href="date-views-thumbnails.php">November</a></li>
+                                        <li><a href="date-views-thumbnails.php">December</a></li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <h4><a href="index.php">2017</a></h4>
+                                    <ul class="sub-menu">
+                                        <li><a href="date-views-thumbnails.php">January</a></li>
+                                        <li><a href="date-views-thumbnails.php">February</a></li>
+                                        <li><a href="date-views-thumbnails.php">March</a></li>
+                                        <li><a href="date-views-thumbnails.php">April</a></li>
+                                        <li><a href="date-views-thumbnails.php">May</a></li>
+                                        <li><a href="date-views-thumbnails.php">June</a></li>
+                                        <li><a href="date-views-thumbnails.php">July</a></li>
+                                        <li><a href="date-views-thumbnails.php">August</a></li>
+                                        <li><a href="date-views-thumbnails.php">September</a></li>
+                                        <li><a href="date-views-thumbnails.php">October</a></li>
+                                        <li><a href="date-views-thumbnails.php">November</a></li>
+                                        <li><a href="date-views-thumbnails.php">December</a></li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <h4><a href="index.php">2018</a></h4>
+                                    <ul class="sub-menu">
+                                        <li><a href="date-views-thumbnails.php">January</a></li>
+                                        <li><a href="date-views-thumbnails.php">February</a></li>
+                                        <li><a href="date-views-thumbnails.php">March</a></li>
+                                        <li><a href="date-views-thumbnails.php">April</a></li>
+                                        <li><a href="date-views-thumbnails.php">May</a></li>
+                                        <li><a href="date-views-thumbnails.php">June</a></li>
+                                        <li><a href="date-views-thumbnails.php">July</a></li>
+                                        <li><a href="date-views-thumbnails.php">August</a></li>
+                                        <li><a href="date-views-thumbnails.php">September</a></li>
+                                        <li><a href="date-views-thumbnails.php">October</a></li>
+                                        <li><a href="date-views-thumbnails.php">November</a></li>
+                                        <li><a href="date-views-thumbnails.php">December</a></li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <h4><a href="index.php">2019</a></h4>
+                                    <ul class="sub-menu">
+                                        <li><a href="date-views-thumbnails.php">January</a></li>
+                                        <li><a href="date-views-thumbnails.php">February</a></li>
+                                        <li><a href="date-views-thumbnails.php">March</a></li>
+                                        <li><a href="date-views-thumbnails.php">April</a></li>
+                                        <li><a href="date-views-thumbnails.php">May</a></li>
+                                        <li><a href="date-views-thumbnails.php">June</a></li>
+                                        <li><a href="date-views-thumbnails.php">July</a></li>
+                                        <li><a href="date-views-thumbnails.php">August</a></li>
+                                        <li><a href="date-views-thumbnails.php">September</a></li>
+                                        <li><a href="date-views-thumbnails.php">October</a></li>
+                                        <li><a href="date-views-thumbnails.php">November</a></li>
+                                        <li><a href="date-views-thumbnails.php">December</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
 
+                        </div>
                 </div>
 
             </div>
