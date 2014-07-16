@@ -18,4 +18,5 @@
 #tabs li .ui-icon-close{cursor:pointer;float:left;/* margin:.4em .2em 0 0 */}
 #add_tab{cursor:pointer}
 div.profile{/* margin-top: 30px; */}
-div.toolbar-tabs{ position:fixed; top:130; width: 100%; margin: 0px; padding: 0px;}
+div.toolbar-tabs{ height:100%;position:fixed; top:130; width: 100%; margin: 0px; padding: 0px;}
+#tabs{ height:100%}

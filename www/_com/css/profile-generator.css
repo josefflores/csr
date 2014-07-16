@@ -59,19 +59,15 @@ textarea.profile-generator-input {
     width: 500px
 }
 
+div.profile-generator-right-line ,
 div.profile-generator-center-line {
-    background: #ddd;
-    float: left;
-    height: 100%;
-    width: 5px
+    border-left: 1px solid #ccc;
+float: left;
+height: 100%;
+margin: -10px 0 0 0;
 }
 
-div.profile-generator-right-line {
-    background: #ddd;
-    float : left;
-    height: 100%;
-    width: 5px
-}
+
 
 div.profile-generator-right-panel {
     float: right;
