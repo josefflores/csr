@@ -31,7 +31,9 @@
 	////
 	//	INCLUDES
 	////
-	$A[ 'SECURE' ] = false ;	
+	$A[ 'SECURE' ] = true ;
+	$A[ 'SECURE_REDIRECT' ] = false ;
+		
 	$A[ 'ACCESS' ] = array( 'ALL' ) ;
 	include( $A[ 'D_TMP' ].'includes.php' ) ;
 	

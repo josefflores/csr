@@ -15,6 +15,7 @@
 	//	Downloaded css files, place here first so that the main and 
 	//	widget files can override 
 	echo '<link href="' , $A['W_CSS'] , 'jquery-ui.css" 	rel="stylesheet" type="text/css">' ;
+	echo '<link href="' , $A['W_CSS'] , 'jquery-ui-modified.css" 	rel="stylesheet" type="text/css">' ;
 	echo "<link href='http://fonts.googleapis.com/css?family=ABeeZee|Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>" ;
 	// 	The main css file this holds most styling elements to lend 
 	//	consistency to the application

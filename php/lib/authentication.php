@@ -30,7 +30,7 @@
 		 * 	@param	$bool_secure	Wether security is enabled for the 
 		 * 							landing page and subsequent pages
 		 */ 
-		 public function __construct( $A ) {
+		 public function __construct( $A , $redirect = true ) {
 			
 			$this->A = $A ;
 			$this->user = new user( $A , null , true ) ;
@@ -40,7 +40,7 @@
 				// Security required
 				
 				// perform authentication
-				$id = $this->authenticate() ;				
+				$id = $this->authenticate( $redirect ) ;				
 				
 				// Authenticate user
 				define( 'LOGGED_IN' , true ) ;
@@ -81,7 +81,7 @@
 		 * 	@return		null		error page was redirected
 		 * 	@retunr 	int			The user id number	
 		 */
-		public function authenticate( ) {
+		public function authenticate( $redirect ) {
 				
 			// Redirect possibilities
 			$login = 'Location: ' . $this->A[ 'W_ROOT' ] ;
@@ -111,12 +111,16 @@
 			
 			$this->deauthenticate( ) ;
 			
-			if ( $session[ 'session_active' ] == 2 ) {
-				 // not registered
-				 header( $registration ) ;
+			if ( $redirect ) {
+			
+				if ( $session[ 'session_active' ] == 2 ) {
+					 // not registered
+					 header( $registration ) ;
+				}
+							
+				header( $login ) ;
+			
 			}
-						
-			header( $login ) ;
 		}
 	}
 

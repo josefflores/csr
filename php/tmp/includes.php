@@ -49,7 +49,11 @@
 	include_once( $A[ 'D_INI' ] . 'email.php' ) ;
 	
 
+	if ( isset( $A[ 'SECURE_REDIRECT' ] ) && 
+		 $A[ 'SECURE_REDIRECT' ] == false ) 
+			$A[ 'FLAG' ] = false ;
+	else $A[ 'FLAG' ] = true ;
 	
-	$A[ 'AUTH' ] = new authentication( $A ) ;
+	$A[ 'AUTH' ] = new authentication( $A , $A[ 'FLAG' ] ) ;
 	
 ?>

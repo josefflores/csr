@@ -76,9 +76,10 @@ function Api( apiPath ) {
 	this.state = function () {
 		var json ;
 		// 	Check if the API is still in the initial state
-		if ( lastResponse == null )
+		if ( lastResponse == null ) {
+			console.log( 'API  >> '  + lastResponse ) ;
 			return STATE.NONE ;
-		
+		}
 		//	store the obj in a tmp object
 		json = lastResponse ;
 		
@@ -113,7 +114,7 @@ function Api( apiPath ) {
 
 		//	store the obj in a tmp object
 		json = lastResponse ;
-		
+
 		//	Check to make sure there is a returned value
 		if ( lastResponse[0]['code'][0] == 200 ) {
 			
@@ -125,14 +126,14 @@ function Api( apiPath ) {
 			//	array check must be used. followed by a manual setting of 
 			//	1 to indicate an array of 1 string
 			if ( json[0]['values']  instanceof Array ) {
-				arr[ 1 ] = json[0]['values'].length ;
+				arr[ 1 ] = json[0]['value'].length ;
 			}
 			else {
 				arr[ 1 ] = 1 ;
 			}
 			
 			//	Storing the data
-			arr[ 2 ] = json[0]['values'] ;
+			arr[ 2 ] = json[0]['value'] ;
 		}
 		
 		return arr ;
@@ -575,10 +576,10 @@ function Api( apiPath ) {
 														 
 		var order = 1 ;
 		var call = 'sendMail' ;
-		var parameters = [{ "email" : email , 
-							"name"	: name ,
-							"subject" : subject ,
-							"text" : text   }] ;
+		var parameters = [{ "EMAIL" : email , 
+							"NAME"	: name ,
+							"SUBJECT" : subject ,
+							"TEXT" : text   }] ;
 		
 		// Process return 	               
 		if ( this.call( order , call , parameters ) ) {
@@ -645,7 +646,8 @@ function addTab() {
 
 	// 	Attach the profile
 	tabs.find( ".ui-tabs-nav" ).append( li );
-	tabs.append( "<div id='" + id + "'>" + tmp[2] + "</div>" );
+	console.log(tmp);
+	tabs.append( "<div id='" + id + "'>" + tmp[2][0] + "</div>" );
 	tabs.tabs( "refresh" );
 	
 	// 	Set focus to newest tab created

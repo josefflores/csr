@@ -7,7 +7,14 @@
 					<a href="' , $A[ 'W_ROOT' ] , '" >
 									
 						<img src="' , $A[ 'W_IMG' ] , '/logo/logo.png"/>
-									
+						<div class="logo-text">
+							<div class="logo-text-top">
+								CSR Project
+							</div>
+							<div class="logo-text-bottom">
+								University of Massachusetts Lowell
+							</div>			
+						</div>			
 					</a>
 								
 				</div>

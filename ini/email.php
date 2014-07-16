@@ -19,7 +19,6 @@
 	$A[ 'MAIL_FROM_USR']	= 'no-reply' ;
 	$A[ 'MAIL_FROM_DOMAIN'] = 'csr.cs.uml.edu' ;
 	
-	$A[ 'MAIL_SMTP_USR' ] 	= $_ENV[ 'CSR_SMTP_USR' ] ;  	// SMTP username
 	$A[ 'MAIL_SMTP_PWD' ] 	= $_ENV[ 'CSR_SMTP_PWD' ] ;  	// SMTP password
 		
 ?>

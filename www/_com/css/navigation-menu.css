@@ -11,10 +11,16 @@
  * 					note that the gradients cannot be compressed
  */
 div.navigation-menu { height: 50px; float: left; }
-div.navigation-menu ul {float:left;height:150px;line-height:150px;list-style-type:none;margin:0;padding:0;width:100%}
+div.navigation-menu ul {float:left;height: 50px;list-style-type:none;margin: 60px 0 0 0;padding:0;width:100%}
 div.navigation-menu ul > li {float:left;height:35px;padding:0 10px;text-align:center}
-div.navigation-menu ul > li > a {color:#000;height:35px; font-size:18px; text-transform:Capitalize;}
-div.navigation-menu ul > li > a:hover {text-decoration:underline; color:#4484BA}
+div.navigation-menu ul > li > a { color: rgb(81%, 87%, 92%);
+    text-transform:uppercase; font-size:13px;
+text-shadow: 1px 6px 10px #24719A, 0 0 0 #999, -1px -1px 5px #555;}
+div.navigation-menu ul > li > a:hover {text-decoration:underline; color:#fff}
 
-div.navigation{height:150px;width:800px;float:left;}
-div.logo{float:left; height:150px;width:400px}
+div.navigation{height: 100px; width:800px; float:left;}
+div.logo{float:left; height: 100px; width: 350x;}
+div.logo img {height: 75px;margin-top: 10;float: left;/* width: 100px; */}
+/* Don't show shadows when selecting text */
+::-moz-selection { background: #5af; color: #fff; text-shadow: none; }
+::selection { background: #5af; color: #fff; text-shadow: none; }

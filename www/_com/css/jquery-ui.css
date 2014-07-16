@@ -1,7 +1,7 @@
 /*! jQuery UI - v1.11.0 - 2014-07-14
 * http://jqueryui.com
 * Includes: core.css, draggable.css, resizable.css, selectable.css, sortable.css, accordion.css, autocomplete.css, button.css, datepicker.css, dialog.css, menu.css, progressbar.css, selectmenu.css, slider.css, spinner.css, tabs.css, tooltip.css, theme.css
-* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Candara%2C%20Calibri%2C%20Segoe%2C%20%22Segoe%20UI%22%2C%20Optima%2C%20Arial%2C%20sans-serif&fwDefault=normal&fsDefault=.8em&cornerRadius=4px&bgColorHeader=%234484BA&bgTextureHeader=flat&bgImgOpacityHeader=75&borderColorHeader=%23999&fcHeader=%23fff&iconColorHeader=%23222222&bgColorContent=%23ffffff&bgTextureContent=flat&bgImgOpacityContent=75&borderColorContent=%23999&fcContent=%23333&iconColorContent=%23222222&bgColorDefault=%23ddd&bgTextureDefault=flat&bgImgOpacityDefault=75&borderColorDefault=%23d3d3d3&fcDefault=%23555555&iconColorDefault=%23888888&bgColorHover=%23fff&bgTextureHover=flat&bgImgOpacityHover=75&borderColorHover=%234484BA&fcHover=%23212121&iconColorHover=%23454545&bgColorActive=%234484BA&bgTextureActive=flat&bgImgOpacityActive=65&borderColorActive=%23aaaaaa&fcActive=%23fff&iconColorActive=%23454545&bgColorHighlight=%23fbf9ee&bgTextureHighlight=glass&bgImgOpacityHighlight=55&borderColorHighlight=%23fcefa1&fcHighlight=%23363636&iconColorHighlight=%232e83ff&bgColorError=%23fef1ec&bgTextureError=glass&bgImgOpacityError=95&borderColorError=%23cd0a0a&fcError=%23cd0a0a&iconColorError=%23cd0a0a&bgColorOverlay=%23aaaaaa&bgTextureOverlay=flat&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=%23aaaaaa&bgTextureShadow=flat&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=8px&offsetTopShadow=-8px&offsetLeftShadow=-8px&cornerRadiusShadow=8px
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Candara%2C%20Calibri%2C%20Segoe%2C%20%22Segoe%20UI%22%2C%20Optima%2C%20Arial%2C%20sans-serif&fwDefault=normal&fsDefault=.8em&cornerRadius=4px&bgColorHeader=%230051BA&bgTextureHeader=flat&bgImgOpacityHeader=75&borderColorHeader=%23999&fcHeader=%23fff&iconColorHeader=%23222222&bgColorContent=%23ffffff&bgTextureContent=flat&bgImgOpacityContent=75&borderColorContent=%23999&fcContent=%23333&iconColorContent=%23222222&bgColorDefault=%23ddd&bgTextureDefault=flat&bgImgOpacityDefault=75&borderColorDefault=%23d3d3d3&fcDefault=%23555555&iconColorDefault=%23888888&bgColorHover=%23fff&bgTextureHover=flat&bgImgOpacityHover=75&borderColorHover=%230051BA&fcHover=%23212121&iconColorHover=%23454545&bgColorActive=%230051BA&bgTextureActive=flat&bgImgOpacityActive=65&borderColorActive=%23aaaaaa&fcActive=%23fff&iconColorActive=%23454545&bgColorHighlight=%23fbf9ee&bgTextureHighlight=glass&bgImgOpacityHighlight=55&borderColorHighlight=%23fcefa1&fcHighlight=%23363636&iconColorHighlight=%232e83ff&bgColorError=%23fef1ec&bgTextureError=glass&bgImgOpacityError=95&borderColorError=%23cd0a0a&fcError=%23cd0a0a&iconColorError=%23cd0a0a&bgColorOverlay=%23aaaaaa&bgTextureOverlay=flat&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=%23aaaaaa&bgTextureShadow=flat&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=8px&offsetTopShadow=-8px&offsetLeftShadow=-8px&cornerRadiusShadow=8px
 * Copyright 2014 jQuery Foundation and other contributors; Licensed MIT */
 
 /* Layout helpers
@@ -853,7 +853,7 @@ body .ui-tooltip {
 }
 .ui-widget-header {
 	border: 1px solid #999;
-	background: #4484BA url("../img/jquery-ui/ui-bg_flat_75_4484BA_40x100.png") 50% 50% repeat-x;
+	background: #0051BA url("../img/jquery-ui/ui-bg_flat_75_0051BA_40x100.png") 50% 50% repeat-x;
 	color: #fff;
 	font-weight: bold;
 }
@@ -883,7 +883,7 @@ body .ui-tooltip {
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-	border: 1px solid #4484BA;
+	border: 1px solid #0051BA;
 	background: #fff url("../img/jquery-ui/ui-bg_flat_75_fff_40x100.png") 50% 50% repeat-x;
 	font-weight: normal;
 	color: #212121;
@@ -903,7 +903,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
 	border: 1px solid #aaaaaa;
-	background: #4484BA url("../img/jquery-ui/ui-bg_flat_65_4484BA_40x100.png") 50% 50% repeat-x;
+	background: #0051BA url("../img/jquery-ui/ui-bg_flat_65_0051BA_40x100.png") 50% 50% repeat-x;
 	font-weight: normal;
 	color: #fff;
 }

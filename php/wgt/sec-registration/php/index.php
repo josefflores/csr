@@ -37,31 +37,47 @@
 				
 				$str .= '<tr class="sec-registration-line">	<td colspan="2"><h3> Register</h3></td></tr>' ;
 					
-					$str .= $this->input( $parent , 'Email' 					, array( array( 'class' => 'input-text' , 'length' => 0 , 'id' => 'email' , 'type' => 'text' , 'required' => true , 'b' => '' , 'a' => '' ) ) ) ;
-					$str .= $this->input( $parent , 'First Name' 				, array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'first-name' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => '' ) ) ) ;
-					$str .= $this->input( $parent , 'Middle Name' 				, array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'middle-name' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
-					$str .= $this->input( $parent , 'Last Name' 				, array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'last-name' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
+					$info = 'This will be your user name.' ;
+					$str .= $this->input( $parent , 'Email' 			, $info ,		array( array( 'class' => 'input-text' , 'length' => 0 , 'id' => 'email' , 'type' => 'text' , 'required' => true , 'b' => '' , 'a' => '' ) ) ) ;
+					
+					$info = '' ;
+					$str .= $this->input( $parent , 'First Name' 		, $info ,		array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'first-name' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => '' ) ) ) ;
+					
+					$info = 'Middle names or Initial are optional, but they might help differentiate common names to staff upon quick visual inspection.' ;
+					$str .= $this->input( $parent , 'Middle Name' 		, $info ,		array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'middle-name' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
+					
+					$info = '' ;
+					$str .= $this->input( $parent , 'Last Name' 		, $info ,		array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'last-name' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
 				
-					$str .= $this->input( $parent , 'Password' 					, array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'password-1' , 'type' => 'password' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
-					$str .= $this->input( $parent , 'Confirm Password' 			, array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'password-2' , 'type' => 'password' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
+					$info = 'Passwords must include one lowercase letter, one capital letter, one special character, and one number. The password should be between 8 - 20 characters long.' ;
+					$str .= $this->input( $parent , 'Password' 			, $info ,		array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'password-1' , 'type' => 'password' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
 					
-					$str .= $this->input( $parent , 'Date of Birth MM DD YYYY ' , array( array( 'class' => 'input-text-2' , 'length' => '2' ,'id' => 'date-month' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => ' / ') ,
-																						 array( 'class' => 'input-text-2' , 'length' => '2' ,'id' => 'date-day' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => ' / ') ,
-																						 array( 'class' => 'input-text-4' , 'length' => '4' ,'id' => 'date-year' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
+					$info = '' ;
+					$str .= $this->input( $parent , 'Confirm Password' 	, $info ,		array( array( 'class' => 'input-text' , 'length' => 0 ,'id' => 'password-2' , 'type' => 'password' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
 					
-					$str .= $this->input( $parent , 'Phone ', array( array( 'class' => 'input-text-3' , 'length' => '3' ,'id' => 'phone-country' , 'type' => 'text' , 'required' => true , 'b' => '' , 'a' => '' ) ,
-																						 array( 'class' => 'input-text-3' , 'length' => '3' ,'id' => 'phone-area' , 'type' => 'text' , 'required' => true  , 'b' => ' ( ' , 'a' => ' ) ') ,
-																						 array( 'class' => 'input-text-3' , 'length' => '3' ,'id' => 'phone-1' , 'type' => 'text' , 'required' => true , 'b' => '' , 'a' => '' ) ,
-																						 array( 'class' => 'input-text-4' , 'length' => '4' ,'id' => 'phone-2' , 'type' => 'text' , 'required' => true , 'b' => ' - ' , 'a' => '' ) ,
-																						 array( 'class' => 'input-text-4' , 'length' => '4' ,'id' => 'phone-ext' , 'type' => 'text' , 'required' => false , 'b' => ' EXT ' , 'a' => '' ) ) ) ;
+					$info = 'The date of birth format should be MM/DD/YYYY.' ;
+					$str .= $this->input( $parent , 'Date of birth ' 	, $info , 		array( array( 'class' => 'input-text-2' , 'length' => '2' ,'id' => 'date-month' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => ' / ') ,
+																							array( 'class' => 'input-text-2' , 'length' => '2' ,'id' => 'date-day' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => ' / ') ,
+																							array( 'class' => 'input-text-4' , 'length' => '4' ,'id' => 'date-year' , 'type' => 'text' , 'required' => true  , 'b' => '' , 'a' => '') ) ) ;
+					
+					$info = 'The contact phone number should include the country code, area code, and the seven digits phone number. The extension is optional.' ;
+					$str .= $this->input( $parent , 'Contact phone '	, $info ,  		array( array( 'class' => 'input-text-3' , 'length' => '3' ,'id' => 'phone-country' , 'type' => 'text' , 'required' => true , 'b' => '' , 'a' => '' ) ,
+																							array( 'class' => 'input-text-3' , 'length' => '3' ,'id' => 'phone-area' , 'type' => 'text' , 'required' => true  , 'b' => ' ( ' , 'a' => ' ) ') ,
+																							array( 'class' => 'input-text-3' , 'length' => '3' ,'id' => 'phone-1' , 'type' => 'text' , 'required' => true , 'b' => '' , 'a' => '' ) ,
+																							array( 'class' => 'input-text-4' , 'length' => '4' ,'id' => 'phone-2' , 'type' => 'text' , 'required' => true , 'b' => ' - ' , 'a' => '' ) ,
+																							array( 'class' => 'input-text-4' , 'length' => '4' ,'id' => 'phone-ext' , 'type' => 'text' , 'required' => false , 'b' => ' EXT ' , 'a' => '' ) ) ) ;
 																						 									
-				$str .= '<tr class="sec-registration-line"><td></td><td><button onclick="api.registerUser(); return false ; " >Register</button></td></tr></table>' ;
+				$str .= '<tr class="sec-registration-line"><td><br/><button onclick="api.registerUser(); return false ; " >Register</button></td></tr></table>' ;
 					
 				return $str ;
 			}
 			
-			private function input( $parent , $title , $items ) {
-				$str =  '<tr class="sec-registration-line"><td>' . $title . '</td><td>' ;
+			private function input( $parent ,  $title ,$info , $items ) {
+				$str =  '<tr class="sec-registration-line"><td>' . $title . '</td>';
+				
+				$str .= '<tr><td class="information">' . $info .'</td></tr>' ;
+				
+				$str .= '<tr class="sec-registration-line"><td>' ;
 				
 				foreach( $items as $item ){
 					
@@ -84,8 +100,8 @@
 					//if ( $item[ 'a'] != 0 )
 						$str .= $item[ 'a' ] ;
 				}
-				
 				$str .= '</td></tr>' ;
+				
 				
 				return $str ;
 			}

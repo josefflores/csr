@@ -35,6 +35,7 @@
 		 */
 		public function __construct( $A ) {
 			$this->A = $A ;
+
 		}
 		
 		//	HIDDEN OR PRIVATE METHODS
@@ -173,7 +174,7 @@
 				return $this->setReturn( 404 , null , null ) ;					 
 			}
 			//return success
-			return $this->setReturn( 200 , null , $widget ) ;
+			return $this->setReturn( 200 , null ,  array( $widget ) ) ;
 		}
 		
 		//	Public METHODS
@@ -224,6 +225,43 @@
 			return $this->setReturn( 200 , null , $result ) ;
 		}
 		
+		/**
+		 * 	@name	sendMail
+		 * 
+		 * 	Requires authentication : false
+		 * 
+		 * 	This function sends email, intended for the admin
+		 * 
+		 * 	@param
+		 * 
+		 * 	@return 200		Success		
+		 * 	@return 400		Bad Parameters
+		 * 	@return 500 	Error mail failure 'admin@' . $this->A[ 'MAIL_FROM_DOMAIN']
+		 */
+		 public function sendMail( $parameters ) {
+			 
+			if( !isset( $parameters[0][ 'EMAIL' ] ) &&
+				!isset( $parameters[0][ 'NAME' ] ) &&
+				!isset( $parameters[0][ 'SUBJECT' ] ) &&
+				!isset( $parameters[0][ 'TEXT' ] ) )
+					return $this->setReturn( 400 , null , null ) ;
+				
+			$tmp[ 'from' ] = $this->A[ 'MAIL_FROM_USR']. '@' . $this->A[ 'MAIL_FROM_DOMAIN'] ;
+			$tmp[ 'subject' ] = $parameters[0][ 'SUBJECT' ] ;
+			$tmp[ 'text' ] = 'FROM: ' . $parameters[0][ 'NAME' ] .' , ' . $parameters[0][ 'EMAIL' ] . ' <br/><br/>' . $parameters[0][ 'TEXT' ];
+			$tmp[ 'to' ] = array( 'EMAIL' => 'admin@csr.cs.uml.edu'  , 'NAME' => $parameters[0][ 'NAME' ] ) ;
+			$email = new email( $this->A ) ;
+	
+			$ret = $email->send( $tmp[ 'from' ] , $tmp[ 'to' ] , $tmp[ 'subject' ] , $tmp[ 'text' ] ) ;
+			
+			if ( $ret == 0 ){
+				// Succesfull write of the data and record was made
+				return $this->setReturn( 200 , 'Mail sent.' , null ) ;
+			} 	
+		
+			return $this->setReturn( 500 , 'Mail not sent' , null ) ;
+		
+		 }
 		/**
 		 * 	@name	getWidget
 		 * 

@@ -13,11 +13,11 @@
  */
 html {font-family: 'ABeeZee', sans-serif;} 
 body{background:#fff; margin:0;padding:0}
-a{color:#4484BA;cursor:pointer;display:block;text-decoration:none}
+a{color:#0051BA;cursor:pointer;display:block;text-decoration:none}
 th{font-weight:700}
 
 
-div.main{float:left;margin:170px 0 60px 0 ;min-height:400px;padding:0;width:100%}
+div.main{float:left;margin: 100px 0 40px 0;min-height:400px;padding:0;width:100%}
 span.my-tab{float:left;margin:0;min-width:25px}
 span.my-close-button{float:left;margin:0}
 div.header{ 
@@ -28,8 +28,8 @@ position: fixed;
 				
  
 
-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.35);
-height:150px;margin:0;min-width:1100px;padding:0;width:100%
+box-shadow: 0 1px 3px 1px #222;
+height:100px;margin:0;min-width:1100px;padding:0;width:100%
 }
 #page,div.profile{height:100%;width:100%}
 div.footer{background:#fff;position:fixed; bottom:0;left:0;box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.35);height:40px;margin:0;padding:0;text-align:center;width:100%}
@@ -37,50 +37,55 @@ div.footer > ul{height:150px;list-style-type:none;margin:10px auto 0;padding:0;w
 div.footer > ul > li{color:#000;float:left;font-size:14px;height:30px;line-height:30px;text-align:center;text-transform:uppercase;width:191px}
 div.footer > ul > li > ul{font-size:12px;font-weight:400;line-height:20px;list-style-type:none;margin:0;padding:0}
 div.footer > ul > li > ul > li > a{font-weight:bold;color:#000;font-size:10px;height:20px;line-height:20px;text-decoration:none}
-div.footer > ul > li > ul > li > a:hover{color:#4484BA ;text-decoration:underline}
+div.footer > ul > li > ul > li > a:hover{color:#0051BA ;text-decoration:underline}
 div.error{background:#fff;border:1px solid red;margin:5px;padding:5px;width:95%}
 div.sec-login {float: right;
 height: 150px;
 width: 250px;
 margin-right: 50px;
-margin-top: 25px;}
+margin-top: ;}
 div.sec-logout {
 float: right;
-margin-top: 60px;
-line-height: 150px;
+margin-top: 35px;
+
 width: 75px;
 margin-right: 50px;
 }
 a.button, button { width:74px;}
 
 
-div.header, div.navigation {
-background: rgba(252,252,252,1);
-background: -moz-linear-gradient(left, rgba(252,252,252,1) 0%, rgba(255,255,255,1) 53%, rgba(255,255,255,1) 100%);
-background: -webkit-gradient(left top, right top, color-stop(0%, rgba(252,252,252,1)), color-stop(53%, rgba(255,255,255,1)), color-stop(100%, rgba(255,255,255,1)));
-background: -webkit-linear-gradient(left, rgba(252,252,252,1) 0%, rgba(255,255,255,1) 53%, rgba(255,255,255,1) 100%);
-background: -o-linear-gradient(left, rgba(252,252,252,1) 0%, rgba(255,255,255,1) 53%, rgba(255,255,255,1) 100%);
-background: -ms-linear-gradient(left, rgba(252,252,252,1) 0%, rgba(255,255,255,1) 53%, rgba(255,255,255,1) 100%);
-background: linear-gradient(to right, rgba(252,252,252,1) 0%, rgba(255,255,255,1) 53%, rgba(255,255,255,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ffffff', GradientType=1 );
+div.header {
+background: #0051BA; /* Old browsers */
+background: -moz-linear-gradient(top,  #0051BA 0%, #005c96 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0051BA), color-stop(100%,#005c96)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #0051BA 0%,#005c96 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #0051BA 0%,#005c96 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #0051BA 0%,#005c96 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #0051BA 0%,#005c96 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0051BA', endColorstr='#005c96',GradientType=0 ); /* IE6-9 */
+
 	}
 
-input {}
+input {height:25px}
 input.sec-registration-input-text {margin: 0 10px ; }
 input.sec-registration-input-text-2  { width: 1.5em ; margin: 0 10px ;}
 input.sec-registration-input-text-3  {width: 2.25em ;margin: 0 10px ;}
 input.sec-registration-input-text-4 {width: 3em ;margin: 0 10px ;}
+
+.sec-login table tr.sec-registration-line td:first-child {color: rgb(81%, 87%, 92%);
+    text-transform:uppercase; font-size:13px;
+text-shadow: 1px 6px 10px #24719A, 0 0 0 #999, -1px -1px 5px #555;}
 
 input.sec-registration-required {}
 div.article {margin: 20px;}
 
 table { padding:5px 10px; }
 div.center { text-align:center; width:100%}
-button.large , button{  background:#4484BA; color:#fff; border: 1px solid #fff ;}
-button.large:hover , button:hover{  color:#4484BA; background:#fff; border: 1px solid #4484BA ;}
+button.large , button{  background:#0051BA; color:#fff; border: 1px solid #fff ;}
+button.large:hover , button:hover{  color:#0051BA; background:#fff; border: 1px solid #0051BA ;}
 button.large {width: 250px; height :50px; font-size:1.3em;}
 
-h1,h2,h3,h4,h5,h6 { color:#4484BA; }
+h1,h2,h3,h4,h5,h6 { color:#0051BA; }
 textarea { width:900px ; height:300px; resize: none ;}
 
 .input-error { border-color:  #bf4e4e ; }
@@ -91,3 +96,21 @@ textarea { width:900px ; height:300px; resize: none ;}
 .ui-state-error{ padding: 10px; }
 .ui-icon {float: left;
 margin-right: 5px;}
+
+td.information { color:#0051BA; padding:5px 10px;  font-size:14px;}
+
+div.logo-text {float:left ; width:300px; margin-top:10px}
+div.logo-text-top ,
+div.logo-text-bottom{ 
+color: rgb(81%, 87%, 92%);
+text-transform: uppercase;
+
+text-shadow: 1px 6px 10px #24719A, 0 0 0 #999, -1px -1px 5px #555; }
+div.logo-text-top{ font-size: 42px;}
+div.logo-text-bottom{ font-size: 13px;}
+
+.display_none{ display :none !important; } 
+.display_block{ display :block } 
+
+.red {background:red}
+.blue {background:blue}

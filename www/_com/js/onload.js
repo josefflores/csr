@@ -76,6 +76,19 @@ $( function() {
 		
 		tabs.tabs( "refresh" ) ;
 	}) ;
+	
+	
 
+	
+	$(document).click( '.toolbar-menu-title' , function() {
+		$('.toolbar-menu ul li ul' ).addClass( 'display_none' ) ;
+	});
+	
+	$(document).mouseover( '..toolbar-menu ul li' , function() {
+		$('ul.display_none' ).removeClass( 'display_none' ) ;
+	});
+	
+
+	
 }) ;
 

@@ -104,6 +104,9 @@
 			
 			case 'getPermissions' :
 				return $apiObj->getPermissions( ) ;
+				
+			case 'sendMail' :
+				return $apiObj->sendMail( $parameters ) ;
 			
 			// order 0 preprocessing messages
 			case 'switchToSsl' : 

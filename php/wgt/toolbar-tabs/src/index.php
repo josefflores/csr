@@ -1,6 +1,6 @@
 <?php
 
-	echo ' <div id="tabs"> <ul> </ul> </div>';
+	echo ' <div class=toolbar-tabs><div id="tabs"> <ul> </ul> </div></div>';
 
 	
 ?>
