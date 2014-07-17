@@ -104,20 +104,26 @@ echo'
                 }
 
                 $out = array_reverse($out);
-
+                $currentYear = 0;
                 foreach ($out as $o){
-                    $month = $o['month'];
-                    $year = $o['year'];
 
-                    echo '
-					    <li class=\"time-line-year\">' .
-                        $year .
-						'<ul>
-							<li class=\"time-line-year-months\">' .
-                            $month  .
-							'</li>
-						</ul>
-					</li>';
+                    $month = $o['month'];
+                    $year = $o['year'] ;
+
+                    if($currentYear!= $year){
+                        echo '
+				    <li class=\"time-line-year\">' .
+                            $year;
+                    }
+                        echo
+                    '<ul>
+					    <li class=\"time-line-year-months\">' .
+                        $month  .
+                        '</li>
+                    </ul>
+                </li>';
+
+                    $currentYear = $year;
                 }
 
 	echo'			</ul>
