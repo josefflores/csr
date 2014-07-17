@@ -11,5 +11,5 @@
  
 body.dev{background:#ff9;margin:0;padding:0}
 
-div.developer-tool { width:100%; height:100%; color:#000;}
+div.developer-tool { width:100%; height:70%; color:#000; overflow: scroll}
 table.wgt { color:#000 } 
