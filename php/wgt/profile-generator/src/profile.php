@@ -112,16 +112,16 @@ echo'
 
                     if($currentYear!= $year){
                         echo '
-				    <li class=\"time-line-year\">' .
+				    <li class=\"time-line-year\"> <a href = "#">' .
                             $year;
                     }
                         echo
                     '<ul>
-					    <li class=\"time-line-year-months\">' .
+					    <li class=\"time-line-year-months\"><a href = "#">' .
                         $month  .
-                        '</li>
+                        ' </a></li>
                     </ul>
-                </li>';
+                </a></li>';
 
                     $currentYear = $year;
                 }
