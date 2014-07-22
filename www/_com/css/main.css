@@ -19,7 +19,8 @@ th{font-weight:700}
 
 div.main{width: 100%;
 top: 100;
-height: 100%;
+bottom:40;
+overflow-y:scroll;
 position: fixed;}
 span.my-tab{float:left;margin:0;min-width:25px}
 span.my-close-button{float:left;margin:0}

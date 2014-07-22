@@ -19,7 +19,7 @@
 	$E->manage( 'SET_USER' , 1 ) ;
 	$LIST = $E->manage( 'LIST' ) ;
 	
-	//var_dump( $LIST ) ;
+	echo '<pre>' , var_dump( $LIST ) , '</pre>' ;
 	
 	$RANGE = $E->manage( 'RANGE_INDEX' , array( 0 , count ( $LIST ) ) ) ;
 	//rSort( $LIST ) ;
