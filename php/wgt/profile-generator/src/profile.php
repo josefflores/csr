@@ -3,6 +3,25 @@
 $tag = array( 'Name' => 'Jose') ;
 $years = array( 2013 , 2014 ) ;
 
+$A['W_ROOT']  = "localhost/DietaryWebApp/";
+$A[ 'D_ROOT' ] = 'D:\\DietitianSite\\csr\\' ;
+$A[ 'SECURE' ] = false ;
+/*
+include( $A[ 'D_ROOT' ].'ini\\paths.php' ) ;
+include( $A[ 'D_TMP' ] . 'includes.php' ) ;
+
+errorsOn( true ) ;
+
+$E = new eventManager($A );
+$E->manage('SET_USER', 1);
+$list = $E->manage('LIST');
+
+echo '<pre>' , var_dump( $LIST ) , '</pre>' ;
+*/
+
+include 'Calendar.php';
+
+
 echo'
 <div class="profile-generator">
 	<div class="profile-generator-left">
@@ -17,29 +36,45 @@ echo'
 				<table>';
 
                     //open connection to mysql server
-                    $dbc = mysql_connect('localhost','root','sudhir');
+                    $dbc = mysqli_connect('localhost','root','sudhir', 'csr');
                     if(!$dbc){
                         die("not connected : " . mysql_error());
                     }
 
-                    //select database
-                    $db_selected = mysql_select_db('csr_d',$dbc);
-                    if(!$db_selected){
-                        die("cant connect to database csr_d" . mysql_error());
-                    }
-
                     //query the database and get results
-                    $query = "SELECT csr_d_key, csr_d_val  from csr_d_key_pair";
-                    $result = mysql_query($query);
+                    $query = "SELECT usr_name_first, usr_name_last,
+                                     usr_email, usr_phone_country,
+                                     usr_phone_area, usr_phone_number,
+                                     usr_phone_ext, usr_dob_epoch from csr_usr_account where id = 1";
+                    $result = mysqli_query($dbc, $query);
 
-                    while($row = mysql_fetch_array($result, MYSQL_BOTH)){
-                        $key = $row['csr_d_key'];
-                        $val = $row['csr_d_val'];
+                    while($row = mysqli_fetch_array($result, MYSQL_BOTH)){
+                        $firstName = $row['usr_name_first'];
+                        $lastName = $row['usr_name_last'];
+                        $email = $row['usr_email'];
+                        $phoneNo = "+" . $row['usr_phone_country']. $row['usr_phone_area']
+                                        . $row['usr_phone_number'] . $row['usr_phone_ext'];
+                        $dob = $row['usr_dob_epoch'];
 
                         echo "
 							<tr>
-								<th>$key : </th>
-							<td>$val</td>
+								<th> Name: </th>
+							    <td>$firstName &nbsp $lastName</td>
+							</tr>
+
+							<tr>
+							    <th> Email: </th>
+							    <td> $email </td>
+							</tr>
+
+							<tr>
+							    <th> Phone No: </th>
+							    <td> $phoneNo </td>
+							</tr>
+
+                            <tr>
+							    <th> Date of Birth: </th>
+							    <td> $dob </td>
 							</tr>
 						";
 
@@ -67,9 +102,10 @@ echo'
 
 	<div class = "profile-generator-center-pane" >
 				
-		<div class = "current-month-table">
-	
-		</div>
+		<div class = "current-month-table">';
+        $calendar = new Calendar();
+        echo $calendar->show();
+echo '</div>
 
 	</div>
 
