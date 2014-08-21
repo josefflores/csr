@@ -1,26 +1,26 @@
 <?php
 
-$tag = array( 'Name' => 'Jose') ;
-$years = array( 2013 , 2014 ) ;
-
-$A['W_ROOT']  = "localhost/DietaryWebApp/";
-$A[ 'D_ROOT' ] = 'D:\\DietitianSite\\csr\\' ;
-$A[ 'SECURE' ] = false ;
-/*
-include( $A[ 'D_ROOT' ].'ini\\paths.php' ) ;
-include( $A[ 'D_TMP' ] . 'includes.php' ) ;
-
-errorsOn( true ) ;
-
-$E = new eventManager($A );
-$E->manage('SET_USER', 1);
-$list = $E->manage('LIST');
-
-echo '<pre>' , var_dump( $LIST ) , '</pre>' ;
-*/
-
+include(dirname(__DIR__)."/../../../ini/mysql.php");
 include 'Calendar.php';
 
+$A['D_ROOT'] = 'D:\DietitianSite\csr\\';
+$A['W_ROOT'] = 'localhost/DietaryWebApp';
+
+$A['M_SERVER'] = 'localhost';
+$A[ 'M_USR' ] = 'root' ;
+$A['M_PWD'] =  'sudhir';
+$A['M_DB'] =  'csr';
+
+include( $A[ 'D_ROOT' ].'\ini\\paths.php' ) ;
+include( $A[ 'D_TMP' ] . 'includes.php' ) ;
+
+define( 'CURRENT_USER_ID' , 1 ) ;
+define( 'CURRENT_SRC_ID' , null ) ;
+define( 'CURRENT_WEB_OR_MFA' , 'WEB' ) ;
+
+$E = new eventManager( $A ) ;
+//$E->manage( 'SET_USER' , 1 ) ;
+//$LIST = $E->manage( 'LIST' ) ;
 
 echo'
 <div class="profile-generator">
@@ -34,6 +34,10 @@ echo'
 
 			<div class="profile-generator-name-card1">
 				<table>';
+
+
+                    $myd = new mysql($A, $A['M_DB']);
+
 
                     //open connection to mysql server
                     $dbc = mysqli_connect('localhost','root','sudhir', 'csr');
@@ -102,12 +106,13 @@ echo'
 
 	<div class = "profile-generator-center-pane" >
 				
-		<div class = "current-month-table">';
-        $calendar = new Calendar();
-        echo $calendar->show();
+		<!-div class = "current-month-table">';
+            /*$calendar = new Calendar();
+            echo $calendar->show();*/
+            echo '<iframe src="https://www.google.com/calendar/embed?src=v.sudhir89%40gmail.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>';
 echo '</div>
 
-	</div>
+	<!-/div>
 
 
 	<div class="profile-generator-right-panel">

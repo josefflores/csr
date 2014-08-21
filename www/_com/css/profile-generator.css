@@ -88,7 +88,7 @@ div.profile-generator-name-card1 {
 
 div.profile-generator-center-pane {
     float: left;
-    margin-left: 400px;
+    margin-left: 200px;
     position: relative;
 
 }
@@ -120,7 +120,7 @@ div.profile-generator-center-pane {
 div#calendar{
     margin:0px auto;
     padding:0px;
-    width: 602px;
+    width: 650px;
     font-family:Helvetica, "Times New Roman", Times, serif;
 }
 
@@ -133,7 +133,7 @@ div#calendar div.box{
     background-color:   #787878 ;
 }
 
-div#calendar div.header{
+div#calendar div.headerCalendar{
     line-height:40px;
     vertical-align:middle;
     position:absolute;
@@ -144,7 +144,7 @@ div#calendar div.header{
     text-align:center;
 }
 
-div#calendar div.header a.prev,div#calendar div.header a.next{
+div#calendar div.headerCalendar a.prev,div#calendar div.headerCalendar a.next{
     position:absolute;
     top:0px;
     height: 17px;
@@ -154,17 +154,17 @@ div#calendar div.header a.prev,div#calendar div.header a.next{
     color:#FFF;
 }
 
-div#calendar div.header span.title{
+div#calendar div.headerCalendar span.title{
     color:#FFF;
     font-size:18px;
 }
 
 
-div#calendar div.header a.prev{
+div#calendar div.headerCalendar a.prev{
     left:0px;
 }
 
-div#calendar div.header a.next{
+div#calendar div.headerCalendar a.next{
     right:0px;
 }
 
