@@ -1,0 +1,8 @@
+[07-Dec-2014 16:26:53 America/New_York] PHP Warning:  error_log() expects parameter 1 to be string, array given in F:\Github\csr\php\api\api.php on line 480
+[07-Dec-2014 16:27:39 America/New_York] 
+[07-Dec-2014 16:29:21 America/New_York] PHP Notice:  Undefined variable: A in F:\Github\csr\php\api\api.php on line 480
+[07-Dec-2014 16:29:21 America/New_York] PHP Warning:  file_put_contents(file.log): failed to open stream: Permission denied in F:\Github\csr\php\api\api.php on line 480
+[07-Dec-2014 19:13:37 America/New_York] PHP Notice:  Undefined variable: tmp in F:\Github\csr\php\wgt\event-manager\src\index.php on line 52
+[07-Dec-2014 19:13:37 America/New_York] PHP Notice:  Undefined variable: tmp in F:\Github\csr\php\wgt\event-manager\src\index.php on line 52
+[07-Dec-2014 19:13:37 America/New_York] PHP Notice:  Undefined variable: tmp in F:\Github\csr\php\wgt\event-manager\src\index.php on line 52
+[07-Dec-2014 19:13:37 America/New_York] PHP Notice:  Undefined index: FILE in F:\Github\csr\php\wgt\event-manager\src\index.php on line 56

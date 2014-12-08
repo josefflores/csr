@@ -1,19 +1,19 @@
 /**
- *  @File			main.css
- * 	@Authors		Jose Flores
- * 					jose.flores.152@gmail.com
- * 	
- * 	@Description	This is the main CSS file it holds generic stylings 
- * 					as non widget styles
- * 
- * 	@changelog		
- * 	4/20/14			compressed with all options via 
- * 					http://www.csscompressor.com/, 
- * 					note that the gradients cannot be compresseda
+ *  @File           main.css
+ *  @Authors        Jose Flores
+ *                  jose.flores.152@gmail.com
+ *
+ *  @Description    This is the main CSS file it holds generic stylings
+ *                  as non widget styles
+ *
+ *  @changelog
+ *  4/20/14         compressed with all options via
+ *                  http://www.csscompressor.com/,
+ *                  note that the gradients cannot be compresseda
  */
-html {font-family: 'ABeeZee', sans-serif;} 
+html {font-family: 'ABeeZee', sans-serif;}
 body{background:#fff; margin:0;padding:0}
-a{color:#4484ba;cursor:pointer;display:block;text-decoration:none}
+a{color:#456784;cursor:pointer;display:block;text-decoration:none}
 th{font-weight:700}
 
 
@@ -24,16 +24,14 @@ overflow-y:scroll;
 position: fixed;}
 span.my-tab{float:left;margin:0;min-width:25px}
 span.my-close-button{float:left;margin:0}
-div.header{ 
-position: fixed;
-				left : 0 ;
-				top : 0 ;
-				z-index:40;
-				
- 
-
-box-shadow: 0 1px 3px 1px #222;
-height:100px;margin:0;min-width:1100px;padding:0;width:100%
+div.header{
+    position: fixed;
+    left : 0 ;
+    top : 0 ;
+    z-index:40;
+    box-shadow: 0 1px 3px 1px #222;
+    height:100px;margin:0;min-width:1100px;padding:0;width:100%;
+    background:#456784
 }
 #page,div.profile{height:100%;width:100%}
 div.footer{background:#fff;position:fixed; bottom:0;left:0;box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.35);height:40px;margin:0;padding:0;text-align:center;width:100%}
@@ -41,7 +39,7 @@ div.footer > ul{height:150px;list-style-type:none;margin:10px auto 0;padding:0;w
 div.footer > ul > li{color:#000;float:left;font-size:14px;height:30px;line-height:30px;text-align:center;text-transform:uppercase;width:191px}
 div.footer > ul > li > ul{font-size:12px;font-weight:400;line-height:20px;list-style-type:none;margin:0;padding:0}
 div.footer > ul > li > ul > li > a{font-weight:bold;color:#000;font-size:10px;height:20px;line-height:20px;text-decoration:none}
-div.footer > ul > li > ul > li > a:hover{color:#4484ba ;text-decoration:underline}
+div.footer > ul > li > ul > li > a:hover{color:#456784 ;text-decoration:underline}
 div.error{background:#fff;border:1px solid red;margin:5px;padding:5px;width:95%}
 div.sec-login {float: right;
 height: 150px;
@@ -56,19 +54,9 @@ width: 75px;
 margin-right: 50px;
 }
 a.button, button { width:74px;}
+div.wrapper{ width:100%; float:left}
 
 
-div.header {
-background: #4484ba; /* Old browsers */
-background: -moz-linear-gradient(top,  #4484ba 0%, #005c96 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4484ba), color-stop(100%,#005c96)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #4484ba 0%,#005c96 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #4484ba 0%,#005c96 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #4484ba 0%,#005c96 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #4484ba 0%,#005c96 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4484ba', endColorstr='#005c96',GradientType=0 ); /* IE6-9 */
-
-	}
 
 input {height:25px}
 input.sec-registration-input-text {margin: 0 10px ; }
@@ -76,20 +64,20 @@ input.sec-registration-input-text-2  { width: 1.5em ; margin: 0 10px ;}
 input.sec-registration-input-text-3  {width: 2.25em ;margin: 0 10px ;}
 input.sec-registration-input-text-4 {width: 3em ;margin: 0 10px ;}
 
-.sec-login table tr.sec-registration-line td:first-child {color: rgb(81%, 87%, 92%);
-    text-transform:uppercase; font-size:13px;
-text-shadow: 1px 6px 10px #24719A, 0 0 0 #999, -1px -1px 5px #555;}
+.sec-login table tr.sec-registration-line td:first-child {color: #fff;
+    text-transform:capitalize; font-size:13px; font-weight:normal;
+}
 
 input.sec-registration-required {}
 div.article {margin: 20px;}
 
 table { padding:5px 10px; }
 div.center { text-align:center; width:100%}
-button.large , button{  background:#4484ba; color:#fff; border: 1px solid #fff ;}
-button.large:hover , button:hover{  color:#4484ba; background:#fff; border: 1px solid #4484ba ;}
+button.large , button{  background:#456784; color:#fff; border: 1px solid #fff ;}
+button.large:hover , button:hover{  color:#456784; background:#fff; border: 1px solid #456784 ;}
 button.large {width: 250px; height :50px; font-size:1.3em;}
 
-h1,h2,h3,h4,h5,h6 { color:#4484ba; }
+h1,h2,h3,h4,h5,h6 { color:#456784; }
 textarea { width:900px ; height:300px; resize: none ;}
 
 .input-error { border-color:  #bf4e4e ; }
@@ -101,20 +89,22 @@ textarea { width:900px ; height:300px; resize: none ;}
 .ui-icon {float: left;
 margin-right: 5px;}
 
-td.information { color:#4484ba; padding:5px 10px;  font-size:14px;}
+td.information { color:#456784; padding:5px 10px;  font-size:14px;}
 
 div.logo-text {float:left ; width:300px; margin-top:10px}
 div.logo-text-top ,
-div.logo-text-bottom{ 
-color: rgb(81%, 87%, 92%);
+div.logo-text-bottom{
+color: #fff ;
 text-transform: uppercase;
+}
+div.logo-text-top{ font-size: 35px;
+margin-top: 8px;}
+div.logo-text-bottom{ text-transform:capitalize;font-size: 13px;}
 
-text-shadow: 1px 6px 10px #24719A, 0 0 0 #999, -1px -1px 5px #555; }
-div.logo-text-top{ font-size: 42px;}
-div.logo-text-bottom{ font-size: 13px;}
-
-.display_none{ display :none !important; } 
-.display_block{ display :block } 
+.display_none{ display :none !important; }
+.display_block{ display :block }
 
 .red {background:red}
 .blue {background:blue}
+.ui-button{margin:0px;}
+input{width:155px; font-size: 11px;}

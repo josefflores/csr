@@ -36,7 +36,7 @@ echo'
 				<table>';
 
                     //open connection to mysql server
-                    $dbc = mysqli_connect('localhost','root','sudhir', 'csr');
+                    $dbc = mysqli_connect('localhost','root','Dsce18lse2k3', 'csr');
                     if(!$dbc){
                         die("not connected : " . mysql_error());
                     }
