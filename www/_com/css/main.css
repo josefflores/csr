@@ -107,4 +107,12 @@ div.logo-text-bottom{ text-transform:capitalize;font-size: 13px;}
 .red {background:red}
 .blue {background:blue}
 .ui-button{margin:0px;}
-input{width:155px; font-size: 11px;}
+input{ font-size: 11px;}
+input[type='text'],
+input[type='password'] {width:155px;}
+input[type='checkbox']{ vertical-align: middle;
+}#file{float:left;}
+
+label, #result
+{font-size: 12px;
+color: #456784;}

@@ -49,17 +49,22 @@
             <h3>Statistics</h3>
         </div>';
 
-    $F = new fManager( $A ) ;
-    $file = $A[ 'D_USR' ] . $row[ 'id' ] . '/profile.jpg';
-    $tmp = $F->encodeB64( $file ) ;
+
 
     echo '<div class="pane-left">
             <div class="profile-generator-id">
 
-            <div class="profile-generator-picture">
-                <img src="data:' , $tmp[ 'mime' ] , ';' , $tmp[ 'encoded' ] ,',', $tmp[ 'data' ] , '" alt="', $file ,'"  />
+            <div class="profile-generator-picture">' ;
+    $file = $A[ 'D_USR' ] . $row[ 'id' ] . '/profile.jpg';
+    if( file_exists( $file ) ) {
+        $F = new fManager( $A ) ;
 
-    </div>
+        $tmp = $F->encodeB64( $file ) ;
+            echo'     <img src="data:' , $tmp[ 'mime' ] , ';' , $tmp[ 'encoded' ] ,',', $tmp[ 'data' ] , '" alt="', $file ,'"  />' ;
+    } else{
+        echo'     <img src="'.$A[ 'W_IMG' ].'profile.png"  />' ;
+    }
+    echo '</div>
 
                 <div class="profile-generator-name-card">
                     <table>
@@ -102,8 +107,11 @@
         <div class="pane-center-input">
             <textarea></textarea><br/>
             <input type="file" id="fileinput"/>
-            <div id="file"><button>Upload</button><span id="result"></span></div>
-            <button id="btnLoad" onclick="handleFileSelect();">Submit</button>
+            <div id="file"><button>Attach</button></div><input id="profilePicture" type="checkbox"/><label>Make this the profile picture</label><span id="result"></span><br/>
+<br/>
+            <button id="btnLoad" onclick="handleFileSelect();">Post</button><br/>
+
+
             <div id="editor"></div>
         </div>
 
@@ -133,8 +141,6 @@
 
             echo '</ul></li>' ;
         }
-    } else {
-        echo ' No Events ' ;
     }
     echo    '</ul>
 
@@ -142,6 +148,11 @@
 
 
 
-        <div class="pane-center"></div>' ;
+        <div class="pane-center">' ;
+
+        $WGT[ 'ARGV' ][ 0 ] = time() - ( time() % (24 * 60 * 60 ) ) ;
+        $WGT[ 'ARGV' ][ 1 ] = $WGT[ 'ARGV' ][ 0 ] + ( 24 * 60 * 60 ) ;
+        include( $A[ 'D_WGT' ] . 'event-manager\index.php' ) ;
+        echo '</div>' ;
 ?>
 

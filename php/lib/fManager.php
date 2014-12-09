@@ -24,6 +24,7 @@
         private $Dict = array(  'application/pdf'   => 'pdf' ,
                                 'application/zip'   => 'zip' ,
                                 'application/octet-stream' => 'bin' ,
+
                                 'image/gif'         => 'gif' ,
                                 'image/jpg'         => 'jpg' ,
                                 'image/jpeg'        => 'jpg' ,
@@ -243,6 +244,7 @@
             $mime = $tmp[ 'mime' ] ;
             $data = $tmp[ 'data' ] ;
             $encoded = $tmp[ 'encoded' ] ;
+            $profile = $tmp[ 'profile' ] ;
 
             if ( strtolower( $encoded ) != 'base64' )
                 return 6 ;
@@ -261,10 +263,17 @@
             // generate target information
             $timeStamp = time( ) ;
             $filePath = $this->A[ 'D_USR' ] . CURRENT_USER_ID . '\\' ;
-            $fileName = CURRENT_USER_ID . '_' . $timeStamp . '.' . $ext ;
+
+            if ( !$profile ){
+                $fileName = CURRENT_USER_ID . '_' . $timeStamp . '.' . $ext ;
+            } else {
+                $fileName = 'profile.' . $ext ;
+            }
+
 
             // target file check, File must not exist
-            if ( file_exists( $filePath . $fileName ) )
+            if ( !$profile &&
+                 file_exists( $filePath . $fileName ) )
                 return 3 ;
 
             // begin file write

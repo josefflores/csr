@@ -87,16 +87,16 @@ $( function() {
     $(document).mouseover( '..toolbar-menu ul li' , function() {
         $('ul.display_none' ).removeClass( 'display_none' ) ;
     });
-var wrapper = $('<div/>').css({height:0,width:0,'overflow':'hidden'});
-var fileInput = $(':file').wrap(wrapper);
-fileInput.change(function(){
-    $this = $(this);
-    $('#result').text($this.val());
-})
+    var wrapper = $('<div/>').css({height:0,width:0,'overflow':'hidden'});
+    var fileInput = $(':file').wrap(wrapper);
+    fileInput.change(function(){
+        $this = $(this);
+        $('#result').text($this.val());
+    })
 
-$('#file').click(function(){
-    fileInput.click();
-}).show();
+    $('#file').click(function(){
+        fileInput.click();
+    }).show();
 
 }) ;
 

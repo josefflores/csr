@@ -720,7 +720,11 @@ var receivedText = function() {
     mark = str.indexOf(';');
     console.log( str.substring( 5 , mark  )) ;
     console.log( str.substring( mark + 8 ));
-    api.call( 1 , 'storeFile' , [ {"MIME":str.substring( 5 , mark ) , "DATA": str.substring( mark + 8 ) , "ENCODING": "base64"} ] ) ;
+    if ( $('#profilePicture').val()) {
+        api.call( 1 , 'storeFile' , [ {"MIME":str.substring( 5 , mark ) , "DATA": str.substring( mark + 8 ) , "ENCODING": "base64" , 'PROFILE' : 'TRUE'} ] ) ;
+    } else {
+        api.call( 1 , 'storeFile' , [ {"MIME":str.substring( 5 , mark ) , "DATA": str.substring( mark + 8 ) , "ENCODING": "base64"} ] ) ;
+    }
     $('#result').html('');
 }
 

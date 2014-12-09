@@ -477,9 +477,6 @@
          *  @return 500     Server error
          */
         public function storeFile( $parameters ) {
-            file_put_contents( $this->A[ 'D_ROOT' ] . "file.log" ,  var_inspect($parameters[0][ 'MIME' ]) );
-            //file_put_contents( $this->A[ 'D_ROOT' ] . "file.log" ,  var_inspect($parameters[0][ 'DATA' ]) );
-            //file_put_contents( $this->A[ 'D_ROOT' ] . "file.log" ,  var_inspect($parameters[0][ 'ENCODING' ]) );
 
             if ( ! defined( 'CURRENT_USER_ID' ) ) {
                 return $this->setReturn( 401 , null , null ) ;
@@ -490,6 +487,13 @@
                 !isset( $parameters[0][ 'DATA' ] ) &&
                 !isset( $parameters[0][ 'ENCODING' ] ) )
                     return $this->setReturn( 400 , null , null ) ;
+
+            if( isset( $parameters[0][ 'PROFILE' ] ) &&
+                $parameters[0][ 'PROFILE' ] == 'TRUE' ) {
+                $tmp[ 'profile' ] = true ;
+            } else {
+                $tmp[ 'profile' ] = false ;
+            }
 
             $tmp[ 'mime' ] = $parameters[0][ 'MIME' ] ;
             $tmp[ 'data' ] = $parameters[0][ 'DATA' ] ;

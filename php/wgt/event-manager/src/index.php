@@ -6,6 +6,8 @@
 
     $RANGE = $E->manage( 'RANGE_EPOCH' , array( $WGT[ 'ARGV' ][ 0 ] , $WGT[ 'ARGV' ][ 1 ] ) ) ;
 //var_dump( $RANGE ) ;
+    if( count( $RANGE ) ) {
+
     for ( $i = count( $RANGE ) - 1 ; $i >= 0 ; --$i ){
 
         $j = 0 ;
@@ -71,3 +73,8 @@
         }
     }
 
+}
+else{
+    echo '<h3> There are no entries for today</h3>';
+}
+?>
